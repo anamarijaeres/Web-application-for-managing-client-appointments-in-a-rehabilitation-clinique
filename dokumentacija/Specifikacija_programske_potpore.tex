@@ -4,18 +4,22 @@
 			
 			\textbf{\textit{dio 1. revizije}}\\
 			
-			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
+			\textit{ \textbf{dionici} koji imaju interesa u ovom sustavu su svi \textbf{doktori, treneri i budući korisnisnici sustava},
+			te dodatno \textbf{naručitelj projekta} (u ovom slučaju asistent tj. fakultet). Nositelji odgovornosti \textbf{budući administratori sustava te razvojni tim}.}\\
 				
-			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
+			\textit{\textbf{Aktori} koji izravno korste sustav su svi \textbf{doktori, treneri, klijenti i administratori}, dok sa sustavom neizravno komuniciraju \textbf{neregistrirani korisnici te baza podataka}.}\\
 			
 			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item 1. Korisnici
+				\item 2. Doktori			
+				\item 3. Treneri
+				\item 4. Progamerski tim 
+				\item 5. Asistent
+				\item 6. Administratori aplikacije
 				
 			\end{packed_enum}
 			
@@ -23,30 +27,90 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item  \underbar{Administrator može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item (a) potvrđivati registraciju željene uloge neregistriranom korisniku
 					\begin{packed_enum}
 						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
+						\item i. potvrđivanje klijenata
+						\item ii. potvrđivanje pacjenata
+						\item iii. potvrđivanje trenera
+						
 					\end{packed_enum}
-					\item  funkcionalnost 3
+					\item (b) grupirati proizvode i vježbe u kategorije
+					
+					\item (c) uređivati i brisati kategorije, proizvode i vježbe
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+				\item  \underbar{Doktor može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
+					\item (a) odgovarati na recenzije svojih kiljenata
+					\item (b) prekinuti suradnju s klijentom
+					\item (c) definira dijetu
+					\begin{packed_enum}
+						
+						\item i. unosi sve potrebne parametre dijete
+						\item ii. dodaje opis dijete
+						
+					\end{packed_enum}
+				
+				\item (d) predgledati statistike klijenata po danu
+				\item (e) grupirati proizvde i vježbe u kategorije	
+					
+				\end{packed_enum}
+			
+				\item  \underbar{Trener može:}
+				
+				\begin{packed_enum}
+					
+					\item (a) odgovarati na recenzije svojih kiljenata
+					\item (b) prekinuti suradnju s klijentom
+					\item (c) definirati dnevne treninge
+					\item (d) predgledati statistike klijenata po danu
+					\item (e) grupirati proizvde i vježbe u kategorije
+					
+				\end{packed_enum}
+			
+				\item  \underbar{Klijent može:}
+				
+				\begin{packed_enum}
+					
+					\item (a) tražiti i pregledavati profile svih dostupnih doktora i trenera
+					\item (b) ostaviti recenziju svom doktoru i treneru
+					\item (c) prekinuti suradnju sa svojim doktorom ili trenerom
+					\item (d) pregledati vlastite staistike po danu
+					
+				\end{packed_enum}
+			
+				\item  \underbar{Neregistrirani korisnik može:}
+				
+				\begin{packed_enum}
+					
+					\item (a) poslati zahtjev za registraciju u željenoj ulozi
+					
+					\begin{packed_enum}
+						
+						\item i. slanje zahtjeva za korisnika 
+						\item ii. slanje zahtjeva za trenera ili doktora
+						
+					\end{packed_enum}
+					
+				\end{packed_enum}
+			
+				\item  \underbar{Baza podataka može:}
+				
+				\begin{packed_enum}
+					
+					\item (a) spremati podatke o svim registriranim osobama, dijetama, vježbama i proizvodima
 					\item funkcionalnost 2
 					
 				\end{packed_enum}
+			
 			\end{packed_enum}
 			
 			\eject 
