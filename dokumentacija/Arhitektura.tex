@@ -2,13 +2,22 @@
 		
 		\textbf{\textit{dio 1. revizije}}\\
 
-		\textit{ Potrebno je opisati stil arhitekture te identificirati: podsustave, preslikavanje na radnu platformu, spremišta podataka, mrežne protokole, globalni upravljački tok i sklopovsko-programske zahtjeve. Po točkama razraditi i popratiti odgovarajućim skicama:}
+		\textit{Arhitektura se sastoji od 3 podsustava:}
 	\begin{itemize}
-		\item 	\textit{izbor arhitekture temeljem principa oblikovanja pokazanih na predavanjima (objasniti zašto ste baš odabrali takvu arhitekturu)}
-		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
-		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
+		\item 	\textit{Web poslužitelj}
+		\item 	\textit{Web aplikacija}
+		\item 	\textit{Baza podataka}		
 	\end{itemize}
-
+		\textit{
+			Web poslužitelj- Primarna zadaća web poslužitelja je komunikacija klijenta s aplikacijom, pomoću HTTP protokola. Web poslužitelj prosljeđuje korisnikov 
+			zahtjev, preko Web preglednika, web aplikaciji. 
+			Web aplikacija- obrađuje zahtjev te pristupa bazi podataka, vraćajući odgovor korisniku u web pregledniku.
+			Baza podataka- implementacija pomoću sql-a.
+			
+			Za izradu frontend dijela aplikacije ćemo koristiti Java Script, a za izradu backend dijela aplikacije ćemo koristiti Java Spring Boot. 
+			
+			DOVRŠI MVC koncept arhitekture
+		}
 	
 		
 
