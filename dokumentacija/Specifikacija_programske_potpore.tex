@@ -2,23 +2,21 @@
 		
 	\section{Funkcionalni zahtjevi}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{ \textbf{dionici} koji imaju interesa u ovom sustavu su svi \textbf{doktori, treneri i budući korisnisnici sustava},
-			te dodatno \textbf{naručitelj projekta} (u ovom slučaju asistent tj. fakultet). Nositelji odgovornosti \textbf{budući administratori sustava te razvojni tim}.}\\
+			\textit{ \textbf{Dionici} koji imaju interesa u ovom sustavu su svi \textbf{doktori, treneri i budući korisnici sustava},
+			te dodatno \textbf{naručitelj projekta} (u ovom slučaju asistent tj. fakultet). Nositelji odgovornosti su \textbf{budući administratori sustava te razvojni tim}.}\\
 				
-			\textit{\textbf{Aktori} koji izravno korste sustav su svi \textbf{doktori, treneri, klijenti i administratori}, dok sa sustavom neizravno komuniciraju \textbf{neregistrirani korisnici te baza podataka}.}\\
+			\textit{\textbf{Aktori} koji izravno koriste sustav su svi \textbf{doktori, treneri, klijenti i administratori}, dok sa sustavom neizravno komuniciraju \textbf{neregistrirani korisnici te baza podataka}.}\\
 			
 			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item 1. Korisnici
+				\item 1. Klijenti
 				\item 2. Doktori			
 				\item 3. Treneri
-				\item 4. Progamerski tim 
-				\item 5. Asistent
+				\item 4. Razvojni tim (grupa Flow)
+				\item 5. Naručitelj (asistent)
 				\item 6. Administratori aplikacije
 				
 			\end{packed_enum}
@@ -31,22 +29,16 @@
 				
 				\begin{packed_enum}
 					
-					\item (a) potvrditi registraciju željene uloge neregistriranom korisniku
-					\begin{packed_enum}
-						
-						\item i. potvrđivanje klijenata
-						\item ii. potvrđivanje doktora
-						\item iii. potvrđivanje trenera
-						
-					\end{packed_enum}
-					\item (b) grupirati proizvode i vježbe u kategorije
+					\item potvrditi ili odbiti željenu ulogu neregistriranom korisniku
+
+					\item dodavati proizvode i vježbe u kategorije
 					
-					\item (c) uređivati i brisati
+					\item uređivati i brisati
 					\begin{packed_enum}
 						
-						\item i. kategorije
-						\item ii. proizvode
-						\item iii. vježbe
+						\item kategorije
+						\item proizvode
+						\item vježbe
 						
 					\end{packed_enum}
 				\end{packed_enum}
@@ -55,18 +47,18 @@
 				
 				\begin{packed_enum}
 					
-					\item (a) odgovarati na recenzije svojih kiljenata
-					\item (b) prekinuti suradnju s klijentom
-					\item (c) definira dijetu
+					\item odgovarati na recenzije svojih klijenata
+					\item prekinuti suradnju s klijentom
+					\item definirati dijetu
 					\begin{packed_enum}
 						
-						\item i. unosi sve potrebne parametre dijete
-						\item ii. dodaje opis dijete
+						\item unositi sve potrebne parametre dijete
+						\item dodati opis dijete
 						
 					\end{packed_enum}
 				
-				\item (d) predgledati statistike klijenata po danu
-				\item (e) grupirati proizvode i vježbe u kategorije	
+					\item pregledati statistike klijenta po danu
+					\item dodavati proizvode i vježbe u kategorije	
 					
 				\end{packed_enum}
 			
@@ -74,11 +66,11 @@
 				
 				\begin{packed_enum}
 					
-					\item (a) odgovarati na recenzije svojih kiljenata
-					\item (b) prekinuti suradnju s klijentom
-					\item (c) definirati dnevne treninge
-					\item (d) predgledati statistike klijenata po danu
-					\item (e) grupirati proizvode i vježbe u kategorije
+					\item odgovarati na recenzije svojih klijenata
+					\item prekinuti suradnju s klijentom
+					\item definirati dnevne treninge
+					\item pregledati statistike klijenta po danu
+					\item dodavati proizvode i vježbe u kategorije
 					
 				\end{packed_enum}
 			
@@ -86,10 +78,11 @@
 				
 				\begin{packed_enum}
 					
-					\item (a) tražiti i pregledavati profile svih dostupnih doktora i trenera
-					\item (b) ostaviti recenziju svom doktoru i treneru
-					\item (c) prekinuti suradnju sa svojim doktorom ili trenerom
-					\item (d) pregledati vlastite staistike po danu
+					\item tražiti i pregledavati profile svih dostupnih doktora i trenera
+					\item ostaviti recenziju svom doktoru i treneru
+					\item prekinuti suradnju sa svojim doktorom ili trenerom
+					\item pregledati vlastite statistike po danu
+					\item skenirati bar kod proizvoda koje planira konzumirati
 					
 				\end{packed_enum}
 			
@@ -97,12 +90,13 @@
 				
 				\begin{packed_enum}
 					
-					\item (a) poslati zahtjev za registraciju u željenoj ulozi
+					\item poslati zahtjev za registraciju sa željenom ulogom
 					
 					\begin{packed_enum}
 						
-						\item i. slanje zahtjeva za korisnika 
-						\item ii. slanje zahtjeva za trenera ili doktora
+						\item klijent
+						\item trener
+						\item doktor	
 						
 					\end{packed_enum}
 					
@@ -112,8 +106,17 @@
 				
 				\begin{packed_enum}
 					
-					\item (a) spremati podatke o svim registriranim osobama, dijetama, vježbama i proizvodima
+					\item pohranjuje podatke o svim: 
 					
+					\begin{packed_enum}
+						
+						\item registriranim osobama
+						\item recenzijama
+						\item dijetama i proizvodima
+						\item treninzima i vježbama
+					
+					\end{packed_enum}	
+				
 				\end{packed_enum}
 			
 			\end{packed_enum}
