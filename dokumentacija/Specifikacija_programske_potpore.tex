@@ -90,11 +90,11 @@
 				
 				\begin{packed_enum}
 					
+					\item registrirati se kao klijent
 					\item poslati zahtjev za registraciju sa željenom ulogom
 					
 					\begin{packed_enum}
 						
-						\item klijent
 						\item trener
 						\item doktor	
 						
@@ -133,27 +133,27 @@
 					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
 
-					\noindent \underbar{\textbf{UC1 - Registracija}}
+					\noindent \underbar{\textbf{UC1 - Registracija klijenta}}
 					\begin{packed_item}
 	
-						\item \textbf{Glavni sudionik: }Neregistrirani korisnik
-						\item  \textbf{Cilj:} Stvoriti korinički račun za pristup sustavu
+						\item \textbf{Glavni sudionik:} Neregistrirani korisnik
+						\item  \textbf{Cilj:} Stvoriti korisnički račun za pristup sustavu u ulozi klijenta
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} -
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 	
-							\item Korisnik odabire opciju za registraciju
+							\item Korisnik odabire opciju za registraciju klijenata
 							\item Korisnik unosi potrebne podatke
-							\item Korisnik čeka na potvrdu administratora
+							\item Korisnik je obaviješten o uspješnoj registraciji
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
 	
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[2.a] Odabir vec zauzetog korisničkog imena i/ili e-maila, unos korisnčkog podatka u nedozvoljenom formatu ili pružanje neispravnoga e-maila
 							\item[] \begin{packed_enum}
 								
 								\item Sustav obavještava korisnika o neuspjelom unosu i vraća ga na stranicu za registraciju
@@ -164,41 +164,694 @@
 						\end{packed_item}
 					\end{packed_item}
 				
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC1 - Registracija doktora/trenera}}
 					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						
+						\item \textbf{Glavni sudionik:} Neregistrirani korisnik
+						\item  \textbf{Cilj:} Stvoriti korisnički račun za pristup sustavu u ulozi doktora ili trenera
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} -
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							
+							\item Korisnik odabire opciju za registraciju zaposlenika
+							\item Korisnik unosi potrebne podatke
+							\item Korisnik dobiva obavijest da je njegov zahtjev prihvaćen
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
-	
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							
+							\item[2.a] Odabir vec zauzetog korisničkog imena i/ili e-maila, unos korisnčkog podatka u nedozvoljenom formatu ili pružanje neispravnoga e-maila
 							\item[] \begin{packed_enum}
 								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
+								\item Sustav obavještava korisnika o neuspjelom unosu i vraća ga na stranicu za registraciju
+								\item Korisnik mijenja potrebne podatke te završava unos ili odustaje od registracije
 								
 							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
+						
+							\item[3.a] Zahtjev je odbio administrator
+							\item [] \begin{packed_enum}
+								
+								\item Korisnik ne dobiva pristup sustavu 
+							
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC1 - Prijava u sustav}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Neprijavljeni korisnik
+						\item  \textbf{Cilj:} Dobiti pristup korisničkom sučelju
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je registriran
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Unos potrebnih podataka (korisničko ime i lozinka)
+							\item Potvrda o ispravnosti podataka
+							\item Pristup korisničkom sučelju
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Neispravno korisničko ime i/ili lozinka
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava korisnika o neuspjeloj prijavi i vraća ga na stranicu za prijavu
+								
+							\end{packed_enum}
 							
 						\end{packed_item}
 					\end{packed_item}
 				
+					\noindent \underbar{\textbf{UC2 - Pregled profila doktora i trenera}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik:} Klijent
+						\item  \textbf{Cilj:} Pregledati profile svih dostupnih doktora i trenera
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Klijent je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item Klijent odabire izbornik "Osoblje"
+							\item U izborniku odabire želi li pregledati samo doktore, samo trenere ili svo osoblje
+							\item Nakon što odabere opciju prikazuju se profili osoblja
+						\end{packed_enum}
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC2 - Traženje profila doktora/trenera}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Klijent
+						\item  \textbf{Cilj:} Pretražiti dostupne doktore/trenere po imenu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Klijent je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Klijent odabire izbornik "Osoblje"
+							\item Unosi ime u polje za pretraživanje i započinje pretragu
+							\item Prikažu se dokori/treneri koji odgovaraju pretrazi
+						\end{packed_enum}
+					
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Nema doktora/trenera koji odgovaraju pretrazi
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava klijenta da nije pronašao niti jednog doktora/trenera koji odgovara pretrazi
+							\end{packed_enum}
+							
+						\end{packed_item}
+						
+					\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC3 - Ocjenjivanje osoblja}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Klijent
+					\item  \textbf{Cilj:} Napisati recenziju za klijentovog trenutnog doktora ili trenera
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Klijent je prijavljen i u suradnji je s barem jednim doktorom ili trenerom
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Klijent odabire opciju "Moji doktori i treneri"
+						\item Klijent odabire kojeg doktora ili trenera želi ocijeniti
+						\item Klijent izabire ocjenu (1-5) i ako želi napiše komentar
+						\item Ocjena i komentar se zapisuju u bazu podataka i ažurira se prosječna ocjena doktora/trenera
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC4 - Odgovor na vlastitu recenziju}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Doktor, trener
+					\item  \textbf{Cilj:} Odgovoriti na klijentovu recenziju
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Doktor/trener je prijavljen i barem jedan klijent je napisao recenziju za njega
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Doktor/trener odabire pregled svojih recenzija
+						\item Odabire opciju "Odgovori na recenziju" pokraj jedne recenzije i napiše svoj odgovor
+						\item Odgovor se pohranjuje u bazu podataka
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC5 - Prekid suradnje}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Klijent, doktor, trener
+					\item  \textbf{Cilj:} Prekinuti suradnju s osobom
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Klijent/doktor/trener mora biti prijavljen i u suradnji s barem jednom osobom
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Klijent/doktor/trener odabire pregled svojih suradnika
+						\item Odabire opciju "Prekid suradnje" 
+						\item Promjene se upisuju u bazu podataka
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC6 - Definiranje dijete}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Doktor
+					\item  \textbf{Cilj:} Definitrati dijetu svome klijentu
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Doktor je prijavljen i u suradnji je s barem jednim klijentom
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Doktor odabire pregled svojih klijenata
+						\item Za željenog klijenta bira opciju "Nova dijeta"
+						\item Unosi potrebne podatke (parametri dijete, opis, kojem klijentu ju pripisuje) 
+						\item Nova dijeta se pohranjuje u bazu podataka
+						
+					\end{packed_enum}
+				
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[3.a] Nisu uneseni svi potrebni podatci
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava doktora da treba ispuniti sve potrebne podatke i vraća ga na stranicu za kreiranje dijete
+						\end{packed_enum}
+						
+					\end{packed_item}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC7 - Pregled statistike klijenta}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Doktor, trener
+					\item  \textbf{Cilj:} Pregledati statustiku klijenta po danu
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Doktor/trener je prijavljen i u suradnji je s barem jednim klijentom
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Doktor/trener odabire pregled svojih klijenata
+						\item Odabire opciju "Pregled statistike" 
+						\item Odabire dan
+						\item Prikaže se statistika klijenta za taj dan
+						
+					\end{packed_enum}
+				
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[2.a] Klijent nema upisanih podataka 
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava da klijent nema upisanih podataka i nudi opciju za povratak
+						\end{packed_enum}
+						
+					\end{packed_item}	
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC8 - Pregled svoje statistike}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Klijent
+					\item  \textbf{Cilj:} Pregledati svoju statistiku po danu
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Klijent je prijavljen
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Klijent odabire opciju "Moja statistika"
+						\item Odabire opciju "Pregled statistike" 
+						\item Odabire dan
+						\item Prikaže se statistika klijenta za taj dan
+						
+					\end{packed_enum}
+				
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[2.a] Klijent nema upisanih podataka 
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava da klijent nema upisanih podataka i nudi opciju za povratak
+						\end{packed_enum}
+						
+					\end{packed_item}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC9 - Dodavanje proizvoda u kategoriju}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Doktor, trener, administrator
+					\item  \textbf{Cilj:} Dodati proizvod u željenu kategoriju
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Doktor/trener/administrator je prijavljen
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Doktor/trener/administrator odabire prikaz kategorija proizvoda
+						\item Odabire željenu kategoriju
+						\item Dodaje željene proizvode u kategoriju
+						\item Promjene se upisuju u bazu podataka
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC10 - Dodavanje vježbe u kategoriju}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Doktor, trener, administrator
+					\item  \textbf{Cilj:} Dodati vježbu u željenu kategoriju
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Doktor/trener/administrator je prijavljen
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Doktor/trener/administrator odabire prikaz kategorija vježbi
+						\item Odabire željenu kategoriju
+						\item Dodaje željene vježbe u kategoriju
+						\item Promjene se upisuju u bazu podataka
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC11 - Definiranje treninga}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Trener
+					\item  \textbf{Cilj:} Dodati proizvod u željenu kategoriju
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Trener je prijavljen i u suradnji s barem jednim klijentom
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Trener odabire prikaz svojih klijenata
+						\item Bira opciju "Novi trening"
+						\item Unosi sve potrebne informacije potrebne za definiciju treninga
+						\item Novi trening se pohranjuje u bazu podataka
+						
+					\end{packed_enum}
+				
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[3.a] Nisu uneseni svi potrebni podatci
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava trenera da treba ispuniti sve potrebne podatke i vraća ga na stranicu za kreiranje treninga
+						\end{packed_enum}
+						
+					\end{packed_item}
+					
+				\end{packed_item}
+			
+				\noindent \underbar{\textbf{UC - Potvrđivanje ili odbijanje zahtjeva neregistriranih korisnika}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik:} Administrator
+					\item  \textbf{Cilj:} Odobriti ili odbiti zahtjev neregistriranog korisnika
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Administrator je prijavljen
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Administrator odabire prikaz zahtjeva
+						\item Za svaki zahtjev može odabrati hoće li ga potvrditi ili odbiti
+						\item Potvrđeni zahtjevi postaju novi korisnici sustava, a odbijeni zahtjevi se brišu
+						\item Promijene se pohranjuju u bazu podataka
+						
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[2.a] Trenutno nema zahtjeva
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava administratora da trenutno nema zahtjeva i nudi opciju za povratak
+						\end{packed_enum}
+						
+					\end{packed_item}
+					
+					\end{packed_item}
+			
+					\noindent \underbar{\textbf{UC - Uređivanje kategorija}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Izmijenti sadržaj kategorije i podatke o kategoriji
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz kategorija
+							\item Odabire kategoriju koju želi izmijeniti
+							\item Mijenja podatke o kategoriji i njen sadržaj
+							\item Nakon uređivanja potvrđuje izmjenu
+							\item Promjene se pohranjuju u bazu podataka
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Izmijenjeni podatci nisu ispravni 
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava administratora da mora unijeti ispravne podatke i vraća ga na stranicu za uređivanje kategorije
+							\end{packed_enum}
+							
+						\end{packed_item}
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Stvaranje kategorije}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Stvoriti novu kategoriju
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz kategorija
+							\item Odabire opciju "Nova kategorija"
+							\item Unosi potrebne podatke o kategoriji i njen sadržaj
+							\item Nova kategorija se pohranjuje u bazu podataka
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Nisu uneseni svi potrebni podatci
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava administratora da treba unijeti sve potrebne podatke i vraća ga na stranicu za kreiranje kategorije
+							\end{packed_enum}
+							
+						\end{packed_item}
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Brisanje kategorije}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Obrisati kategoriju
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen i postoji barem jedna kategorija
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz kategorija
+							\item Odabire opciju "Obriši" za željenu kategoriju
+							\item Kategorija se briše iz baze podataka
+							
+						\end{packed_enum}
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Dodavanje proizvoda}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Dodati novi proizvod u sustav
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz proizvoda
+							\item Bira opciju "Novi proizvod"
+							\item Unosi sve potrebne podatke
+							\item Novi proizvod se dodaje u bazu podataka
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Nisu uneseni svi potrebni podatci
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava administratora da treba unijeti sve potrebne podatke i vraća ga na stranicu za dodavanje proizvoda
+							\end{packed_enum}
+							
+						\end{packed_item}	
+							
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Uređivanje proizvoda}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Izmijeniti podatke o željenom proizvodu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen i dodan je barem jedan proizvod
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz proizvoda
+							\item Odabire opciju "Uredi" za željeni proizvod
+							\item Mijenja podatke o proizvodu
+							\item Potvrđuje izmjenu
+							\item Promjene se pohranjuju u bazu podataka
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Izmijenjeni podatci nisu ispravni 
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava administratora da mora unijeti ispravne podatke i vraća ga na stranicu za uređivanje proizvoda
+							\end{packed_enum}
+							
+						\end{packed_item}	
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Brisanje proizvoda}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Obrisati proizvod
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen i dodan je barem jedan proizvod
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz proizvoda
+							\item Odabire opciju "Obriši" za željeni proizvod
+							\item Podatci o proizvodu se brišu iz baze podataka
+							
+						\end{packed_enum}
+							
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Dodavanje vježbe}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Dodati novu vježbu u sustav
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz vježbi
+							\item Bira opciju "Nova vježba"
+							\item Unosi sve potrebne podatke
+							\item Nova vježba se dodaje u bazu podataka
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Nisu uneseni svi potrebni podatci
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava administratora da treba unijeti sve potrebne podatke i vraća ga na stranicu za dodavanje vježbe
+							\end{packed_enum}
+							
+						\end{packed_item}	
+						
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC - Uređivanje vježbe}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Izmijeniti podatke o željenoj vježbi
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen i dodana je barem jedna vježba
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz vježbi
+							\item Odabire opciju "Uredi" za željenu vježbu
+							\item Mijenja podatke o vježbi
+							\item Potvrđuje izmjenu
+							\item Promjene se pohranjuju u bazu podataka
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Izmijenjeni podatci nisu ispravni 
+							\item[] \begin{packed_enum}
+								
+								\item Sustav obavještava administratora da mora unijeti ispravne podatke i vraća ga na stranicu za uređivanje vježbe
+							\end{packed_enum}
+							
+						\end{packed_item}	
+						
+					\end{packed_item}
+					
+					\noindent \underbar{\textbf{UC - Brisanje vježbe}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Administrator
+						\item  \textbf{Cilj:} Obrisati vježbu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen i dodana je barem jedna vježba
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire prikaz vježbi
+							\item Odabire opciju "Obriši" za željenu vježbu
+							\item Podatci o vježbi se brišu iz baze podataka
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Provjera proizvoda skeniranjem}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Klijent
+						\item  \textbf{Cilj:} Skenirati proizvod i odrediti uklapa li se u njegovu dijetu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Klijent je prijavljen i pripisana mu je dijeta
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Klijent odabire opciju provjera proizvoda
+							\item Fotografira bar kod proizvoda
+							\item Aplikacija javlja uklapa li se proizvod u dijetu za taj dan
+							
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Bar kod nije prepoznat u slici
+							\item[] \begin{packed_enum}
+								
+								\item Sustav javlja da je potrebno ponovo skenirati bar kod
+								\item Korisnik ponovo skenira proizvod
+							\end{packed_enum}
+						
+							\item[2.b] Sustav ne prepoznaje proizvod
+							\item[] \begin{packed_enum}
+								
+								\item Sustav javlja da nema podatke o traženom proizvodu
+								\item Odustaje od ponovog skeniranja
+								
+							\end{packed_enum}
+							
+						\end{packed_item}
+						
+					\end{packed_item}
+				
+					\noindent \underbar{\textbf{UC - Provjera proizvoda ručno}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik:} Klijent
+						\item  \textbf{Cilj:} Unijeti masu proizvoda i odrediti uklapa li se u njegovu dijetu
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Klijent je prijavljen i pripisana mu je dijeta
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Klijent odabire opciju provjera proizvoda
+							\item Odabire željeni proizvod i unosi količinu(masu) koju želi konzumirati
+							\item Aplikacija javlja uklapa li se proizvod u dijetu za taj dan
+							
+						\end{packed_enum}
+						
+						
+					\end{packed_item}
+				
+					
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
