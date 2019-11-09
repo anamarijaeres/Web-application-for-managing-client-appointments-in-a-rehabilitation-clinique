@@ -1,0 +1,192 @@
+----------------------------------------------------------------
+Sat Nov 09 10:47:56 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:05:30 CET 2019:
+Shutting down instance a816c00e-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:05:31 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 560c80d5-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:18:04 CET 2019:
+Shutting down instance 560c80d5-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:18:05 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 6aae819c-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:18:21 CET 2019:
+Shutting down instance 6aae819c-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:18:22 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 55fcc263-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:18:34 CET 2019:
+Shutting down instance 55fcc263-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:18:35 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 87f7432a-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:24:33 CET 2019:
+Shutting down instance 87f7432a-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:24:34 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 709e03f1-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:28:33 CET 2019:
+Shutting down instance 709e03f1-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:28:33 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 7ff104b8-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:30:07 CET 2019:
+Shutting down instance 7ff104b8-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:30:08 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 25f0457f-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 11:31:30 CET 2019:
+Shutting down instance 25f0457f-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 11:31:31 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance d29bc646-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 12:17:13 CET 2019:
+Shutting down instance d29bc646-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 12:17:14 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance f5f3870d-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 12:19:41 CET 2019:
+Shutting down instance f5f3870d-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 12:19:42 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance fff787d4-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 12:25:00 CET 2019:
+Shutting down instance fff787d4-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+----------------------------------------------------------------
+Sat Nov 09 12:25:01 CET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 60a7c89b-016e-4f90-2031-000010733da8 
+on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
+Loaded from file:/home/jan/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.4+11-post-Ubuntu-1ubuntu218.04.3
+user.dir=/home/jan/eclipse-workspace/projekt_opp_proba
+os.name=Linux
+os.arch=amd64
+os.version=5.3.0-19-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Nov 09 12:26:46 CET 2019:
+Shutting down instance 60a7c89b-016e-4f90-2031-000010733da8 on database directory memory:/home/jan/eclipse-workspace/projekt_opp_proba/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1affbebc 
