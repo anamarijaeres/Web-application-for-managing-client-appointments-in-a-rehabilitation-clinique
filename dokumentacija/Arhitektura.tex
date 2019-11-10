@@ -151,10 +151,9 @@
 					\endlastfoot
 					
 					\cellcolor{LightGreen}korImeKlijenta & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
-					korImeTrenera & VARCHAR & jedinstveni identifikator trenera 	\\ \hline 
+					korImeTrenera & VARCHAR & jedinstveni identifikator trenera \\ \hline 
 					
 				\end{longtabu}
-				
 				
 				\textbf{KategorijeProizvoda} Kategorija proizvoda sadrži više različitih proizvoda sličnih karakteristika, kao što su na primjer tjestenina, proizvodi od mlijeka, meso itd. Entitet KategorijeProizvoda sadrži atribute: ID kategorije i ime kategorije.
 				
@@ -239,9 +238,6 @@
 					\cellcolor{LightGreen}ID & INT	&  jedinstveni identifikator vježbe \\ \hline
 					Slika & LONGBLOB & slika vježbe 	\\ \hline 
 					Opis & VARCHAR & opis vježbe\\ \hline
-					Lagano & DECIMAL & broj potrošenih kalorija u sat vremena laganim intenzitetom vježbanja\\ \hline
-					Normalno & DECIMAL & broj potrošenih kalorija u sat vremena srednjim intenzitetom vježbanja\\ \hline
-					Teško & DECIMAL & broj potrošenih kalorija u sat vremena teškim intenzitetom vježbanja\\ \hline
 					
 					
 				\end{longtabu}
@@ -386,7 +382,7 @@
 				
 				\textbf{DnevniLimit} Dijeta se može definirati dnevnim limitom za određene nutritivne vrijednosti proizvoda. Entitet DnevniLimit se sastoji od atributa: ID dijete, limit masnoće, limit ugljikohidrata, limit šećera, limit bjelančevina i limit soli. 
 				
-				\begin{longtabu} to \textwidth {|X[9, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[12, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{DnevniLimit}}	 \\[3pt] \hline
 					\endfirsthead
@@ -397,7 +393,9 @@
 					\hline 
 					\endlastfoot
 					\cellcolor{LightGreen}IDdijete & INT	&  jedinstveni identifikator dijete \\ \hline
+					limitEnergije & DECIMAL & limit energije u kJ 	\\ \hline 
 					LimitMasnoće & DECIMAL & limit masnoća u sastavu proizvoda\\ \hline
+					LimitZasMasneKiselina & DECIMAL & limit zasićenih masnih kiselina\\ \hline
 					LimitUgljikohidrata & DECIMAL & limit ugljikohidrata u sastavu proizvoda\\ \hline
 					LimitŠećera & DECIMAL & limit šećera u sastavu proizvoda\\ \hline
 					LimitBjelančevina & DECIMAL & limit bjelančevina u sastavu proizvoda\\ \hline
