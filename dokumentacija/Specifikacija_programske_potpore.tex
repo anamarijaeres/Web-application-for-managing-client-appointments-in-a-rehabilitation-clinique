@@ -2,22 +2,19 @@
 		
 	\section{Funkcionalni zahtjevi}
 			
-			\textit{ \textbf{Dionici} koji imaju interesa u ovom sustavu su svi \textbf{doktori, treneri i budući korisnici sustava},
-			te dodatno \textbf{naručitelj projekta} (u ovom slučaju asistent tj. fakultet). Nositelji odgovornosti su \textbf{budući administratori sustava te razvojni tim}.}\\
-				
-			\textit{\textbf{Aktori} koji izravno koriste sustav su svi \textbf{doktori, treneri, klijenti i administratori}, dok sa sustavom neizravno komuniciraju \textbf{neregistrirani korisnici te baza podataka}.}\\
-			
-			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item 1. Klijenti
-				\item 2. Doktori			
-				\item 3. Treneri
-				\item 4. Razvojni tim (grupa Flow)
-				\item 5. Naručitelj (asistent)
-				\item 6. Administratori aplikacije
+				\item Klijenti
+				\item Zaposlenici klinike:
+					\begin{packed_enum}
+						\item Doktori
+						\item Treneri
+					\end{packed_enum}
+				\item Razvojni tim (grupa Flow)
+				\item Naručitelj (asistent Hrvoje Nuić)
+				\item Administratori aplikacije
 				
 			\end{packed_enum}
 			
@@ -49,15 +46,8 @@
 					
 					\item odgovarati na recenzije svojih klijenata
 					\item prekinuti suradnju s klijentom
-					\item definirati dijetu
-					\begin{packed_enum}
-						
-						\item unositi sve potrebne parametre dijete
-						\item dodati opis dijete
-						
-					\end{packed_enum}
-				
-					\item pregledati statistike klijenta po danu
+					\item definirati dijetu svome klijentu
+					\item pregledati statistiku svog klijenta
 					\item dodavati proizvode i vježbe u kategorije	
 					
 				\end{packed_enum}
@@ -68,8 +58,8 @@
 					
 					\item odgovarati na recenzije svojih klijenata
 					\item prekinuti suradnju s klijentom
-					\item definirati dnevne treninge
-					\item pregledati statistike klijenta po danu
+					\item definirati treninge svome klijentu
+					\item pregledati statistiku svog klijenta
 					\item dodavati proizvode i vježbe u kategorije
 					
 				\end{packed_enum}
@@ -79,10 +69,10 @@
 				\begin{packed_enum}
 					
 					\item tražiti i pregledavati profile svih dostupnih doktora i trenera
-					\item ostaviti recenziju svom doktoru i treneru
+					\item ostaviti recenziju svom doktoru ili treneru
 					\item prekinuti suradnju sa svojim doktorom ili trenerom
-					\item pregledati vlastite statistike po danu
-					\item skenirati bar kod proizvoda koje planira konzumirati
+					\item pregledati vlastitu statistiku
+					\item provjeriti uklapa li se neki proizvod u dijetu skeniranjem bar koda ili ručnim unosom
 					
 				\end{packed_enum}
 			
@@ -110,7 +100,7 @@
 					
 					\begin{packed_enum}
 						
-						\item registriranim osobama
+						\item korisnicima i njihovim ovlastima
 						\item recenzijama
 						\item dijetama i proizvodima
 						\item treninzima i vježbama
@@ -126,9 +116,6 @@
 			
 				
 			\subsection{Obrasci uporabe}
-				
-				\subsubsection{Opis obrazaca uporabe}
-					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
 
 					\noindent \underbar{\textbf{UC1 - Registracija klijenta}}
@@ -934,8 +921,47 @@
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
-					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
-				\eject		
+					\begin{figure}[H]
+						\includegraphics[scale=0.40]{dijagrami/UseCase/UseCase Diagram0.PNG}
+						\centering
+						\caption{Generalni dijagram obrasca uporabe}
+						\label{fig:promjene}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\includegraphics[scale=0.50]{dijagrami/UseCase/UseCase Diagram1.PNG}
+						\centering
+						\caption{Dijagram obrasca uporabe - registracija i prijava}
+						\label{fig:promjene}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\includegraphics[scale=0.50]{dijagrami/UseCase/UseCase Diagram2.PNG}
+						\centering
+						\caption{Dijagram obrasca uporabe - opcije suradnje}
+						\label{fig:promjene}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\includegraphics[scale=0.50]{dijagrami/UseCase/UseCase Diagram3.PNG}
+						\centering
+						\caption{Dijagram obrasca uporabe - načini suradnje}
+						\label{fig:promjene}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\includegraphics[scale=0.50]{dijagrami/UseCase/UseCase Diagram4.PNG}
+						\centering
+						\caption{Dijagram obrasca uporabe - operacije nad kategorijama}
+						\label{fig:promjene}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\includegraphics[scale=0.50]{dijagrami/UseCase/UseCase Diagram5.PNG}
+						\centering
+						\caption{Dijagram obrasca uporabe - operacije nad vježbama i proizvoidma}
+						\label{fig:promjene}
+					\end{figure}
 				
 			\subsection{Sekvencijski dijagrami}
 				
@@ -945,8 +971,6 @@
 				\eject
 	
 		\section{Ostali zahtjevi}
-		
-			\textbf{\textit{dio 1. revizije}}\\
 			 
 			 \begin{packed_item}
 			 	
