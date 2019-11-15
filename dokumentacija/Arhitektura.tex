@@ -52,7 +52,7 @@
 				
 				
 				
-				\begin{longtabu} to \textwidth {|X[6, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
 					\endfirsthead
@@ -63,7 +63,7 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}korisnickoIme & VARCHAR	&  jedinstveni identifikator korisnika\\ \hline
+					\colorbox{LightGreen}{KorisnickoIme} & VARCHAR	&  jedinstveni identifikator korisnika\\ \hline
 					Ime	& VARCHAR &  ime korisnika 	\\ \hline 
 					Prezime & VARCHAR &  prezime korisnika \\ \hline 
 					Lozinka & VARCHAR	& lozinka korisnika 		\\ \hline 
@@ -72,24 +72,24 @@
 					
 				\end{longtabu}
 				
-				\textbf{Doktori-treneri} Da bi neregistrirani korisnik dobio prava doktora i trenera, administrator ga mora potvrditi. Potrebno je dodatno priložiti sliku, email i maksimalni broj korisnika koje želi nadgledati. Navedeni atributi se spremaju u entitet Doktori-Treneri.
+				\textbf{DoktoriTreneri} Da bi neregistrirani korisnik dobio prava doktora i trenera, administrator ga mora potvrditi. Potrebno je dodatno priložiti sliku, email i maksimalni broj korisnika koje želi nadgledati. Navedeni atributi se spremaju u entitet Doktori-Treneri.
 				
 				
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Doktori-Treneri}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{DoktoriTreneri}}	 \\[3pt] \hline
 					\endfirsthead
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Doktori-Treneri}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{DoktoriTreneri}}	 \\[3pt] \hline
 					\endhead
 					
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}korisnickoIme & VARCHAR	&  jedinstveni identifikator korisnika\\ \hline
-					E-mail   & VARCHAR &  e-mail adresa doktora/trenera 	\\ \hline 
-					Slika  & LONGBLOB &  fotografija doktora/trenera \\ \hline 
+					\colorbox{LightGreen}{korisnickoIme} & VARCHAR	&  jedinstveni identifikator korisnika\\ \hline
+					Mail   & VARCHAR &  e-mail adresa doktora/trenera 	\\ \hline 
+					Slika  & BYTEA &  fotografija doktora/trenera \\ \hline 
 					BrojKlijenata& INT	& trenutni broj prijavljenih klijenata 		\\ \hline 
 					MaxBrKlijenata	& INT & maksimalan broj prijavljenih klijenata  	\\ \hline 
 					
@@ -108,9 +108,9 @@
 					
 					\hline 
 					\endlastfoot
-					\cellcolor{LightGreen} ID & INT & jedinstveni identifikator recenzije \\ \hline
-					\cellcolor{LightBlue}korImeKlijenta & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
-					\cellcolor{LightBlue}korisnickoIme   & VARCHAR & jedinstveni identifikator doktora/trenera 	\\ \hline 
+					\colorbox{LightGreen}{ID} & INT & jedinstveni identifikator recenzije \\ \hline
+					\colorbox{LightBlue}{korImeKlijenta} & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
+					\colorbox{LightBlue}{korisnickoIme} & VARCHAR & jedinstveni identifikator doktora/trenera 	\\ \hline 
 					Ocjena  & INT &  ocjena od 1 do 5 \\ \hline 
 					Komentar & VARCHAR	& recenzija doktora/trenera 		\\ \hline 
 					Odgovor	& VARCHAR & odgovor doktora/trenera na recenziju  	\\ \hline
@@ -119,39 +119,39 @@
 					
 				\end{longtabu}
 				
-				\textbf{Klijent-Doktor} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog doktora. Atributi su: korImeKlijenta i korImeDoktora. 
+				\textbf{KlijentDoktor} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog doktora. Atributi su: korImeKlijenta i korImeDoktora. 
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Klijent-Doktor}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{KlijentDoktor}}	 \\[3pt] \hline
 					\endfirsthead
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Klijent-Doktor}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{KlijentDoktor}}	 \\[3pt] \hline
 					\endhead
 					
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}korImeKlijenta & VARCHAR	& jedinstveni identifikator klijenta \\ \hline
-					korImeDoktora & VARCHAR & jedinstveni identifikator doktora\\ \hline 
+					\colorbox{LightGreen}{korImeKlijenta} & VARCHAR	& jedinstveni identifikator klijenta \\ \hline
+					\colorbox{LightBlue}{korImeDoktora} & VARCHAR & jedinstveni identifikator doktora\\ \hline 
 					
 				\end{longtabu}
 				
-				\textbf{Klijent-Trener} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog trenera. Atributi su: korImeKlijenta i korImeTrenera. 
+				\textbf{KlijentTrener} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog trenera. Atributi su: korImeKlijenta i korImeTrenera. 
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Klijent-Trener}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{KlijentTrener}}	 \\[3pt] \hline
 					\endfirsthead
 					
-					\hline \multicolumn{3}{|c|}{\textbf{Klijent-Trener}}	 \\[3pt] \hline
+					\hline \multicolumn{3}{|c|}{\textbf{KlijentTrener}}	 \\[3pt] \hline
 					\endhead
 					
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}korImeKlijenta & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
-					korImeTrenera & VARCHAR & jedinstveni identifikator trenera \\ \hline 
+					\colorbox{LightGreen}{korImeKlijenta} & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
+					\colorbox{LightBlue}{korImeTrenera} & VARCHAR & jedinstveni identifikator trenera \\ \hline 
 					
 				\end{longtabu}
 				
@@ -168,7 +168,7 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}ID & INT	&  jedinstveni identifikator kategorije \\ \hline
+					\colorbox{LightGreen}{ID} & INT	&  jedinstveni identifikator kategorije \\ \hline
 					Ime & VARCHAR & ime kategorije 	\\ \hline 
 					
 				\end{longtabu}
@@ -186,12 +186,13 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}ID & INT	&  jedinstveni identifikator proizvoda \\ \hline
+					\colorbox{LightGreen}{ID} & INT	&  jedinstveni identifikator proizvoda \\ \hline
 					Ime & VARCHAR & ime proizvoda 	\\ \hline 
-					Masa & DECIMAL & masa proizvoda u gramima\\ \hline
-					Slika & LONGBLOB & slika proizvoda\\ \hline
+					Masa & DOUBLE & masa proizvoda u gramima\\ \hline
+					Slika & BYTEA & slika proizvoda\\ \hline
+					Barkod & BYTEA & barkod proizvoda\\ \hline
 					Alergeni & VARCHAR & popis prisutnih alergena\\ \hline
-					\cellcolor{LightBlue}IDkategorije & INT & ID kategorije proizvoda\\ \hline 
+					\colorbox{LightBlue}{IDkategorije} & INT & ID kategorije proizvoda\\ \hline 
 					
 					
 				\end{longtabu}
@@ -210,14 +211,14 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}IDproizvoda & INT	&  jedinstveni identifikator proizvoda \\ \hline
-					Energija & DECIMAL & energija u kJ 	\\ \hline 
-					Masnoća & DECIMAL & masnoća u sastavu proizvoda\\ \hline
-					ZasMasneKiseline & DECIMAL & zasićene masne kiseline u sastavu proizvoda\\ \hline
-					Ugljikohidrati & DECIMAL & ugljikohidrati u sastavu proizvoda\\ \hline
-					Šećeri & DECIMAL & šećeri u sastavu proizvoda\\ \hline
-					Bjelančevine & DECIMAL & bjelančevine u sastavu proizvoda\\ \hline
-					Sol & DECIMAL & soli u sastavu proizvoda\\ \hline	
+					\colorbox{LightGreen}{IDproizvoda} & INT & jedinstveni identifikator proizvoda \\ \hline
+					Energija & DOUBLE & energija u kJ 	\\ \hline 
+					Masnoća & DOUBLE & masnoća u sastavu proizvoda\\ \hline
+					ZasMasneKiseline & DOUBLE & zasićene masne kiseline u sastavu proizvoda\\ \hline
+					Ugljikohidrati & DOUBLE & ugljikohidrati u sastavu proizvoda\\ \hline
+					Šećeri & DOUBLE & šećeri u sastavu proizvoda\\ \hline
+					Bjelančevine & DOUBLE & bjelančevine u sastavu proizvoda\\ \hline
+					Sol & DOUBLE & soli u sastavu proizvoda\\ \hline	
 					
 					
 				\end{longtabu}
@@ -235,13 +236,13 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}ID & INT	&  jedinstveni identifikator vježbe \\ \hline
-					Slika & LONGBLOB & slika vježbe 	\\ \hline 
+					\colorbox{LightGreen}{ID} & INT	&  jedinstveni identifikator vježbe \\ \hline
+					Slika & BYTEA & slika vježbe 	\\ \hline 
 					Opis & VARCHAR & opis vježbe\\ \hline
 					
 					
 				\end{longtabu}
-				\textbf{Intenzitet} Entitet Intenzitet se sastoji od atributa: intenzitet i sifra intenziteta. Intenzitet može biti: lagan, normalan i težak.
+				\textbf{Intenzitet} Entitet Intenzitet se sastoji od atributa: intenzitet i šifra intenziteta. Intenzitet može biti: lagan, normalan i težak.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -254,8 +255,8 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen} Šifra & VARCHAR & šifra intenziteta\\ \hline 
-					Intenzitet & VARCHAR	&  intenzitet: lagano, normalno ili teško \\ \hline
+					\colorbox{LightGreen}{Šifra} & INTEGER & šifra intenziteta\\ \hline 
+					Razina & VARCHAR	&  intenzitet: lagano, normalno ili teško \\ \hline
 					
 					
 				\end{longtabu}
@@ -273,9 +274,9 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}IDvježbe & INT	&  jedinstveni identifikator vježbe \\ \hline
-					\cellcolor{LightGreen}šifraIntenziteta & INT & jedinstveni identifikator intenziteta\\ \hline 
-					PotrošeneKalorije & DECIMAL & broj potrošenih kalorija u sat vremena
+					\colorbox{LightGreen}{IDvježbe} & INT	&  jedinstveni identifikator vježbe \\ \hline
+					\colorbox{LightGreen}{Intenzitet} & VARCHAR & jedinstveni identifikator intenziteta\\ \hline 
+					PotrošeneKalorije & DOUBLE & broj potrošenih kalorija u sat vremena
 					
 					
 				\end{longtabu}
@@ -294,9 +295,10 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}ID & INT	&  jedinstveni identifikator treninga \\ \hline
-					IDklijenta & INT & jedinstveni identifikator klijenta\\ \hline 
+					\colorbox{LightGreen}{ID} & INT	&  jedinstveni identifikator treninga \\ \hline
+					\colorbox{LightBlue}{IDklijenta} & VARCHAR & jedinstveni identifikator klijenta\\ \hline 
 					Datum & DATETIME & datum treninga\\ \hline
+					Odrađen & BOOLEAN & klijent mora potvrditi da je odradio trening\\ \hline
 					
 					
 				\end{longtabu}
@@ -314,10 +316,10 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}IDtreninga & INT	&  jedinstveni identifikator treninga \\ \hline
-					\cellcolor{LightGreen}RedniBroj & INT & redni broj vježbe\\ \hline
-					IDvježbe & INT & jedinstveni identifikator vježbe\\ \hline
-					Intenzitet & VARCHAR & intenzitet vježbe (lagano, normalno ili teško)\\ \hline
+					\colorbox{LightGreen}{IDtreninga} & INT	&  jedinstveni identifikator treninga \\ \hline
+					\colorbox{LightGreen}{RedniBroj} & INT & redni broj vježbe\\ \hline
+					\colorbox{LightBlue}{IDvježbe} & INT & jedinstveni identifikator vježbe\\ \hline
+					\colorbox{LightBlue}{Intenzitet} & VARCHAR & intenzitet vježbe (lagano, normalno ili teško)\\ \hline
 					Trajanje & INTERVAL & trajanje vježbe\\ \hline
 					
 					
@@ -338,8 +340,8 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}ID & INT	&  jedinstveni identifikator dijete \\ \hline
-					IDklijenta & INT & jedinstveni identifikator klijenta\\ \hline
+					\colorbox{LightGreen}{ID} & INT	&  jedinstveni identifikator dijete \\ \hline
+					\colorbox{LightBlue}{IDklijenta} & VARCHAR & jedinstveni identifikator klijenta\\ \hline
 					Opis & VARCHAR & opis dijete\\ \hline
 					
 				\end{longtabu}
@@ -357,8 +359,8 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}IDdijete & INT	&  jedinstveni identifikator dijete \\ \hline
-					\cellcolor{LightGreen}IDproizvoda & INT & jedinstveni identifikator proizvoda\\ \hline
+					\colorbox{LightGreen}{IDdijete} & INT	&  jedinstveni identifikator dijete \\ \hline
+					\colorbox{LightGreen}{IDproizvoda} & INT & jedinstveni identifikator proizvoda\\ \hline
 					
 				\end{longtabu}
 				
@@ -375,8 +377,8 @@
 					\hline 
 					\endlastfoot
 					
-					\cellcolor{LightGreen}IDdijete & INT	&  jedinstveni identifikator dijete \\ \hline
-					\cellcolor{LightGreen}IDkategorije & INT & jedinstveni identifikator kategorije\\ \hline
+					\colorbox{LightGreen}{IDdijete} & INT	&  jedinstveni identifikator dijete \\ \hline
+					\colorbox{LightGreen}{IDkategorije} & INT & jedinstveni identifikator kategorije\\ \hline
 					
 				\end{longtabu}
 				
@@ -392,14 +394,14 @@
 					
 					\hline 
 					\endlastfoot
-					\cellcolor{LightGreen}IDdijete & INT	&  jedinstveni identifikator dijete \\ \hline
-					limitEnergije & DECIMAL & limit energije u kJ 	\\ \hline 
-					LimitMasnoće & DECIMAL & limit masnoća u sastavu proizvoda\\ \hline
-					LimitZasMasneKiselina & DECIMAL & limit zasićenih masnih kiselina\\ \hline
-					LimitUgljikohidrata & DECIMAL & limit ugljikohidrata u sastavu proizvoda\\ \hline
-					LimitŠećera & DECIMAL & limit šećera u sastavu proizvoda\\ \hline
-					LimitBjelančevina & DECIMAL & limit bjelančevina u sastavu proizvoda\\ \hline
-					LimitSoli & DECIMAL & limit soli u sastavu proizvoda\\ \hline	
+					\colorbox{LightGreen}{IDdijete} & INT	&  jedinstveni identifikator dijete \\ \hline
+					limitEnergije & DOUBLE & limit energije u kJ 	\\ \hline 
+					LimitMasnoće & DOUBLE & limit masnoća u sastavu proizvoda\\ \hline
+					LimitZasMasneKiselina & DOUBLE & limit zasićenih masnih kiselina\\ \hline
+					LimitUgljikohidrata & DOUBLE & limit ugljikohidrata u sastavu proizvoda\\ \hline
+					LimitŠećera & DOUBLE & limit šećera u sastavu proizvoda\\ \hline
+					LimitBjelančevina & DOUBLE & limit bjelančevina u sastavu proizvoda\\ \hline
+					LimitSoli & DOUBLE & limit soli u sastavu proizvoda\\ \hline	
 					
 				\end{longtabu}
 				
@@ -415,15 +417,15 @@
 					
 					\hline 
 					\endlastfoot
-					\cellcolor{LightGreen} IDklijenta & INT	& jedinstveni identifikator klijenta  \\ \hline
-					\cellcolor{LightGreen} Datum & DATETIME	& datum \\ \hline
-					Energija & DECIMAL & unesena energija u kJ 	\\ \hline 
-					Masnoća & DECIMAL & unesena masnoća\\ \hline
-					ZasMasneKiseline & DECIMAL & unesene zasićene masne kiseline\\ \hline
-					Ugljikohidrati & DECIMAL & uneseni ugljikohidrati\\ \hline
-					Šećeri & DECIMAL & unesena šećeri\\ \hline
-					Bjelančevine & DECIMAL & unesene bjelančevine\\ \hline
-					Sol & DECIMAL & unesene soli\\ \hline
+					\colorbox{LightGreen}{IDklijenta} & VARCHAR	& jedinstveni identifikator klijenta  \\ \hline
+					\colorbox{LightGreen}{Datum} & DATETIME	& datum \\ \hline
+					Energija & DOUBLE & unesena energija u kJ 	\\ \hline 
+					Masnoća & DOUBLE & unesena masnoća\\ \hline
+					ZasMasneKiseline & DOUBLE & unesene zasićene masne kiseline\\ \hline
+					Ugljikohidrati & DOUBLE & uneseni ugljikohidrati\\ \hline
+					Šećeri & DOUBLE & unesena šećeri\\ \hline
+					Bjelančevine & DOUBLE & unesene bjelančevine\\ \hline
+					Sol & DOUBLE & unesene soli\\ \hline
 					
 				\end{longtabu}
 				
@@ -439,14 +441,19 @@
 					
 					\hline 
 					\endlastfoot
-					\cellcolor{LightGreen} IDklijenta & INT	& jedinstveni identifikator klijenta\\ \hline
-					\cellcolor{LightGreen} Datum & DATETIME	& datum\\ \hline
-					\cellcolor{LightGreen} IDproizvoda & INT & jedinstveni identifikator proizvoda \\ \hline
+					\colorbox{LightGreen}{IDklijenta} & INT	& jedinstveni identifikator klijenta\\ \hline
+					\colorbox{LightGreen}{Datum} & DATETIME	& datum\\ \hline
+					\colorbox{LightGreen}{IDproizvoda} & INT & jedinstveni identifikator proizvoda \\ \hline
 					
 				\end{longtabu}
 			
 			\subsection{Dijagram baze podataka}
-				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
+				\begin{figure}[H]
+					\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{slike/dijagramBaze.png}
+					\centering
+					\caption{Dijagram baze podataka}
+					\label{fig:promjene}
+				\end{figure}
 			
 			\eject
 			
