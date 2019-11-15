@@ -48,11 +48,12 @@
 			\subsection{Opis tablica}
 			
 
-				\textbf{Korisnik} Ovaj entitet sadržava sve važne informacije o korisniku aplikacije. Svaki korisnik ima korisničko ime, lozinku, ime, prezime i naziv uloge. 
+				\textbf{Korisnik} Ovaj entitet sadržava sve važne informacije o korisniku aplikacije. Svaki korisnik ima korisničko ime, lozinku, ime, prezime i naziv uloge. Entitet Korisnik je preko atributa KorisnickoIme u \textit{One-to-One} vezi s DoktoriTreneri, \textit{One-to-One} vezi s KlijentDoktor, \textit{One-to-One} vezi s KlijentTrener, \textit{One-to-Many} vezi s entitetom Trening, \textit{One-to-Many} vezi s UneseneNutrVrijednosti, \textit{One-to-Many} vezi s KonzumiraniProizvodi, \textit{One-to-Many} vezi s entitetom Dijeta te \textit{One-to-Many} vezi s entitetom Recenzija.
 				
 				
 				
-				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
+				
+				\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\[3pt] \hline
 					\endfirsthead
@@ -72,11 +73,11 @@
 					
 				\end{longtabu}
 				
-				\textbf{DoktoriTreneri} Da bi neregistrirani korisnik dobio prava doktora i trenera, administrator ga mora potvrditi. Potrebno je dodatno priložiti sliku, email i maksimalni broj korisnika koje želi nadgledati. Navedeni atributi se spremaju u entitet Doktori-Treneri.
+				\textbf{DoktoriTreneri} Da bi neregistrirani korisnik dobio prava doktora i trenera, administrator ga mora potvrditi. Potrebno je dodatno priložiti sliku, email i maksimalni broj korisnika koje želi nadgledati. Navedeni atributi se spremaju u entitet DoktoriTreneri. Entitet DoktoriTreneri je preko atributa KorisnickoIme u \textit{One-to-One} vezi s entitetom Korisnik, \textit{One-to-Many} vezi s KlijentDoktor, \textit{One-to-Many} vezi s KlijentTrener te \textit{One-to-Many} vezi s entitetom Recenzije.
 				
 				
 				
-				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{DoktoriTreneri}}	 \\[3pt] \hline
 					\endfirsthead
@@ -96,9 +97,9 @@
 					
 				\end{longtabu}
 				
-				\textbf{Recenzije} Klijent svom doktoru i treneru na profilu može ostaviti recenziju s ocjenom i komentarom, a doktor i trener mogu odgovoriti na vlastitu recenziju. Entitet Recenzije sadrži atribute: korisnickoIme, korImeKlijenta, ocjena, komentar, odgovor i ID komentara. 
+				\textbf{Recenzije} Klijent svom doktoru i treneru na profilu može ostaviti recenziju s ocjenom i komentarom, a doktor i trener mogu odgovoriti na vlastitu recenziju. Entitet Recenzije sadrži atribute: korisnickoIme, korImeKlijenta, ocjena, komentar, odgovor i ID komentara. Ovaj entitet je preko atributa KorImeKlijenta u \textit{Many-to-One} vezi s Korisnik, te preko atributa KorisnickoIme u \textit{Many-to-One} vezi s entitetom DoktoriTreneri.
 				
-				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[9, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{Recenzije}}	 \\[3pt] \hline
 					\endfirsthead
@@ -109,8 +110,8 @@
 					\hline 
 					\endlastfoot
 					\colorbox{LightGreen}{ID} & INT & jedinstveni identifikator recenzije \\ \hline
-					\colorbox{LightBlue}{korImeKlijenta} & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
-					\colorbox{LightBlue}{korisnickoIme} & VARCHAR & jedinstveni identifikator doktora/trenera 	\\ \hline 
+					\colorbox{LightBlue}{KorImeKlijenta} & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
+					\colorbox{LightBlue}{KorisnickoIme} & VARCHAR & jedinstveni identifikator doktora/trenera 	\\ \hline 
 					Ocjena  & INT &  ocjena od 1 do 5 \\ \hline 
 					Komentar & VARCHAR	& recenzija doktora/trenera 		\\ \hline 
 					Odgovor	& VARCHAR & odgovor doktora/trenera na recenziju  	\\ \hline
@@ -119,9 +120,9 @@
 					
 				\end{longtabu}
 				
-				\textbf{KlijentDoktor} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog doktora. Atributi su: korImeKlijenta i korImeDoktora. 
+				\textbf{KlijentDoktor} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog doktora. Atributi su: korImeKlijenta i korImeDoktora. Ovaj entitet je preko atributa KorImeKlijenta u \textit{One-to-One} vezi s Korisnik te preko atributa korImeDoktora u \textit{Many-to-One} vezi s entitetom DoktoriTreneri.
 				
-				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[9, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{KlijentDoktor}}	 \\[3pt] \hline
 					\endfirsthead
@@ -132,14 +133,14 @@
 					\hline 
 					\endlastfoot
 					
-					\colorbox{LightGreen}{korImeKlijenta} & VARCHAR	& jedinstveni identifikator klijenta \\ \hline
-					\colorbox{LightBlue}{korImeDoktora} & VARCHAR & jedinstveni identifikator doktora\\ \hline 
+					\colorbox{LightGreen}{KorImeKlijenta} & VARCHAR	& jedinstveni identifikator klijenta \\ \hline
+					\colorbox{LightBlue}{KorImeDoktora} & VARCHAR & jedinstveni identifikator doktora\\ \hline 
 					
 				\end{longtabu}
 				
-				\textbf{KlijentTrener} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog trenera. Atributi su: korImeKlijenta i korImeTrenera. 
+				\textbf{KlijentTrener} Entitet sadrži informacije o trenutnoj suradnji klijenta i nekog trenera. Atributi su: korImeKlijenta i korImeTrenera. Ovaj entitet je preko atributa KorImeKlijenta u \textit{One-to-One} vezi s Korisnik te preko atributa korImeTrenera u \textit{Many-to-One} vezi s entitetom DoktoriTreneri.
 				
-				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[9, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{KlijentTrener}}	 \\[3pt] \hline
 					\endfirsthead
@@ -150,12 +151,12 @@
 					\hline 
 					\endlastfoot
 					
-					\colorbox{LightGreen}{korImeKlijenta} & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
-					\colorbox{LightBlue}{korImeTrenera} & VARCHAR & jedinstveni identifikator trenera \\ \hline 
+					\colorbox{LightGreen}{KorImeKlijenta} & VARCHAR	&  jedinstveni identifikator klijenta \\ \hline
+					\colorbox{LightBlue}{KorImeTrenera} & VARCHAR & jedinstveni identifikator trenera \\ \hline 
 					
 				\end{longtabu}
 				
-				\textbf{KategorijeProizvoda} Kategorija proizvoda sadrži više različitih proizvoda sličnih karakteristika, kao što su na primjer tjestenina, proizvodi od mlijeka, meso itd. Entitet KategorijeProizvoda sadrži atribute: ID kategorije i ime kategorije.
+				\textbf{KategorijeProizvoda} Kategorija proizvoda sadrži više različitih proizvoda sličnih karakteristika, kao što su na primjer tjestenina, proizvodi od mlijeka, meso itd. Entitet KategorijeProizvoda sadrži atribute: ID kategorije i ime kategorije. Ovaj entitet je preko atributa ID u \textit{Many-to-Many} vezi s entitetom Proizvod te \textit{Many-to-Many} vezi s entitetom OgranicenjaNaKategorije.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -173,7 +174,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{Proizvod} Svaki proizvod sadrži sliku, masu i prisutne alergene. Svaki proizvod pripada nekoj kategoriji proizvoda. Entitet Proizvod sadrži atribute: ID proizvoda, masa, slika, prisutni alergeni, ime te ID kategorije.
+				\textbf{Proizvod} Svaki proizvod sadrži sliku, masu i prisutne alergene. Svaki proizvod pripada nekoj kategoriji proizvoda. Entitet Proizvod sadrži atribute: ID proizvoda, masa, slika, barkod, prisutni alergeni, ime te ID kategorije. Ovaj entitet je preko ID atributa u \textit{Many-to-Many} vezi s KategorijeProizvoda, \textit{Many-to-Many} vezi s OgranicenjaNaProizvode, \textit{One-to-One} vezi s NutritivneVrijednosti te \textit{Many-to-Many} vezi s KonzumiraniProizvodi. 
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -198,9 +199,9 @@
 				\end{longtabu}
 				
 				
-				\textbf{NutritivneVrijednosti} Informacije o nutritivnim vrijednostima proizvoda su definirane na 100g, a to su energija, masnoće, zasićene masne kiseline, ugljikohidrati, šećeri, bjelančevine i sol. Entitet NutritivneVrijednosti sadrži istoimene atribute te dodatno ID proizvoda za koji su vrijednosti definirane.  
+				\textbf{NutritivneVrijednosti} Informacije o nutritivnim vrijednostima proizvoda su definirane na 100g, a to su energija, masnoće, zasićene masne kiseline, ugljikohidrati, šećeri, bjelančevine i sol. Entitet NutritivneVrijednosti sadrži istoimene atribute te dodatno ID proizvoda za koji su vrijednosti definirane. Ovaj entitet je preko atributa IDproizvoda u \textit{One-to-One} vezi s entitetom Proizvod.  
 				
-				\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{NutritivneVrijednosti}}	 \\[3pt] \hline
 					\endfirsthead
@@ -223,7 +224,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{Vježba} Vježba je definirana sa slikom, opisom i informacijama o broju potrošenih kalorija u sat vremena u ovisnosti o 3 razine intenziteta vježbanja (lagano, normalno, teško). Entitet Vježba dodatno sadrži atribut ID, tj. jedinstveni identifikator vježbe.
+				\textbf{Vježba} Vježba je definirana sa slikom, opisom i informacijama o broju potrošenih kalorija u sat vremena u ovisnosti o 3 razine intenziteta vježbanja (lagano, normalno, teško). Entitet Vježba dodatno sadrži atribut ID, tj. jedinstveni identifikator vježbe. Ovaj entitet je preko atributa ID u \textit{One-to-Many} vezi s entitetom NizVjezbi te \textit{One-to-Many} vezi s entitetom BrPotrosenihKalorija.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -242,7 +243,7 @@
 					
 					
 				\end{longtabu}
-				\textbf{Intenzitet} Entitet Intenzitet se sastoji od atributa: intenzitet i šifra intenziteta. Intenzitet može biti: lagan, normalan i težak.
+				\textbf{Intenzitet} Entitet Intenzitet se sastoji od atributa: razina intenziteta i šifra intenziteta. Intenzitet može biti: lagan, normalan i težak. Intenzitet je preko atributa Razina u \textit{Many-to-Many} vezi s BrPotrosenihKalorija te \textit{One-to-Many} vezi s entitetom NizVjezbi.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -261,9 +262,9 @@
 					
 				\end{longtabu}
 				
-				\textbf{BrPotrošenihKalorija} Za svaku vježbu je definiran broj potrošenih kalorija u sat vremena u ovisnosti o 3 razine intenziteta vježbanja (lagano, normalno, teško). 
+				\textbf{BrPotrošenihKalorija} Za svaku vježbu je definiran broj potrošenih kalorija u sat vremena u ovisnosti o 3 razine intenziteta vježbanja (lagano, normalno, teško). Ovaj entitet je preko atributa IDvjezbe u \textit{Many-to-One} vezi s entitetom Vjezba te preko atributa Intenzitet u \textit{Many-to-Many} vezi s entitetom Intenzitet. 
 				
-				\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{BrPotrošenihKalorija}}	 \\[3pt] \hline
 					\endfirsthead
@@ -282,7 +283,7 @@
 				\end{longtabu}
 				
 				
-				\textbf{Trening} Trener zadaje trening klijentu svaki dan. Entitet Trening se sastoji od atributa: ID treninga, ID klijenta te datuma.
+				\textbf{Trening} Trener zadaje trening klijentu svaki dan. Entitet Trening se sastoji od atributa: ID treninga, ID klijenta te datuma. Ovaj entitet je preko atributa IDklijenta u \textit{Many-to-One} vezi s entitetom Korisnik te preko atributa ID u \textit{One-to-Many} vezi s entitetom NizVjezbi.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -303,7 +304,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{NizVježbi} Trening se sastoji od niza vježbi koji imaju određeno trajanje i intenzitet. Entitet NizVježbi se sastoji od atributa: ID treninga, ID vježbe, intenzitet vježbe, trajanje vježbe te redni broj vježbe.
+				\textbf{NizVježbi} Trening se sastoji od niza vježbi koji imaju određeno trajanje i intenzitet. Entitet NizVježbi se sastoji od atributa: ID treninga, ID vježbe, intenzitet vježbe, trajanje vježbe te redni broj vježbe. Ovaj entitet je preko atributa IDtreninga u \textit{Many-to-One} vezi s entitetom Trening, preko atributa IDvjezbe u \textit{Many-to-One} vezi s entitetom Vjezba te u \textit{Many-to-One} vezi s entitetom Intenzitet preko atributa Intenzitet.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -327,7 +328,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{Dijeta} Entitet Dijeta se sastoji od atributa: ID dijete, ID klijenta te opisa dijete. Dijetu i potrebne parametre unosi doktor.
+				\textbf{Dijeta} Entitet Dijeta se sastoji od atributa: ID dijete, ID klijenta te opisa dijete. Dijetu i potrebne parametre unosi doktor. Entitet Dijeta je preko atributa ID u \textit{Many-to-One} vezi s entitetom Korisnik,a preko atributa ID u \textit{One-to-One} vezi s entitetom DnevniLimit, \textit{One-to-Many} vezi s OgranicenjaNaKategorije te \textit{One-to-Many} vezi s entitetom OgranicenjaNaProizvode.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -346,7 +347,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{OgraničenjaNaProizvode} Dijeta se može definirati s ograničenjima na određene proizvode. Entitet Ograničenja se sastoji od atributa: ID dijete i ID proizvoda.
+				\textbf{OgraničenjaNaProizvode} Dijeta se može definirati s ograničenjima na određene proizvode. Entitet Ograničenja se sastoji od atributa: ID dijete i ID proizvoda. Ovaj entitet je preko atributa IDdijete u \textit{Many-to-One} vezi s entitetom Dijeta te preko atributa IDproizvoda u \textit{Many-to-Many} vezi s entitetom Proizvod.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -364,7 +365,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{OgraničenjaNaKategorije} Dijeta se može definirati s ograničenjima na određene kategorije proizvoda. Entitet Ograničenja se sastoji od atributa: ID dijete i ID kategorije.
+				\textbf{OgraničenjaNaKategorije} Dijeta se može definirati s ograničenjima na određene kategorije proizvoda. Entitet Ograničenja se sastoji od atributa: ID dijete i ID kategorije. Ovaj entitet je preko atributa IDdijete u \textit{Many-to-One} vezi s entitetom Dijeta, a preko atributa IDkategorije u \textit{Many-to-Many} vezi s entitetom KategorijeProizvoda.
 				
 				\begin{longtabu} to \textwidth {|X[7, l]|X[6, l]|X[20, l]|}
 					
@@ -382,9 +383,9 @@
 					
 				\end{longtabu}
 				
-				\textbf{DnevniLimit} Dijeta se može definirati dnevnim limitom za određene nutritivne vrijednosti proizvoda. Entitet DnevniLimit se sastoji od atributa: ID dijete, limit masnoće, limit ugljikohidrata, limit šećera, limit bjelančevina i limit soli. 
+				\textbf{DnevniLimit} Dijeta se može definirati dnevnim limitom za određene nutritivne vrijednosti proizvoda. Entitet DnevniLimit se sastoji od atributa: ID dijete, limit masnoće, limit ugljikohidrata, limit šećera, limit bjelančevina i limit soli. Ovaj entitet je preko atributa IDdijete u \textit{One-to-One} vezi s entitetom Dijeta.
 				
-				\begin{longtabu} to \textwidth {|X[12, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[15, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{DnevniLimit}}	 \\[3pt] \hline
 					\endfirsthead
@@ -405,9 +406,9 @@
 					
 				\end{longtabu}
 				
-				\textbf{UneseneNutrVrijednosti}  Dijeta se može definirati dnevnim limitom za određene nutritivne vrijednosti proizvoda. Entitet UneseneNutrVrijednosti prati dnevni unos pojedinih nutritivnih vrijednosti. Atributi su: ID korisnika, datum, te unesena energija, masnoće, zasićene masne kiseline, ugljikohidrati, šećeri, bjelančevine i sol.
+				\textbf{UneseneNutrVrijednosti}  Dijeta se može definirati dnevnim limitom za određene nutritivne vrijednosti proizvoda. Entitet UneseneNutrVrijednosti prati dnevni unos pojedinih nutritivnih vrijednosti. Atributi su: ID korisnika, datum, te unesena energija, masnoće, zasićene masne kiseline, ugljikohidrati, šećeri, bjelančevine i sol. Ovaj entitet je preko atributa IDklijenta u \textit{Many-to-One} vezi s entitetom Korisnik.
 				
-				\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
+				\begin{longtabu} to \textwidth {|X[10, l]|X[6, l]|X[20, l]|}
 					
 					\hline \multicolumn{3}{|c|}{\textbf{UneseneNutrVrijednosti}}	 \\[3pt] \hline
 					\endfirsthead
@@ -429,7 +430,7 @@
 					
 				\end{longtabu}
 				
-				\textbf{KonzumiraniProizvodi} Entitet KonzumiraniProizvodi se sastoji od atributa: ID klijenta, datum te ID proizvoda. 
+				\textbf{KonzumiraniProizvodi} Entitet KonzumiraniProizvodi se sastoji od atributa: ID klijenta, datum te ID proizvoda. Ovaj entitet je preko atributa IDproizvoda u \textit{Many-to-Many} vezi s entitetom Proizvod te preko atributa IDklijenta u \textit{Many-to-One} vezi s entitetom Korisnik.
 				
 				\begin{longtabu} to \textwidth {|X[8, l]|X[6, l]|X[20, l]|}
 					
@@ -449,7 +450,7 @@
 			
 			\subsection{Dijagram baze podataka}
 				\begin{figure}[H]
-					\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{slike/dijagramBaze.png}
+					\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{slike/dijagramBaze.png}
 					\centering
 					\caption{Dijagram baze podataka}
 					\label{fig:promjene}
