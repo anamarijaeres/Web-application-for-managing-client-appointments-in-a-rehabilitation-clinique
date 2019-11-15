@@ -453,9 +453,8 @@
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
-			
-			\textbf{\textit{dio 1. revizije}}\\
+			Na slikama 4.1 i 4.2 su prikazani razredi koji pripadaju backend dijelu MVC
+			arhitekture. Razredi prikazani na slici 4.1 nasljeđuju Controller razred. Metode implementirane u Controller razredima vracaju JSON datoteke s html status kodom. 
 			
 			\begin{figure}[H]
 			\includegraphics[scale=0.65]{slike/Controlleri.PNG}
@@ -463,13 +462,17 @@
 			\caption{Dijagram razreda - dio Controlleri}
 			\label{fig:promjene}
 			\end{figure}
-
+			\eject
+			Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vracaju tražene podatke. Razred Korisnik predstavlja registriranu osobu koja može stupiti u suradnju s doktorom i trenerom.Razred Trener predstavlja registrirnu osobu koju je dodatno potvrdio administrator.Njegova glavna uloga je osmišljavanje treninga, koji se sastoje od niza vježbi, svojim klijentima.Vježbe i treninzi su razredi sa svojim atributima.Razred Doktor perdstavlja registriranu osobu koju je također dodatno potvrdio administrator.Njegova glavna uloga je osmišljanje dijete koja se može sastojati od dnevnog limita pojedinih nutritivnih vrijednosti, specifičnih proizvoda ili kategorija proizvoda.Dijeta, Proizvod, Kategorija i Nutritivne Vrijednosti su razredi sa svojim atributima.Rezred Recenzija predstavlja osvrt klijenta na svog doktora ili trenera.
+			
+			Svi razredi realiziraju get i set metode za svoje atribute.
 			\begin{figure}[H]
 			\includegraphics[scale=0.6]{slike/Modeli.PNG}
 			\centering
 			\caption{Dijagram razreda - dio Modeli}
 			\label{fig:promjene}
 			\end{figure}
+			\eject
 			
 			\textbf{\textit{dio 2. revizije}}\\			
 			
