@@ -1,6 +1,5 @@
 \chapter{Arhitektura i dizajn sustava}
 		
-		\textbf{\textit{dio 1. revizije}}\\
 
 		\textit{Arhitektura se sastoji od 3 podsustava:}
 	\begin{itemize}
@@ -8,17 +7,19 @@
 		\item 	\textit{Web aplikacija}
 		\item 	\textit{Baza podataka}		
 	\end{itemize}
-		\textit{
-			Web poslužitelj- Primarna zadaća web poslužitelja je komunikacija klijenta s aplikacijom, pomoću HTTP protokola. Web poslužitelj prosljeđuje korisnikov 
-			zahtjev, preko Web preglednika, web aplikaciji. 
-			Web aplikacija- obrađuje zahtjev te pristupa bazi podataka, vraćajući odgovor korisniku u web pregledniku.
-			Baza podataka- implementacija pomoću sql-a.
-			Za izradu frontend dijela aplikacije ćemo koristiti Java Script, a za izradu backend dijela aplikacije ćemo koristiti Java Spring Boot. 
-			DOVRŠI MVC koncept arhitekture}\\
+	
+			Web poslužitelj omogućuje komunikaciju klijenta s aplikacijom, pomoću HTTP (Hyper Text Transfer Protocol) protokola. HTTP protokol je protokol aplikacijskog sloja koji služi za razmjenu svih podataka (HTML stranica, slika, itd.) na Internetu. Dvije glavne metode HTTP protokola su GET i POST metode. GET (HTTP GET) metoda se koristi kao zahtjev za podacima na serveru, a POST (HTTP POST) metoda se koristi za kreiranje ili ažuriranje podataka na serveru. Uspostava veze se odvija tako da se klijent spoji na port 80 i web poslužitelju uputi zahtjev za traženom stranicom, a on mu vraća HTML kod tj. HTML stranicu ili ju izgenerira. Web poslužitelj zapravo pokreće aplikaciju te joj proslijeđuje zahtjev. Klijent prima HTML kod te ga prikazuje u obliku stranice. Sam korisnik upućuje zahtjev preko web preglednika. Web aplikacija služi za obrađivanje željenih zahtjeva. Kroz HTTP zahtjeve ćemo dohvaćati podatke u formatu JSON, a u web aplikaciji ih obrađivati te preslikavati u bazu podataka. Bazu podataka ćemo napravili u PostgreSQLu, te smo tablice iz baze, pomoću paketa JPA i Hebernate (paketi Springa), povezali sa klasama u aplikaciji. Za izradu backend dijela aplikacije ćemo koristiti Java Spring Boot, a frontend ćemo izraditi u Reactu. Za razvojno okruženje smo odabrali IntelliJ. Arhitektura aplikacije će se temeljiti na MVC (Model-View-Controller) konceptu, koji Spring podržava.\\
+		
+		
+			\noindent \textbf{MVC koncept sastoji se od:}
+				\begin{packed_item}
+				\item Model- Središnja komponenta, koja prima ulazne podatke od Controllera. Model predstavlja dinamičke strukture podataka, neovisne o korisničkom sučelju. Upravlja podacima, logikom i pravilima aplikacije.	
+				\item View- Bilo kakav prikaz podataka.
+				\item Controller- Prima ulaze i prilogođava ih za prosljeđivanje Modelu i Viewu.
+				\end{packed_item}
 			
 		\section{Baza podataka}
 			
-			\textbf{\textit{dio 1. revizije}}\\
 			Za potrebe našeg sustava koristit ćemo relacijsku bazu podataka koja svojom strukturom olakšava modeliranje stvarnog svijeta. Gradivna jedinka baze je relacija, odnosno tablica koja je definirana svojim imenom i skupom atributa. Zadaća baze podataka je brza i jednostavna pohrana, izmjena i dohvat podataka za daljnju obradu.
 			Baza podataka ove aplikacije sastoji se od sljedećih entiteta:
 			\begin{itemize}
@@ -447,37 +448,39 @@
 					\colorbox{LightGreen}{IDproizvoda} & INT & jedinstveni identifikator proizvoda \\ \hline
 					
 				\end{longtabu}
-			
-			\subsection{Dijagram baze podataka}
+				
+				\subsection{Dijagram baze podataka}
 				\begin{figure}[H]
-					\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{slike/dijagramBaze.png}
+					\includegraphics[width=\textwidth,height=\textwidth,keepaspectratio]{dijagrami/dijagramBaze.png}
 					\centering
 					\caption{Dijagram baze podataka}
 					\label{fig:promjene}
 				\end{figure}
-			
-			\eject
-			
+				
+				\eject
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
-			
-			\textbf{\textit{dio 1. revizije}}\\
+			Na slikama 4.1 i 4.2 su prikazani razredi koji pripadaju backend dijelu MVC
+			arhitekture. Razredi prikazani na slici 4.1 nasljeđuju Controller razred. Metode implementirane u Controller razredima vracaju JSON datoteke s html status kodom. 
 			
 			\begin{figure}[H]
-			\includegraphics[scale=0.65]{slike/Controlleri.PNG}
+			\includegraphics[scale=0.65]{dijagrami/Klase/Controlleri.PNG}
 			\centering
 			\caption{Dijagram razreda - dio Controlleri}
 			\label{fig:promjene}
 			\end{figure}
-
+			\eject
+			Model razredi preslikavaju strukturu baze podataka u aplikaciji. Implementirane metode direktno komuniciraju s bazom podataka te vracaju tražene podatke. Razred Korisnik predstavlja registriranu osobu koja može stupiti u suradnju s doktorom i trenerom.Razred Trener predstavlja registrirnu osobu koju je dodatno potvrdio administrator.Njegova glavna uloga je osmišljavanje treninga, koji se sastoje od niza vježbi, svojim klijentima.Vježbe i treninzi su razredi sa svojim atributima.Razred Doktor perdstavlja registriranu osobu koju je također dodatno potvrdio administrator.Njegova glavna uloga je osmišljanje dijete koja se može sastojati od dnevnog limita pojedinih nutritivnih vrijednosti, specifičnih proizvoda ili kategorija proizvoda.Dijeta, Proizvod, Kategorija i Nutritivne Vrijednosti su razredi sa svojim atributima.Rezred Recenzija predstavlja osvrt klijenta na svog doktora ili trenera.
+			
+			Svi razredi realiziraju get i set metode za svoje atribute.
 			\begin{figure}[H]
-			\includegraphics[scale=0.6]{slike/Modeli.PNG}
+			\includegraphics[scale=0.6]{dijagrami/Klase/Modeli.PNG}
 			\centering
 			\caption{Dijagram razreda - dio Modeli}
 			\label{fig:promjene}
 			\end{figure}
+			\eject
 			
 			\textbf{\textit{dio 2. revizije}}\\			
 			
@@ -489,7 +492,7 @@
 		
 		\section{Dijagram stanja}
 			
-			git s
+			
 			\textbf{\textit{dio 2. revizije}}\\
 			
 			\textit{Potrebno je priložiti dijagram stanja i opisati ga. Dovoljan je jedan dijagram stanja koji prikazuje \textbf{značajan dio funkcionalnosti} sustava. Na primjer, stanja korisničkog sučelja i tijek korištenja neke ključne funkcionalnosti jesu značajan dio sustava, a registracija i prijava nisu. }
