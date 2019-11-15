@@ -362,7 +362,7 @@
 							\item Korisnik odabire kojeg zaposlenika želi ocijeniti
 							\item Korisnik izabire ocjenu i piše komentar
 							\item Korisnik potvrđuje unos
-							\item Sustav pohranjuje recenziju u bazu podataka i ažurira prosječnu ocjenu zaposlenika
+							\item Sustav pohranjuje recenziju u bazu podataka
 							
 						\end{packed_enum}
 					
@@ -965,10 +965,68 @@
 				
 			\subsection{Sekvencijski dijagrami}
 				
-				\textbf{\textit{dio 1. revizije}}\\
 				
-				\textit{Nacrtati sekvencijske dijagrame koji modeliraju najvažnije dijelove sustava (max. 4 dijagrama). Ukoliko postoji nedoumica oko odabira, razjasniti s asistentom. Uz svaki dijagram napisati detaljni opis dijagrama.}
+				\textbf{Obrazac uporabe UC1 - Registracija klijenta}\\
+				Neregistrirani korisnik šalje podatke za registraciju. Aplikacija ih zatim validira i ustanovljava jesu li ispravni ili ne. Ako nisu, aplikacija obavještava korisnika i traži ponovan unos sve dok ne unese ispravne podatke. Za unos ispravnih podataka stvara se novi korisnički račun u bazi te se korisnika obavještava o uspješnoj registraciji.
+				
+				
+				\begin{figure}[H]
+				\includegraphics[scale=1.05]{dijagrami/Sekvencijski/SD1.PNG}
+				\centering
+				\caption{Sekvencijski dijagram za UC1}
+				\label{fig:promjene}
+				\end{figure}
 				\eject
+			
+				\textbf{Obrazac uporabe UC5 - Slanje zahtjeva za suradnju i UC6 - Potvrda zahtjeva za suradnju}\\
+				Korisnik traži pregled svih zaposlenika. Aplikacija zaposlenicima koji su dohvaćeni iz baze provjerava broj klijenata. Ukoliko je on manji od  njegovog maksimalnog broja klijenata, aplikacija ga prikazuje. Potom korisnik odabere zaposlenika kojem želi poslati zahtjev za suradnju. Aplikacija mu taj zahtjev prosljeđuje . On ima mogućnost prihvaćanja ili odbijanja suradnje. Ako ju prihvati, podaci o novom klijentu zaposlenika se spremaju u bazu te korisnik dobiva poruku o prihvaćanju suradnje. Nadalje, ako zaposlenik odbije suradnju, poruka s prikladnim opisom se prikazuje korisniku.
+			
+			
+				\begin{figure}[H]
+				\includegraphics[scale=0.75]{dijagrami/Sekvencijski/SD5.PNG}
+				\centering
+				\caption{Sekvencijski dijagram za UC5 i UC6}
+				\label{fig:promjene}
+				\end{figure}
+				\eject
+				
+				\textbf{Obrazac uporabe UC8 - Ocjenjivanje zaposlenika}\\
+				Korisnik traži prikaz svojih suradnji te nakon dobivenog prikaza odabire zaposlenika kojem želi ostaviti recenziju. U recenziji ostavlja komentar i daje ocjenu. Ti podaci se potom spremaju u bazu.
+				
+				
+				\begin{figure}[H]
+				\includegraphics[scale=0.85]{dijagrami/Sekvencijski/SD8.PNG}
+				\centering
+				\caption{Sekvencijski dijagram za UC8}
+				\label{fig:promjene}
+				\end{figure}
+				\eject
+				
+				\textbf{Obrazac uporabe UC10 - Definiranje dijete}\\
+				Zaposlenik traži pregled svih svojih klijenata. Nakon njihovog prikaza odabere onog kojem želi postaviti dijetu. On tu dijetu definira. Ako je dijeta dobro definirana ti podaci se proslijede u bazu i ispisuje se poruka o uspješnom postavljanju dijete. Ako dijeta nije dobro definirana ispisuje se samo prikladna poruka.
+				
+				
+				\begin{figure}[H]
+				\includegraphics[scale=0.95]{dijagrami/Sekvencijski/SD10.PNG}
+				\centering
+				\caption{Sekvencijski dijagram za UC10}
+				\label{fig:promjene}
+				\end{figure}
+				\eject
+				
+				\textbf{Obrazac uporabe UC25 - Provjera proizvoda skeniranjem}\\
+				Korisnik unese sliku bar koda. Aplikacija provjerava je li bar kod uspješno očitan. Ako je, proizvod se dohvaća iz baze te provjerava je li korisniku dopušteno njegovo konzumiranje.U slučaju da bar kod nije uspješno učitan, ispisuje se prikladna poruka. Ako je proizvod dopušten, ispisuje se prikladna poruka i proizvod se sprema u listu konzumiranih proizvoda. Ako korisniku nije dopušteno konzumiranje proizvoda, samo mu se ispisuje poruka o tome.
+				
+				
+				\begin{figure}[H]
+				\includegraphics[scale=0.95]{dijagrami/Sekvencijski/SD25.PNG}
+				\centering
+				\caption{Sekvencijski dijagram za UC25}
+				\label{fig:promjene}
+				\end{figure}
+				\eject
+				
+				
 	
 		\section{Ostali zahtjevi}
 			 
