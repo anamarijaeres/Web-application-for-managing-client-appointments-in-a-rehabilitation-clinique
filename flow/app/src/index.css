@@ -1,0 +1,8 @@
+body {
+  font-size: 20px;
+  background-color: #7b7b7b;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

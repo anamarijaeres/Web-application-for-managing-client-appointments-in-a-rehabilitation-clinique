@@ -1,0 +1,35 @@
+.FormRow {
+    margin: 8px 0;
+    align-items: center;
+}
+
+.StaffForm .FormRow:first-child {
+    margin-top: 0;
+}
+
+.FormRow label {
+    display: block;
+    margin-bottom: 2px;
+}
+
+.FormRow input {
+    font-size: 20px;
+    padding: 5px;
+    border: 2px solid #aaa;
+}
+
+.StaffForm button {
+    background: none;
+    border: 2px solid #aaa;
+    padding: 5px 12px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.StaffForm button:hover {
+    background-color: #aaa;
+}
+
+.StaffForm button:disabled {
+    color: #ddd;
+}
