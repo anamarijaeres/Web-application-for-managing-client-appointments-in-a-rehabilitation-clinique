@@ -31,12 +31,12 @@ public class UserController {
     	Korisnik userDB=userService.loadUser(korisnik.getUsername(), korisnik.getLozinka());
     	ResponseMessage response=new ResponseMessage();
     	if(userDB!=null) {
-    		response.setError_code(ErrorCode.ERROR_CODE2);
+    		response.setError_code(ErrorCode.ERROR_CODE_2);
     		response.setMessage("Username taken");
     		response.setUsername(korisnik.getUsername());
     		return response;
     	}else {
-    		response.setError_code(ErrorCode.ERROR_CODE0);
+    		response.setError_code(ErrorCode.ERROR_CODE_0);
     		response.setMessage("");
     		response.setUsername(korisnik.getUsername());
     	}
@@ -48,12 +48,13 @@ public class UserController {
     public ResponseMessage loginUser(@RequestParam("username") String username, @RequestParam("password") String password) {
     	Korisnik user=userService.loadUser(username, password);
     	ResponseMessage response=new ResponseMessage();
+    	System.out.println(user);
     	if(user==null) {
-    		response.setError_code(ErrorCode.ERROR_CODE1);
+    		response.setError_code(ErrorCode.ERROR_CODE_1);
     		response.setMessage("Wrong password or username");
     		response.setUsername(username);
     	}else {
-    		response.setError_code(ErrorCode.ERROR_CODE0);
+    		response.setError_code(ErrorCode.ERROR_CODE_0);
     		response.setMessage("");
     		response.setUsername(username);
     	}

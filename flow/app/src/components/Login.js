@@ -24,14 +24,25 @@ function Login(props) {
       },
       body: body
     };
+    //fetch('/login', options)
+//      .then(response => {
+//        if (response.status === 401) {
+//          setError("Login failed");
+//        } else {
+//            props.onLogin();
+//        }
+//      });
     fetch('/login', options)
-      .then(response => {
-        if (response.status === 401) {
-          setError("Login failed");
-        } else {
-            props.onLogin();
-        }
-      });
+    .then(res=>res.json())
+    .then(json=>{
+    	if(json.error_code !== 'ERROR_CODE_0'){
+    		setError("Wrong username or password");
+    	}else{
+    		console.log(props)
+    		this.props.onLogin();
+    	}
+    });
+    
   }
 
   return (

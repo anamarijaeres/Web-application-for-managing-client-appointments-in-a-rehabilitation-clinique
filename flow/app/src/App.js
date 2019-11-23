@@ -33,7 +33,7 @@ function App() {
     return <div>Loading...</div>
   }
 
-  function onLogin() {
+  function onLogin(){
     setIsLoggedIn(true)
   }
 
