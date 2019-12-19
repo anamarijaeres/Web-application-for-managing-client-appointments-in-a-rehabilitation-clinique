@@ -4,12 +4,14 @@ public class ResponseMessage {
 	private ErrorCode error_code;
 	private String message;
 	private String username;
+	private UserRole userRole;
 	
-	public ResponseMessage(ErrorCode error_code, String message, String username) {
+	public ResponseMessage(ErrorCode error_code, String message, String username, UserRole userRole) {
 		super();
 		this.error_code = error_code;
 		this.message = message;
 		this.username = username;
+		this.userRole=userRole;
 	}
 
 	public ResponseMessage() {
@@ -38,5 +40,13 @@ public class ResponseMessage {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
 }
