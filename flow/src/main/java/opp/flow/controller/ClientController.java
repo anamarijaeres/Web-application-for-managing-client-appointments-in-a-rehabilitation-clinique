@@ -15,6 +15,7 @@ import opp.flow.model.*;
 @CrossOrigin(origins = { "http://localhost:3000"})
 @RestController
 public class ClientController {
+	//ADMIN je client sa username: ADMIN i password: ADMIN
 
     @Autowired
     private ClientService clientService;

@@ -93,5 +93,15 @@ public class DoctorCoachService {
 	public void deleteDoctorCoach(DoctorCoach doctorCoach) {
 		doctorCoachRepository.delete(doctorCoach);
 	}
+
+	public void updateDoctorCoachProfileData(DoctorCoach updateDoctorCoach) {
+		DoctorCoach doctorCoach=doctorCoachRepository.findByusername(updateDoctorCoach.getUsername());
+		try {
+			doctorCoach.replaceAttributes(updateDoctorCoach);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		doctorCoachRepository.save(doctorCoach);
+	}
 	
 }

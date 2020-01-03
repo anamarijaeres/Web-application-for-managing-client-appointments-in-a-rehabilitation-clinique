@@ -61,4 +61,16 @@ public class ClientService{
 		}
 		return lista;
 	}
+
+	public void updateClientProfileData(Client updateClient) {
+		Client client=clientRepository.findByusername(updateClient.getUsername());
+		
+		try {
+			client.replaceAttributes(updateClient);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		clientRepository.save(client);
+	}
 }
