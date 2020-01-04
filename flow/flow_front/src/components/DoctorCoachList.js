@@ -54,7 +54,6 @@ class DoctorCoachList extends Component{
                 return (
 
                     <div className="post card" key={doctor.id}>
-
                         <div className="card-content">
                             <span className="card-title">{doctor.username}</span>
                             <p>{doctor.body}</p>
@@ -70,7 +69,6 @@ class DoctorCoachList extends Component{
                 return (
 
                     <div className="post card" key={coach.id}>
-
                         <div className="card-content">
                             <span className="card-title">{coach.username}</span>
                             <p>{coach.body}</p>
@@ -84,12 +82,26 @@ class DoctorCoachList extends Component{
             })
 
             return (
-                <div>
-                    <div>Doktori</div>
-                    <div className="container" >{doctorsList}</div>
-                    <div>Treneri</div>
-                    <div className="container" >{coachesList}</div>
-                </div>)
+                <div className="row">
+                    <div className="col s6">
+                        <div className="card">
+                            <div className="card-content">
+                                <span className="card-title center blue darken-2 white-text">Doktori</span>
+                                <div className="container" >{doctorsList}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col s6">
+                        <div className="card">
+                            <div className="card-content">
+                                <span className="card-title center blue darken-2 white-text">Treneri</span>
+                                <div className="container" >{coachesList}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                )
 
 
         } else {

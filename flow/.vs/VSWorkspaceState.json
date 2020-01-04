@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app",
-    "\\app\\src",
-    "\\app\\src\\components",
-    "\\app\\src\\service"
+    "\\flow_front",
+    "\\flow_front\\src",
+    "\\flow_front\\src\\components"
   ],
-  "SelectedNode": "\\app\\src\\App.js",
+  "SelectedNode": "\\flow_front\\src\\components\\SignupForm.js",
   "PreviewInSolutionExplorer": false
 }
