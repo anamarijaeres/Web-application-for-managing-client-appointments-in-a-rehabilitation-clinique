@@ -177,6 +177,29 @@ public class DoctorCoachService {
 		}
 		doctorCoachRepository.save(doctorCoach);
 	}
-	
 
+
+	public List<DocCoachPost> getCooperations(String username) {
+		List<DocCoachPost> list=new ArrayList<>();
+		DoctorCoach dc=(DoctorCoach)getDoctorCoach(username);
+		Client client=null;
+		if(dc.getRole().equals("Doctor")) {
+			List<ClientDoctor> listaClientDoctor = clientDoctorRepository.findAll();
+			for (ClientDoctor cd : listaClientDoctor) {
+				if (cd.getUsernamedoctor().equals(username)) {
+					client=(Client)clientService.getClient(cd.getUsernameclient());
+					list.add(new DocCoachPost(cd.getId(), client));
+				}
+			}
+		}else{
+			List<ClientCoach> listaClientCoach=clientCoachRepository.findAll();
+			for(ClientCoach cc : listaClientCoach) {
+				if (cc.getUsernamecoach().equals(username)) {
+					client=(Client)clientService.getClient(cc.getUsernameclient());
+					list.add(new DocCoachPost(cc.getId(), client));
+				}
+			}
+		}
+		return list;
+	}
 }

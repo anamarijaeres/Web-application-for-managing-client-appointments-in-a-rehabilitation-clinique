@@ -22,7 +22,10 @@ public class DoctorCoachController {
 	@Autowired
 	private ClientService clientService;
 
-
+	@GetMapping("/cooperations/{username}")
+	public List<DocCoachPost> getCooperations(@PathVariable("username") String username){
+		 return doctorCoachService.getCooperations(username);
+	}
 	@GetMapping("/requests/{username}")
 	public List<DocCoachPost> getAdminListForApproval(@PathVariable String username){
 		return doctorCoachService.getRequestList(username);
@@ -105,4 +108,7 @@ public class DoctorCoachController {
 
 		return response;
 	}
+
+
+
 }

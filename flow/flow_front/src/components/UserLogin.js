@@ -9,10 +9,14 @@ class UserLogin extends Component{
     state={
         user:'',
         adminList:[],
-        requestList: []
+        requestList: [],
+        cooperationsList:[],
+        cooperationDoctor:'',
+        cooperationCoach:''
     }
 
     componentDidMount(){
+        const role=localStorage.getItem('role')
         axios.get('http://localhost:8080/'+this.props.matchLink.match.params.username)
             .then(response=>{
                 this.setState({
@@ -26,13 +30,37 @@ class UserLogin extends Component{
                     adminList:response.data
                 })
             })
-        if(this.props.role !== 'Client')
-        {axios.get('http://localhost:8080/requests/'+ this.props.matchLink.match.params.username)
-            .then(response => {
-                this.setState({
-                    requestList: response.data
+
+        if(role !== 'Client') {
+            axios.get('http://localhost:8080/requests/' + this.props.matchLink.match.params.username)
+                .then(response => {
+                    this.setState({
+                        requestList: response.data
+                    })
                 })
-            })}
+            axios.get('http://localhost:8080/cooperations/' + this.props.matchLink.match.params.username)
+                .then(response => {
+                    this.setState({
+                        cooperationsList: response.data
+                    })
+                })
+        }else {
+
+            axios.get('http://localhost:8080/cooperationDoctor/' + this.props.matchLink.match.params.username)
+                .then(response => {
+                    this.setState({
+                        cooperationDoctor: response.data
+                    })
+                })
+            axios.get('http://localhost:8080/cooperationCoach/' + this.props.matchLink.match.params.username)
+                .then(response => {
+                    this.setState({
+                        cooperationCoach: response.data
+                    })
+                })
+
+        }
+
     }
 
     approveRow(username, e, id){
@@ -131,6 +159,7 @@ class UserLogin extends Component{
                                             </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         <div className="container">
@@ -140,7 +169,6 @@ class UserLogin extends Component{
                     </div>
                 )
             }else{
-
                 return(
                     <div className="container">
                         <div className="row">
@@ -167,14 +195,37 @@ class UserLogin extends Component{
                                             </div>
                                     </div>
                                 </div>
+                                <div className="container">
+                                    <DoctorCoachList username={this.state.user.username} firstName={this.state.user.firstName} lastName={this.state.user.lastName} role={role} />
+                                </div>
+                            </div>
+                            <div className="col s12 m6">
+
+                        <div className="post card" key={this.state.cooperationDoctor.id}>
+
+                            <div className="card-content">
+                                <span className="card-title">Moj doktor:</span>
+                                <p>{this.state.cooperationDoctor.body}</p>
+                                <button className="btn red lighten-1 z-depth-0"
+                                        onClick={(e) => console.log("okej")}>
+                                </button>
                             </div>
                         </div>
-                        <div className="container">
-                            <DoctorCoachList username={this.state.user.username} firstName={this.state.user.firstName} lastName={this.state.user.lastName} role={role} />
-                        </div>
+                        <div className="post card" key={this.state.cooperationCoach.id}>
 
+                            <div className="card-content">
+                                <span className="card-title">Moj trener:</span>
+                                <p>{this.state.cooperationCoach.body}</p>
+                                <button className="btn red lighten-1 z-depth-0"
+                                        onClick={(e) => console.log("okej")}>
+                                </button>
+                            </div>
+                        </div>
+                          </div>
+                        </div>
                     </div>
                 )
+
             }
        }else{
             const requests = this.state.requestList;
@@ -188,6 +239,22 @@ class UserLogin extends Component{
                             <p>{request.body}</p>
                             <button className="btn red lighten-1 z-depth-0" onClick={(e) => this.approveRequest(request.username, e, request.id)}>Approve</button>
                             <button className="btn red lighten-1 z-depth-0" onClick={(e) => this.deleteRequest(request.username, e, request.id)}>Decline</button>
+                        </div>
+                    </div>
+
+                )
+            })
+            const cooperations = this.state.cooperationsList;
+            const coopList = cooperations.map(cooperation=> {
+                return (
+
+                    <div className="post card" key={cooperation.id}>
+
+                        <div className="card-content">
+                            <span className="card-title">{cooperation.username}</span>
+                            <p>{cooperation.body}</p>
+                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}></button>
+                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}></button>
                         </div>
                     </div>
 
@@ -229,8 +296,12 @@ class UserLogin extends Component{
                             </div>
                         </div>
                     </div>
-
-                   <div className="container" >{requestsList}</div>
+                   <div className="col s12 m4">Zahtjevi za suradnju:
+                   {requestsList}
+                   </div>
+                   <div className="col s12 m4">Moji klijenti:
+                   {coopList}
+                   </div>
 
                 </div>
 

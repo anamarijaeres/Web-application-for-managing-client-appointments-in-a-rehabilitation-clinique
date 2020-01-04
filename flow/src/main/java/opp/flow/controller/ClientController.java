@@ -50,6 +50,14 @@ public class ClientController {
 	@GetMapping("/coachList")
 	public List<AdminPost> getCoaches(){ return clientService.getCoachesList(); }
 
+	@GetMapping("/cooperationDoctor/{username}")
+	public AdminPost getCooperationDoctor(@PathVariable("username") String username){
+    	return clientService.getCooperationDoctor(username);
+	}
+	@GetMapping("/cooperationCoach/{username}")
+	public AdminPost getCooperationCoach(@PathVariable("username") String username){
+		return clientService.getCooperationCoach(username);
+	}
 
 
 

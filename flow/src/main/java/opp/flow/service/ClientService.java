@@ -2,6 +2,8 @@ package opp.flow.service;
 
 import opp.flow.UserRole;
 import opp.flow.model.*;
+import opp.flow.repository.ClientCoachRepository;
+import opp.flow.repository.ClientDoctorRepository;
 import opp.flow.repository.ClientRepository;
 import opp.flow.repository.DoctorCoachRepository;
 
@@ -19,7 +21,16 @@ public class ClientService{
     
     @Autowired
     private DoctorCoachRepository doctorCoachRepository;
-    
+
+	@Autowired
+	private ClientDoctorRepository clientDoctorRepository;
+
+	@Autowired
+	private ClientCoachRepository clientCoachRepository;
+
+	@Autowired
+	private DoctorCoachService doctorCoachService;
+
     public boolean registerClient(Client registerClient) {
     	Client client=clientRepository.findByusername(registerClient.getUsername()); 
     	DoctorCoach doctorCoach=doctorCoachRepository.findByusername(registerClient.getUsername());
@@ -93,5 +104,31 @@ public class ClientService{
 		}
 		
 		clientRepository.save(client);
+	}
+
+    public AdminPost getCooperationDoctor(String username) {
+		List<ClientDoctor> listaClientDoctor=clientDoctorRepository.findAll();
+		AdminPost post=null;
+		DoctorCoach doctor=null;
+		for(ClientDoctor cd: listaClientDoctor){
+			if(cd.getUsernameclient().equals(username)){
+				doctor=(DoctorCoach)doctorCoachService.getDoctorCoach(cd.getUsernamedoctor());
+				post=new AdminPost(cd.getId(),doctor);
+			}
+		}
+		return post;
+    }
+
+	public AdminPost getCooperationCoach(String username) {
+		List<ClientCoach> listaClientCoach=clientCoachRepository.findAll();
+		AdminPost post=null;
+		DoctorCoach coach=null;
+		for(ClientCoach cc: listaClientCoach){
+			if(cc.getUsernameclient().equals(username)){
+				coach=(DoctorCoach)doctorCoachService.getDoctorCoach(cc.getUsernamecoach());
+				post=new AdminPost(cc.getId(),coach);
+			}
+		}
+		return post;
 	}
 }
