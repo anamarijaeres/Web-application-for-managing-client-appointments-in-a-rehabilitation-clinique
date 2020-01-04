@@ -10,6 +10,10 @@ public class Client implements AppUser{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+
+
+	private boolean approvedByDoctor=false;
+
     @Column(unique = true, nullable = false)
     @NotNull
     private String username;
@@ -71,6 +75,10 @@ public class Client implements AppUser{
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
+	public boolean isApprovedByDoctor() { return approvedByDoctor; }
+
+	public void setApprovedByDoctor(boolean approvedByDoctor) { this.approvedByDoctor = approvedByDoctor; }
 
     @Override
 	public String toString() {

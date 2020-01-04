@@ -1,6 +1,7 @@
 package opp.flow.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ public class DoctorCoach implements AppUser{
     private Long id;
 	
 	private boolean approvedByAdmin=false;
+
+
 
     @Column(unique = true, nullable = false)
     @NotNull
@@ -36,6 +39,9 @@ public class DoctorCoach implements AppUser{
     private String email;
     
     private int maxNumClient;
+
+
+
     
     public DoctorCoach() {
     	

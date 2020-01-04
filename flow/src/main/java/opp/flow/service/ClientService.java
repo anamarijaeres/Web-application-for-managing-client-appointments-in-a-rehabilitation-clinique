@@ -1,10 +1,7 @@
 package opp.flow.service;
 
 import opp.flow.UserRole;
-import opp.flow.model.AdminPost;
-import opp.flow.model.AppUser;
-import opp.flow.model.Client;
-import opp.flow.model.DoctorCoach;
+import opp.flow.model.*;
 import opp.flow.repository.ClientRepository;
 import opp.flow.repository.DoctorCoachRepository;
 
@@ -60,5 +57,30 @@ public class ClientService{
 			}
 		}
 		return lista;
+	}
+
+	public List<AdminPost> getDoctorsList(){
+    	List<AdminPost> lista=new ArrayList<>();
+    	List<DoctorCoach>doctorCoachLista=doctorCoachRepository.findAll();
+    	for(DoctorCoach dc:doctorCoachLista){
+    		if(dc.isApprovedByAdmin()==true) {
+				if (dc.getRole().equals("Doctor")) {
+					lista.add(new AdminPost(dc.getId(), dc));
+				}
+			}
+		}
+    	return lista;
+	}
+	public List<AdminPost> getCoachesList(){
+    	List<AdminPost> lista=new ArrayList<>();
+    	List<DoctorCoach> doctorCoachLista=doctorCoachRepository.findAll();
+    	for(DoctorCoach dc:doctorCoachLista){
+    		if(dc.isApprovedByAdmin()==true){
+    			if(dc.getRole().equals("Coach")){
+    				lista.add(new AdminPost(dc.getId(),dc));
+				}
+			}
+		}
+    	return lista;
 	}
 }

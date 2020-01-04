@@ -1,17 +1,16 @@
 package opp.flow.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import opp.flow.model.*;
+import opp.flow.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import opp.flow.UserRole;
-import opp.flow.model.AppUser;
-import opp.flow.model.Client;
-import opp.flow.model.DoctorCoach;
-import opp.flow.repository.ClientRepository;
-import opp.flow.repository.DoctorCoachRepository;
 
 @Service
 public class DoctorCoachService {
@@ -20,6 +19,19 @@ public class DoctorCoachService {
 	
 	@Autowired
     private DoctorCoachRepository doctorCoachRepository;
+
+	@Autowired
+	private ClientService clientService;
+
+	@Autowired
+	private DoctorCoachRequestRepository doctorCoachRequestRepository;
+
+	@Autowired
+	private ClientCoachRepository clientCoachRepository;
+
+	@Autowired
+	private ClientDoctorRepository clientDoctorRepository;
+
 	
 	public boolean registerDoctorCoach(DoctorCoach registerDoctorCoach) {
     	Client client=clientRepository.findByusername(registerDoctorCoach.getUsername());
@@ -93,5 +105,65 @@ public class DoctorCoachService {
 	public void deleteDoctorCoach(DoctorCoach doctorCoach) {
 		doctorCoachRepository.delete(doctorCoach);
 	}
-	
+
+	public boolean sendRequest(String usernameDocOrCoach, String usernameClient){
+		int br=0;
+		AppUser doctorCoach=getDoctorCoach(usernameDocOrCoach);
+		List<DoctorCoachRequests> requests=doctorCoachRequestRepository.findAll();
+		for(DoctorCoachRequests rq:requests){
+			if(rq.getUsernameDoctorCoach().equals(usernameDocOrCoach)){
+				++br;
+			}
+
+		}
+		DoctorCoach doc=(DoctorCoach) doctorCoach;
+		if(br<doc.getMaxNumClient()) {
+			doctorCoachRequestRepository.save(new DoctorCoachRequests(usernameDocOrCoach, usernameClient));
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public List<DocCoachPost> getRequestList(String username){
+		List<DocCoachPost> lista=new ArrayList<>();
+		Client cl;
+		List<DoctorCoachRequests> listWithRequests=doctorCoachRequestRepository.findAll();
+		for(DoctorCoachRequests rq: listWithRequests){
+			if(rq.getUsernameDoctorCoach().equals(username)) {
+				cl = (Client) clientService.getClient(rq.getClientUsername());
+				lista.add(new DocCoachPost(rq.getId(), cl));
+			}
+		}
+		return lista;
+	}
+
+	public boolean approveClient(String username, String usernameDocOrCoach) {
+		DoctorCoach doctorCoach=(DoctorCoach)getDoctorCoach(usernameDocOrCoach);
+		List<DoctorCoachRequests> listWithRequests=doctorCoachRequestRepository.findAll();
+		boolean app=false;
+		if(doctorCoach.getRole().equals("Doctor")){
+			clientDoctorRepository.save(new ClientDoctor(username,usernameDocOrCoach));
+			app=true;
+		}
+		else{
+			clientCoachRepository.save(new ClientCoach(username,usernameDocOrCoach));
+			app=true;
+		}
+		for(DoctorCoachRequests rq: listWithRequests) {
+			if (rq.getUsernameDoctorCoach().equals(usernameDocOrCoach) && rq.getClientUsername().equals(username)) {
+				doctorCoachRequestRepository.delete(rq);
+			}
+		}
+		return app;
+	}
+
+	public void declineClient(String username, String usernameDocOrCoach) {
+		List<DoctorCoachRequests> listWithRequests=doctorCoachRequestRepository.findAll();
+		for(DoctorCoachRequests rq: listWithRequests) {
+			if (rq.getUsernameDoctorCoach().equals(usernameDocOrCoach) && rq.getClientUsername().equals(username)) {
+				doctorCoachRequestRepository.delete(rq);
+			}
+		}
+	}
 }

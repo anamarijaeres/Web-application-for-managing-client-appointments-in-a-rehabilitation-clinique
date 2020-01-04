@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import DoctorCoachList from "./DoctorCoachList";
 
 class UserLogin extends Component{
     //username ti je u this.props.matchLink.match.params.username;
@@ -8,7 +9,8 @@ class UserLogin extends Component{
 
     state={
         user:'',
-        adminList:[]
+        adminList:[],
+        requestList: []
     }
 
     componentDidMount(){
@@ -25,6 +27,13 @@ class UserLogin extends Component{
                     adminList:response.data
                 })
             })
+        if(this.props.role !== 'Client')
+        {axios.get('http://localhost:8080/requests/'+ this.props.matchLink.match.params.username)
+            .then(response => {
+                this.setState({
+                    requestList: response.data
+                })
+            })}
     }
 
     approveRow(username, e, id){
@@ -52,6 +61,32 @@ class UserLogin extends Component{
                 })
             })
     }
+    approveRequest(username, e, id) {
+        e.preventDefault();
+        axios.post('http://localhost:8080/approveRequest/'+username ,this.state.user.username)
+            .then(response=>{
+                const posts=this.state.requestList.filter(post=>{
+                    return post.id!==id
+                })
+                this.setState({
+                    requestList:posts
+                })
+            })
+    }
+
+    deleteRequest(username, e, id) {
+        e.preventDefault();
+        axios.post('http://localhost:8080/deleteRequest/'+username,this.state.user.username)
+            .then(response=>{
+                const posts=this.state.requestList.filter(post=>{
+                    return post.id!==id
+                })
+                this.setState({
+                    requestList:posts
+                })
+            })
+    }
+
 
     render(){
         const role=localStorage.getItem('role')
@@ -92,6 +127,7 @@ class UserLogin extends Component{
                     </div>
                 )
             }else{
+
                 return(
                     <div className="container">
                         <div className="container">
@@ -106,10 +142,30 @@ class UserLogin extends Component{
                         <div className="container">
                             <h6 className="center">Role: {role}</h6>
                         </div>
+                        <div className="container">
+                            <DoctorCoachList username={this.state.user.username} firstName={this.state.user.firstName} lastName={this.state.user.lastName} role={role} />
+                        </div>
+
                     </div>
                 )
             }
        }else{
+            const requests = this.state.requestList;
+            const requestsList = requests.map(request=> {
+                return (
+
+                    <div className="post card" key={request.id}>
+
+                        <div className="card-content">
+                            <span className="card-title">{request.username}</span>
+                            <p>{request.body}</p>
+                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => this.approveRequest(request.username, e, request.id)}>Approve</button>
+                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => this.deleteRequest(request.username, e, request.id)}>Decline</button>
+                        </div>
+                    </div>
+
+                )
+            })
            return(
                <div className="container">
                     <div className="container">
@@ -133,7 +189,9 @@ class UserLogin extends Component{
                     <div className="container">
                         <h6 className="center">Max number of clients: {this.state.user.maxNumClient}</h6>
                     </div>
-                </div>
+                   <div className="container" >{requestsList}</div>
+
+               </div>
            )
        }
     }

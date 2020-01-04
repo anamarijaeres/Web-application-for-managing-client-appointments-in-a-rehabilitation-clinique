@@ -7,6 +7,8 @@ public enum ErrorCode {
 	ERROR_CODE_3, //unable to save doctor or coach image
 	ERROR_CODE_4, //approvedByAdmin is false
 	ERROR_CODE_5, //registration request from doctor or coach approved
-	ERROR_CODE_6 //registration request from doctor or coach denied
+	ERROR_CODE_6 ,//registration request from doctor or coach denied
+	ERROR_CODE_7 ,//request from client to doctor or coach denied
+	ERROR_CODE_8  //request from client to doctor or coach approved
 }
  

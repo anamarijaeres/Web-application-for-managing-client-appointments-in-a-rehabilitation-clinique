@@ -42,8 +42,17 @@ public class ClientController {
     public List<AdminPost> getAdminListForApproval(){
     	return clientService.getAdminList();
     }
-    
-    @PostMapping("/approve/{username}")
+
+	@GetMapping("/doctorList")
+	public List<AdminPost> getDoctors(){ return clientService.getDoctorsList(); }
+
+	@GetMapping("/coachList")
+	public List<AdminPost> getCoaches(){ return clientService.getCoachesList(); }
+
+
+
+
+	@PostMapping("/approve/{username}")
     public ResponseMessage updateApproval(@PathVariable("username") String username) {
     	ResponseMessage response=new ResponseMessage();
     	response.setError_code(ErrorCode.ERROR_CODE_5);

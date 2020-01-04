@@ -5,6 +5,7 @@ import Home from './components/Home.js'
 import Login from './components/Login.js'
 import Signup from './components/Signup.js';
 import UserLogin from './components/UserLogin.js';
+import DoctorCoachList from "./components/DoctorCoachList";
 
 class App extends Component{
   //U LOCAL STORAGE SVI TIPOVI PODATAKA SE SPREMAJU KAO STRINGOVI
