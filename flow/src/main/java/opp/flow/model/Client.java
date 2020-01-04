@@ -1,7 +1,11 @@
 package opp.flow.model;
 
+import java.lang.reflect.Field;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+
 
 @Entity
 public class Client implements AppUser{
@@ -85,5 +89,13 @@ public class Client implements AppUser{
 		return "Client [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
 				+ ", lastname=" + lastname + "]";
 	}
-
+    
+    public void replaceAttributes(Client update) throws IllegalArgumentException, IllegalAccessException {
+    	Field[] fields = update.getClass().getDeclaredFields();
+    	for(Field f:fields) {
+    		if(f.get(update)!=null) {
+    			f.set(this, f.get(update));
+    		}
+    	}
+    }
 }

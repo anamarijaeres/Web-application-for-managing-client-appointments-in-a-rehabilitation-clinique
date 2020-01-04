@@ -1,5 +1,6 @@
 package opp.flow.model;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 
@@ -148,4 +149,13 @@ public class DoctorCoach implements AppUser{
 				+ ", password=" + password + ", firstname=" + firstname + ", lastname=" + lastname + ", role=" + role
 				+ ", image=" + Arrays.toString(image) + ", email=" + email + ", maxNumClient=" + maxNumClient + "]";
 	}
+	
+	public void replaceAttributes(DoctorCoach update) throws IllegalArgumentException, IllegalAccessException {
+    	Field[] fields = update.getClass().getDeclaredFields();
+    	for(Field f:fields) {
+    		if(f.get(update)!=null) {
+    			f.set(this, f.get(update));
+    		}
+    	}
+    }
 }

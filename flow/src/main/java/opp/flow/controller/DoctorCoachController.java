@@ -65,8 +65,6 @@ public class DoctorCoachController {
 		boolean save=doctorCoachService.saveDoctorCoachImage(username, image);
 		response.setUsername(username);
 		response.setUserRole(doctorCoachService.getRoleOfDoctorCoach(username));
-		System.out.println(username);
-		System.out.println(image);
 		
 		if(save==true) {
 			response.setError_code(ErrorCode.ERROR_CODE_0);

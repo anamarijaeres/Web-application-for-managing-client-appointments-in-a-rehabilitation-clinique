@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import DoctorCoachList from "./DoctorCoachList";
+import {NavLink} from 'react-router-dom'
 
 class UserLogin extends Component{
     //username ti je u this.props.matchLink.match.params.username;
-    //i u this.props.username
-    //u props ti je role
 
     state={
         user:'',
@@ -91,6 +90,7 @@ class UserLogin extends Component{
     render(){
         const role=localStorage.getItem('role')
         const userName=localStorage.getItem('userName')
+
         if(role==='Client'){
             if(userName==='ADMIN'){
                 const posts=this.state.adminList;
@@ -109,19 +109,32 @@ class UserLogin extends Component{
 
                 return(
                     <div className="container">
-                        <div className="container">
-                            <h6 className="center">Username: {this.state.user.username}</h6>
+                        
+                        <div className="row">
+                            <div className="col s12 m6">
+                                <div className="card blue-grey darken-1">
+                                    <div className="card-content white-text">
+                                        <span className="card-title">Profile Info</span>
+                                            <div className="container">
+                                                <div className="container">
+                                                    <h6 className="center">Username: {this.state.user.username}</h6>
+                                                </div>
+                                                <div className="container">
+                                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
+                                                </div>
+                                                <div className="container">
+                                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
+                                                </div>
+                                                <div className="container">
+                                                    <h6 className="center">Role: Admin</h6>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="container">
-                            <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                        </div>
-                        <div className="container">
-                            <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                        </div>
-                        <div className="container">
-                            <h6 className="center">Role: Admin</h6>
-                        </div>
-                        <div className="container">
+                            Registrations for approve:
                             {postList}
                         </div>
                     </div>
@@ -130,17 +143,31 @@ class UserLogin extends Component{
 
                 return(
                     <div className="container">
-                        <div className="container">
-                            <h6 className="center">Username: {this.state.user.username}</h6>
-                        </div>
-                        <div className="container">
-                            <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                        </div>
-                        <div className="container">
-                            <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                        </div>
-                        <div className="container">
-                            <h6 className="center">Role: {role}</h6>
+                        <div className="row">
+                            <div className="col s12 m6">
+                                <div className="card blue-grey darken-1">
+                                    <div className="card-content white-text">
+                                        <span className="card-title">Profile Info</span>
+                                            <div className="container">
+                                                <div className="container">
+                                                    <h6 className="center">Username: {this.state.user.username}</h6>
+                                                </div>
+                                                <div className="container">
+                                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
+                                                </div>
+                                                <div className="container">
+                                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
+                                                </div>
+                                                <div className="container">
+                                                    <h6 className="center">Role: {role}</h6>
+                                                </div>
+                                                <div className="card-action">
+                                                    <NavLink to={"/"+this.state.user.username+"/editProfile"}>Edit Profile</NavLink>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="container">
                             <DoctorCoachList username={this.state.user.username} firstName={this.state.user.firstName} lastName={this.state.user.lastName} role={role} />
@@ -168,28 +195,44 @@ class UserLogin extends Component{
             })
            return(
                <div className="container">
-                    <div className="container">
-                        <h6 className="center">Username: {this.state.user.username}</h6>
+               <div className="row">
+                    <div className="col s12 m4">
+                        <div className="card">
+                            <div className="card-image">
+                            <img style={{width:150, height:150, left: "55%"}} src={"http://localhost:8080/img/"+this.props.matchLink.match.params.username} alt=""/>
+                            <span className="card-title grey">Profile Info</span>
+                            </div>
+                            <div className="card-content">
+                            <div className="container">
+                                <div className="container">
+                                    <h6 className="center">Username: {this.state.user.username}</h6>
+                                </div>
+                                <div className="container">
+                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
+                                </div>
+                                <div className="container">
+                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
+                                </div>
+                                <div className="container">
+                                    <h6 className="center">Role: {role}</h6>
+                                </div>
+                                <div className="container">
+                                    <h6 className="center">Email: {this.state.user.email}</h6>
+                                </div>
+                                <div className="container">
+                                    <h6 className="center">Max number of clients: {this.state.user.maxNumClient}</h6>
+                                </div>
+                                <div className="card-action">
+                                    <NavLink to={"/"+this.state.user.username+"/editProfile"}>Edit Profile</NavLink>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="container">
-                        <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                    </div>
-                    <div className="container">
-                        <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                    </div>
-                    <div className="container">
-                        <h6 className="center">Role: {role}</h6>
-                    </div>
-                    <div className="container">
-                        <img src={"http://localhost:8080/img/"+this.props.matchLink.match.params.username} alt=""/>
-                    </div>
-                    <div className="container">
-                        <h6 className="center">Email: {this.state.user.email}</h6>
-                    </div>
-                    <div className="container">
-                        <h6 className="center">Max number of clients: {this.state.user.maxNumClient}</h6>
-                    </div>
+
                    <div className="container" >{requestsList}</div>
+
+                </div>
 
                </div>
            )

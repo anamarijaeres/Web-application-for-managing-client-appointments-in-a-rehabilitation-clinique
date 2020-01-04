@@ -106,6 +106,7 @@ public class DoctorCoachService {
 		doctorCoachRepository.delete(doctorCoach);
 	}
 
+
 	public boolean sendRequest(String usernameDocOrCoach, String usernameClient){
 		int br=0;
 		AppUser doctorCoach=getDoctorCoach(usernameDocOrCoach);
@@ -166,4 +167,16 @@ public class DoctorCoachService {
 			}
 		}
 	}
+
+	public void updateDoctorCoachProfileData(DoctorCoach updateDoctorCoach) {
+		DoctorCoach doctorCoach=doctorCoachRepository.findByusername(updateDoctorCoach.getUsername());
+		try {
+			doctorCoach.replaceAttributes(updateDoctorCoach);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		doctorCoachRepository.save(doctorCoach);
+	}
+	
+
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,6 +53,28 @@ public class LoginController {
 			response.setMessage("Successful login");
     	}
     	
+    	return response;
+    }
+    
+    @PostMapping("/{username}/Client/editProfile")
+    public ResponseMessage updateClientProfileData(@PathVariable("username") String username, @RequestBody Client updateClient) {
+    	ResponseMessage response=new ResponseMessage();
+    	response.setUsername(username);
+    	response.setUserRole(clientService.getRoleOfClient());
+    	clientService.updateClientProfileData(updateClient);
+    	response.setError_code(ErrorCode.ERROR_CODE_0);
+    	response.setMessage("Update successful");
+    	return response;
+    }
+    
+    @PostMapping("/{username}/DoctorCoach/editProfile")
+    public ResponseMessage updateDoctorCoachProfileData(@PathVariable("username") String username, @RequestBody DoctorCoach updateDoctorCoach) {
+    	ResponseMessage response=new ResponseMessage();
+    	response.setUsername(username);
+    	response.setUserRole(clientService.getRoleOfClient());
+    	doctorCoachService.updateDoctorCoachProfileData(updateDoctorCoach);
+    	response.setError_code(ErrorCode.ERROR_CODE_0);
+    	response.setMessage("Update successful");
     	return response;
     }
     

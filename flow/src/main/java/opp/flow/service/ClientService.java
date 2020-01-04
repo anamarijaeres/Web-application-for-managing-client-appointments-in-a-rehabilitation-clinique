@@ -71,16 +71,27 @@ public class ClientService{
 		}
     	return lista;
 	}
-	public List<AdminPost> getCoachesList(){
-    	List<AdminPost> lista=new ArrayList<>();
-    	List<DoctorCoach> doctorCoachLista=doctorCoachRepository.findAll();
-    	for(DoctorCoach dc:doctorCoachLista){
-    		if(dc.isApprovedByAdmin()==true){
-    			if(dc.getRole().equals("Coach")){
-    				lista.add(new AdminPost(dc.getId(),dc));
+	public List<AdminPost> getCoachesList() {
+		List<AdminPost> lista = new ArrayList<>();
+		List<DoctorCoach> doctorCoachLista = doctorCoachRepository.findAll();
+		for (DoctorCoach dc : doctorCoachLista) {
+			if (dc.isApprovedByAdmin() == true) {
+				if (dc.getRole().equals("Coach")) {
+					lista.add(new AdminPost(dc.getId(), dc));
 				}
 			}
 		}
-    	return lista;
+		return lista;
+	}
+	public void updateClientProfileData(Client updateClient) {
+		Client client=clientRepository.findByusername(updateClient.getUsername());
+		
+		try {
+			client.replaceAttributes(updateClient);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		clientRepository.save(client);
 	}
 }
