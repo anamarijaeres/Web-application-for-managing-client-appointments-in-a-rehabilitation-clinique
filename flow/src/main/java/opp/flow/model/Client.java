@@ -16,8 +16,6 @@ public class Client implements AppUser{
 
 
 
-	private boolean approvedByDoctor=false;
-
     @Column(unique = true, nullable = false)
     @NotNull
     private String username;
@@ -80,9 +78,7 @@ public class Client implements AppUser{
 		this.lastname = lastname;
 	}
 
-	public boolean isApprovedByDoctor() { return approvedByDoctor; }
 
-	public void setApprovedByDoctor(boolean approvedByDoctor) { this.approvedByDoctor = approvedByDoctor; }
 
     @Override
 	public String toString() {
