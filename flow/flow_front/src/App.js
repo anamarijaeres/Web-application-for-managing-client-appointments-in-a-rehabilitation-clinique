@@ -7,6 +7,7 @@ import Signup from './components/Signup.js';
 import UserLogin from './components/UserLogin.js';
 import DoctorCoachList from "./components/DoctorCoachList";
 import EditProfile from './components/EditProfile.js'
+import AddProductCategory from './components/AddProductCategory.js'
 
 
 class App extends Component{
@@ -39,6 +40,7 @@ class App extends Component{
           <Route exact path='/' component={Home}/>
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
+          <Route path='/addProductCategory' component={AddProductCategory}/>
           </Switch>
         </div>
     </BrowserRouter>

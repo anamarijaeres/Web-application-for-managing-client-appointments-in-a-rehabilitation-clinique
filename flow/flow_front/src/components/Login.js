@@ -8,7 +8,7 @@ class Login extends Component {
         password: ''
     }
 
-    handleUserNameChange = (e) => { 
+    handleUserNameChange = (e) => {
         this.setState({userName: e.target.value})
     }
 
@@ -42,7 +42,7 @@ class Login extends Component {
               }
           });
     }
-  
+
     render() {
         return (
             <div className="container">

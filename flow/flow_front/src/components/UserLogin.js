@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import DoctorCoachList from "./DoctorCoachList";
 import {NavLink} from 'react-router-dom'
+import AddProductCategory from "./AddProductCategory"
 
 class UserLogin extends Component{
     //username ti je u this.props.matchLink.match.params.username;
@@ -143,7 +144,7 @@ class UserLogin extends Component{
                             <div className="col s12 m6">
                                 <div className="card blue darken-2">
                                     <div className="card-content white-text">
-                                        <span className="card-title">Profile Info</span>
+                                        <span className="card-title center">Profile Info</span>
                                             <div className="container">
                                                 <div className="container">
                                                     <h6 className="center">Username: {this.state.user.username}</h6>
@@ -160,6 +161,14 @@ class UserLogin extends Component{
                                             </div>
                                     </div>
                                 </div>
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
+                                </div>
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
+                                </div>
+
+
                             </div>
 
                             <div className="col s12 m6">
@@ -177,6 +186,7 @@ class UserLogin extends Component{
                     </div>
                 )
             } else {
+
                 return (
                     <div className="container">
                         <div className="row">
@@ -273,7 +283,7 @@ class UserLogin extends Component{
                     <div className="col s12 m4">
                         <div className="card">
                             <div className="card-image">
-                                <img style={{width:119, height:84, left: "56%"}} src={"http://localhost:8080/img/"+this.props.matchLink.match.params.username} alt=""/>
+                                <img style={{width:121, height:84, left: "56%"}} src={"http://localhost:8080/img/"+this.props.matchLink.match.params.username} alt=""/>
                                 <span className="card-title blue darken-2">Profile Info</span>
                             </div>
                             <div className="card-content">
@@ -302,6 +312,13 @@ class UserLogin extends Component{
                             </div>
                             </div>
                         </div>
+                        <div className="card red lighten-1">
+                            <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
+                        </div>
+                        <div className="card red lighten-1">
+                            <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
+                        </div>
+
                     </div>
 
                    <div className="col s12 m4">
