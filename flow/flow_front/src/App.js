@@ -7,7 +7,9 @@ import Signup from './components/Signup.js';
 import UserLogin from './components/UserLogin.js';
 import DoctorCoachList from "./components/DoctorCoachList";
 import EditProfile from './components/EditProfile.js'
-
+import DoctorCoachProfile from "./components/DoctorCoachProfile";
+import Review from "./components/Review";
+import Reply from "./components/Reply";
 
 class App extends Component{
   //U LOCAL STORAGE SVI TIPOVI PODATAKA SE SPREMAJU KAO STRINGOVI
@@ -37,8 +39,12 @@ class App extends Component{
           <Route path='/login' component={()=><Login handleLogin={this.handleLogin} />}/>
           <Route path='/signup' component={Signup}/>
           <Route exact path='/' component={Home}/>
+          <Route path='/review'  component={Review}/>
+          <Route path={'/reply'+ '/:username' +'/:id'+'/:us'}  component={(match)=><Reply matchLink={match}/>}/>
+          <Route path={'/profile'+ '/:username' } component={(match)=><DoctorCoachProfile matchLink={match}/>}/>
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
+
           </Switch>
         </div>
     </BrowserRouter>

@@ -71,23 +71,37 @@ public class ClientService{
 	}
 
 	public List<AdminPost> getDoctorsList(){
+    	int brCoop=0;
     	List<AdminPost> lista=new ArrayList<>();
     	List<DoctorCoach>doctorCoachLista=doctorCoachRepository.findAll();
+    	List<ClientDoctor> clientDoctorsList=clientDoctorRepository.findAll();
     	for(DoctorCoach dc:doctorCoachLista){
-    		if(dc.isApprovedByAdmin()==true) {
+			if(dc.isApprovedByAdmin()==true) {
 				if (dc.getRole().equals("Doctor")) {
-					lista.add(new AdminPost(dc.getId(), dc));
+    				for(ClientDoctor cd:clientDoctorsList){
+    					if(cd.getUsernamedoctor().equals(dc.getUsername()))
+    						++brCoop;
+					}
+    				if(brCoop<dc.getMaxNumClient())
+						lista.add(new AdminPost(dc.getId(), dc));
 				}
 			}
 		}
     	return lista;
 	}
 	public List<AdminPost> getCoachesList() {
+    	int brCoop=0;
 		List<AdminPost> lista = new ArrayList<>();
 		List<DoctorCoach> doctorCoachLista = doctorCoachRepository.findAll();
+		List<ClientCoach> clientCoachesList=clientCoachRepository.findAll();
 		for (DoctorCoach dc : doctorCoachLista) {
 			if (dc.isApprovedByAdmin() == true) {
 				if (dc.getRole().equals("Coach")) {
+					for(ClientCoach cc:clientCoachesList){
+						if(cc.getUsernamecoach().equals(dc.getUsername()))
+							++brCoop;
+					}
+					if(brCoop<dc.getMaxNumClient())
 					lista.add(new AdminPost(dc.getId(), dc));
 				}
 			}

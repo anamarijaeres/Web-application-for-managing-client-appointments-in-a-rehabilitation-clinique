@@ -58,7 +58,26 @@ public class ClientController {
 	public AdminPost getCooperationCoach(@PathVariable("username") String username){
 		return clientService.getCooperationCoach(username);
 	}
-
+	@PostMapping("/breakCooperationDoctor/{username}")
+	public ResponseMessage breakCooperationDoctor(@PathVariable("username") String username,@RequestBody String usernameClient){
+		ResponseMessage response=new ResponseMessage();
+		usernameClient=usernameClient.substring(0,usernameClient.length()-1);
+		response.setUsername(username);
+		response.setUserRole(clientService.getRoleOfClient());
+    	doctorCoachService.breakCooperation(usernameClient,username);
+		response.setMessage("You've broken cooperation!");
+		return response;
+	}
+	@PostMapping("/breakCooperationCoach/{username}")
+	public ResponseMessage breakCooperationCoach(@PathVariable("username") String username,@RequestBody String usernameClient){
+		ResponseMessage response=new ResponseMessage();
+		usernameClient=usernameClient.substring(0,usernameClient.length()-1);
+		response.setUsername(username);
+		response.setUserRole(clientService.getRoleOfClient());
+		doctorCoachService.breakCooperation(usernameClient,username);
+		response.setMessage("You've broken cooperation!");
+		return response;
+	}
 
 
 	@PostMapping("/approve/{username}")

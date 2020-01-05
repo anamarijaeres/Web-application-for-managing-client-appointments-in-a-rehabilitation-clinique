@@ -10,5 +10,6 @@ public enum ErrorCode {
 	ERROR_CODE_6 ,//registration request from doctor or coach denied
 	ERROR_CODE_7 ,//request from client to doctor or coach denied
 	ERROR_CODE_8  //request from client to doctor or coach approved
+
 }
  

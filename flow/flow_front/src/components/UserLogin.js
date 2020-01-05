@@ -12,7 +12,8 @@ class UserLogin extends Component{
         requestList: [],
         cooperationsList:[],
         cooperationDoctor:'',
-        cooperationCoach:''
+        cooperationCoach:'',
+        reviewList: []
     }
 
     componentDidMount(){
@@ -44,6 +45,13 @@ class UserLogin extends Component{
                         cooperationsList: response.data
                     })
                 })
+            axios.get('http://localhost:8080/reviewList/' + this.props.matchLink.match.params.username)
+                .then(response => {
+                    this.setState({
+                        reviewList: response.data
+                    })
+                })
+
         }else {
 
             axios.get('http://localhost:8080/cooperationDoctor/' + this.props.matchLink.match.params.username)
@@ -97,8 +105,10 @@ class UserLogin extends Component{
                 })
                 this.setState({
                     requestList:posts
+
                 })
             })
+
     }
 
     deleteRequest(username, e, id) {
@@ -114,12 +124,44 @@ class UserLogin extends Component{
             })
     }
 
+    breakCooperation(username,e,id){
+        e.preventDefault();
+        axios.post('http://localhost:8080/breakCooperation/'+username,this.state.user.username)
+            .then(response=>{
+                const posts=this.state.cooperationsList.filter(post=>{
+                    return post.id!==id
+                })
+                this.setState({
+                    cooperationsList:posts
+                })
+
+            })
+    }
+    breakCooperationDoctor(username,e,id){
+        e.preventDefault();
+        axios.post('http://localhost:8080/breakCooperationDoctor/'+username,this.state.user.username)
+            .then(response=>{
+            this.setState({
+                cooperationDoctor:''
+            })
+        })
+    }
+    breakCooperationCoach(username,e,id){
+        e.preventDefault();
+        axios.post('http://localhost:8080/breakCooperationCoach/'+username,this.state.user.username)
+            .then(response=>{
+            this.setState({
+                cooperationDoctor:''
+            })
+        })
+    }
 
     render(){
         const role=localStorage.getItem('role')
         const userName=localStorage.getItem('userName')
 
         if(role==='Client'){
+
             if(userName==='ADMIN'){
                 const posts=this.state.adminList;
 
@@ -177,6 +219,7 @@ class UserLogin extends Component{
                     </div>
                 )
             } else {
+
                 return (
                     <div className="container">
                         <div className="row">
@@ -200,6 +243,7 @@ class UserLogin extends Component{
                                                 <div className="center card-action">
                                                     <NavLink to={"/"+this.state.user.username+"/editProfile"}>Edit Profile</NavLink>
                                                 </div>
+
                                             </div>
                                     </div>
                                 </div>
@@ -208,21 +252,29 @@ class UserLogin extends Component{
                             <div className="col s12 m6">
                                 <div className="post card" key={this.state.cooperationDoctor.id}>
                                     <div className="card-content">
-                                        <span className="card-title">Moj doktor:</span>
+                                        <span className="card-title">My doctor:</span>
                                         <p>{this.state.cooperationDoctor.body}</p>
                                         <button className="btn red lighten-1 z-depth-0"
-                                                onClick={(e) => console.log("okej")}>
+                                                onClick={(e) => this.breakCooperationDoctor(this.state.cooperationDoctor.username, e, this.state.cooperationDoctor.id)}>
+                                        End collaboration
                                         </button>
+                                        <div className="center card-action">
+                                            <NavLink to={"/profile/"+ this.state.cooperationDoctor.username}>Profile</NavLink>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div className="post card" key={this.state.cooperationCoach.id}>
                                     <div className="card-content">
-                                        <span className="card-title">Moj trener:</span>
+                                        <span className="card-title">My coach:</span>
                                         <p>{this.state.cooperationCoach.body}</p>
                                         <button className="btn red lighten-1 z-depth-0"
-                                                onClick={(e) => console.log("okej")}>
+                                                onClick={(e) => this.breakCooperationCoach(this.state.cooperationCoach.username, e, this.state.cooperationCoach.id)}>
+                                            End collaboration
                                         </button>
+                                        <div className="center card-action">
+                                            <NavLink to={"/profile/"+this.state.cooperationCoach.username}>Profile</NavLink>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -235,102 +287,166 @@ class UserLogin extends Component{
 
             }
        } else {
-            const requests = this.state.requestList;
-            const requestsList = requests.map(request=> {
-                return (
+                const cooperations=this.state.cooperationsList;
+                let coopList=null;
+                const requests = this.state.requestList;
+                const requestsList = requests.map(request => {
+                    return (
 
-                    <div className="post card" key={request.id}>
+                        <div className="post card" key={request.id}>
 
-                        <div className="card-content">
-                            <span className="card-title">{request.username}</span>
-                            <p>{request.body}</p>
-                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => this.approveRequest(request.username, e, request.id)}>Approve</button>
-                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => this.deleteRequest(request.username, e, request.id)}>Decline</button>
-                        </div>
-                    </div>
-
-                )
-            })
-            const cooperations = this.state.cooperationsList;
-            const coopList = cooperations.map(cooperation=> {
-                return (
-
-                    <div className="post card" key={cooperation.id}>
-
-                        <div className="card-content">
-                            <span className="card-title">{cooperation.username}</span>
-                            <p>{cooperation.body}</p>
-                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}></button>
-                            <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}></button>
-                        </div>
-                    </div>
-
-                )
-            })
-           return(
-               <div className="container">
-                <div className="row">
-                    <div className="col s12 m4">
-                        <div className="card">
-                            <div className="card-image">
-                                <img style={{width:119, height:84, left: "56%"}} src={"http://localhost:8080/img/"+this.props.matchLink.match.params.username} alt=""/>
-                                <span className="card-title blue darken-2">Profile Info</span>
-                            </div>
                             <div className="card-content">
-                            <div className="container">
-                                <div className="container">
-                                    <h6 className="center">Username: {this.state.user.username}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Role: {role}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Email: {this.state.user.email}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Max number of clients: {this.state.user.maxNumClient}</h6>
-                                </div>
-                                <div className="card-action">
-                                    <NavLink to={"/"+this.state.user.username+"/editProfile"}>Edit Profile</NavLink>
-                                </div>
+                                <span className="card-title">{request.username}</span>
+                                <p>{request.body}</p>
+                                <button className="btn red lighten-1 z-depth-0"
+                                        onClick={(e) => this.approveRequest(request.username, e, request.id)}>Approve
+                                </button>
+                                <button className="btn red lighten-1 z-depth-0"
+                                        onClick={(e) => this.deleteRequest(request.username, e, request.id)}>Decline
+                                </button>
                             </div>
+                        </div>
+
+                    )
+                })
+            const reviews = this.state.reviewList;
+            const revList = reviews.map(review => {
+                return (
+
+                    <div className="post card" key={review.id}>
+
+                        <div className="card-content">
+                            <span className="card-title">User:{review.username}</span>
+                            <p>{review.body}</p>
+                            <div className="center card-action">
+                                <NavLink  to={"/reply/" +review.username+"/"+review.id+"/"+this.state.user.username}>Reply</NavLink>
                             </div>
+
                         </div>
                     </div>
 
-                   <div className="col s12 m4">
-                       <div className="card blue darken-2">
-                           <div className="card-content white-text">
-                                   <span className="card-title">Zahtjevi za suradnju:</span>
-                               <div className="containter black-text">
-                                   {requestsList}
-                               </div>
-                           </div>
-                       </div>
-                   </div>
+                )
+            })
+            if (role === 'Doctor') {
+                coopList = cooperations.map(cooperation => {
+                    return (
 
-                    <div className="col s12 m4">
-                        <div className="card blue darken-2">
-                           <div className="card-content white-text">
-                                   <span className="card-title">Moji klijenti:</span>
-                               <div className="containter black-text">
-                                   {coopList}
-                               </div>
-                           </div>
-                       </div>
-                   </div>
+                        <div className="post card" key={cooperation.id}>
 
-                </div>
+                            <div className="card-content">
+                                <span className="card-title">{cooperation.username}</span>
+                                <p>{cooperation.body}</p>
+                                <button className="btn red lighten-1 z-depth-0"
+                                        onClick={(e) => this.breakCooperation(cooperation.username, e, cooperation.id)}>
+                                    End collaboration
+                                </button>
+                                <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}>
+                                    Prescribe diet
+                                </button>
+                            </div>
+                        </div>
+                    )
+                })
+            }else {
+                 coopList = cooperations.map(cooperation => {
+                    return (
 
-               </div>
-           )
-       }
+                        <div className="post card" key={cooperation.id}>
+
+                            <div className="card-content">
+                                <span className="card-title">{cooperation.username}</span>
+                                <p>{cooperation.body}</p>
+                                <button className="btn red lighten-1 z-depth-0"
+                                        onClick={(e) => this.breakCooperation(cooperation.username, e, cooperation.id)}>
+                                    End collaboration
+                                </button>
+                                <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}>
+                                    Set tasks
+                                </button>
+                            </div>
+                        </div>
+                    )
+                })
+            }
+                return (
+                    <div className="container">
+                        <div className="row">
+                            <div className="col s12 m4">
+                                <div className="card">
+                                    <div className="card-image">
+                                        <img style={{width: 119, height: 84, left: "56%"}}
+                                             src={"http://localhost:8080/img/" + this.props.matchLink.match.params.username}
+                                             alt=""/>
+                                        <span className="card-title blue darken-2">Profile Info</span>
+                                    </div>
+                                    <div className="card-content">
+                                        <div className="container">
+                                            <div className="container">
+                                                <h6 className="center">Username: {this.state.user.username}</h6>
+                                            </div>
+                                            <div className="container">
+                                                <h6 className="center">Firstname: {this.state.user.firstname}</h6>
+                                            </div>
+                                            <div className="container">
+                                                <h6 className="center">Lastname: {this.state.user.lastname}</h6>
+                                            </div>
+                                            <div className="container">
+                                                <h6 className="center">Role: {role}</h6>
+                                            </div>
+                                            <div className="container">
+                                                <h6 className="center">Email: {this.state.user.email}</h6>
+                                            </div>
+                                            <div className="container">
+                                                <h6 className="center">Max number of
+                                                    clients: {this.state.user.maxNumClient}</h6>
+                                            </div>
+                                            <div className="card-action">
+                                                <NavLink to={"/" + this.state.user.username + "/editProfile"}>Edit
+                                                    Profile</NavLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col s12 m4">
+                                <div className="card blue darken-2">
+                                    <div className="card-content white-text">
+                                        <span className="card-title">Requests for collaboration:</span>
+                                        <div className="containter black-text">
+                                            {requestsList}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col s12 m4">
+                                <div className="card blue darken-2">
+                                    <div className="card-content white-text">
+                                        <span className="card-title">My clients:</span>
+                                        <div className="containter black-text">
+                                            {coopList}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div className="row">
+                        <div className="col s12 m4">
+                            <div className="card blue darken-2">
+                                <div className="card-content white-text">
+                                    <span className="card-title">Reviews:</span>
+                                    <div className="containter black-text">
+                                        {revList}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                )
+        }
     }
 }
 

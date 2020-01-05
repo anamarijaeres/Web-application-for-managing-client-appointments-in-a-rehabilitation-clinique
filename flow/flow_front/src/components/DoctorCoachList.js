@@ -39,7 +39,7 @@ class DoctorCoachList extends Component{
             if(response.data.error_code === 'ERROR_CODE_0'){
                 alert("You have successfully sent a request!")
             }else{
-                alert("Your request has been denied.")
+                alert("You've already sent a request or you already have a doctor/coach!")
             }
         })
     }
@@ -58,7 +58,7 @@ class DoctorCoachList extends Component{
                             <span className="card-title">{doctor.username}</span>
                             <p>{doctor.body}</p>
                             <button className="btn red lighten-1 z-depth-0"
-                                    onClick={(e) => this.sendRequest(doctor.username, e, doctor.id)}>Posalji zahtjev
+                                    onClick={(e) => this.sendRequest(doctor.username, e, doctor.id)}>Send request
                             </button>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ class DoctorCoachList extends Component{
                             <span className="card-title">{coach.username}</span>
                             <p>{coach.body}</p>
                             <button className="btn red lighten-1 z-depth-0"
-                                    onClick={(e) => this.sendRequest(coach.username, e, coach.id)}>Posalji zahtjev
+                                    onClick={(e) => this.sendRequest(coach.username, e, coach.id)}>Send request
                             </button>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ class DoctorCoachList extends Component{
                     <div className="col s6">
                         <div className="card">
                             <div className="card-content">
-                                <span className="card-title center blue darken-2 white-text">Doktori</span>
+                                <span className="card-title center blue darken-2 white-text">Doctors</span>
                                 <div className="container" >{doctorsList}</div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ class DoctorCoachList extends Component{
                     <div className="col s6">
                         <div className="card">
                             <div className="card-content">
-                                <span className="card-title center blue darken-2 white-text">Treneri</span>
+                                <span className="card-title center blue darken-2 white-text">Coaches</span>
                                 <div className="container" >{coachesList}</div>
                             </div>
                         </div>

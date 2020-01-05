@@ -3,6 +3,7 @@ package opp.flow.service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 import opp.flow.model.*;
 import opp.flow.repository.*;
@@ -31,6 +32,9 @@ public class DoctorCoachService {
 
 	@Autowired
 	private ClientDoctorRepository clientDoctorRepository;
+
+	@Autowired
+	private ReviewRepository reviewRepository;
 
 	
 	public boolean registerDoctorCoach(DoctorCoach registerDoctorCoach) {
@@ -109,20 +113,61 @@ public class DoctorCoachService {
 
 	public boolean sendRequest(String usernameDocOrCoach, String usernameClient){
 		int br=0;
+		boolean saveDoctor=true;
+		boolean saveCoach=true;
 		AppUser doctorCoach=getDoctorCoach(usernameDocOrCoach);
 		List<DoctorCoachRequests> requests=doctorCoachRequestRepository.findAll();
+		List<ClientDoctor> clientDoctorList=clientDoctorRepository.findAll();
+		List<ClientCoach> clientCoachList=clientCoachRepository.findAll();
+		DoctorCoach doc=(DoctorCoach) doctorCoach;
+		DoctorCoach d=null;
 		for(DoctorCoachRequests rq:requests){
-			if(rq.getUsernameDoctorCoach().equals(usernameDocOrCoach)){
+			if(rq.getUsernameDoctorCoach().equals(usernameDocOrCoach)) {
 				++br;
 			}
+				if (rq.getClientUsername().equals(usernameClient)) {
+					d=(DoctorCoach)getDoctorCoach(rq.getUsernameDoctorCoach());
+					if (d.getRole().equals("Doctor")) {
+						saveDoctor = false;
+					} else {
+						saveCoach = false;
+					}
+				}
 
 		}
-		DoctorCoach doc=(DoctorCoach) doctorCoach;
-		if(br<doc.getMaxNumClient()) {
-			doctorCoachRequestRepository.save(new DoctorCoachRequests(usernameDocOrCoach, usernameClient));
-			return true;
+
+		if(doc.getRole().equals("Doctor")){
+			for(ClientDoctor cd:clientDoctorList){
+				if(cd.getUsernamedoctor().equals(usernameDocOrCoach)){
+					++br;
+				}
+				if(cd.getUsernameclient().equals(usernameClient)){
+					saveDoctor=false;
+				}
+			}
 		}else{
-			return false;
+			for(ClientCoach cc:clientCoachList){
+				if(cc.getUsernamecoach().equals(usernameDocOrCoach)){
+					++br;
+				}
+				if(cc.getUsernameclient().equals(usernameClient)){
+					saveCoach=false;
+				}
+			}
+		}
+		System.out.println(saveCoach);
+		System.out.println(saveDoctor);
+
+		if(doc.getRole().equals("Doctor")) {
+			if ((br < doc.getMaxNumClient()) && saveDoctor) {
+				doctorCoachRequestRepository.save(new DoctorCoachRequests(usernameDocOrCoach, usernameClient));
+			}
+			return saveDoctor;
+		}else {
+			if ((br < doc.getMaxNumClient()) && saveCoach) {
+				doctorCoachRequestRepository.save(new DoctorCoachRequests(usernameDocOrCoach, usernameClient));
+			}
+			return saveCoach;
 		}
 	}
 
@@ -201,5 +246,49 @@ public class DoctorCoachService {
 			}
 		}
 		return list;
+	}
+
+	public void breakCooperation(String username, String usernameDocOrCoach) {
+		DoctorCoach doctorCoach=(DoctorCoach)getDoctorCoach(usernameDocOrCoach);
+		if(doctorCoach.getRole().equals("Doctor")){
+			List<ClientDoctor> clientDoctorsList=clientDoctorRepository.findAll();
+			for(ClientDoctor cd:clientDoctorsList){
+				if(cd.getUsernamedoctor().equals(usernameDocOrCoach) && cd.getUsernameclient().equals(username)){
+					clientDoctorRepository.delete(cd);
+				}
+			}
+		}else{
+			List<ClientCoach> clientCoachList=clientCoachRepository.findAll();
+			for(ClientCoach cc:clientCoachList){
+				if(cc.getUsernamecoach().equals(usernameDocOrCoach) && cc.getUsernameclient().equals(username)){
+					clientCoachRepository.delete(cc);
+				}
+			}
+		}
+	}
+
+	public List<ReviewPost> getReviewList(String username) {
+		List<ReviewPost> lista = new ArrayList<>();
+		List<Review> listofReviews = reviewRepository.findAll();
+		for (Review rev : listofReviews) {
+			if (rev.getUsernameDoctorCoach().equals(username))
+				lista.add(new ReviewPost(rev.getId(),rev));
+
+		}
+		return lista;
+	}
+
+	public void postReview(Review review) {
+		reviewRepository.save(review);
+	}
+
+	public void postReply(String usernameClient, ReplyAccept reply) {
+		List<Review> reviews=reviewRepository.findAll();
+		for(Review rev:reviews){
+			if(rev.getUsernameDoctorCoach().equals(reply.getUsernameDocCoach())&& rev.getClientUsername().equals(usernameClient) &&Long.toString(rev.getId()).equals(reply.getId())){
+				reviewRepository.delete(rev);
+				reviewRepository.save(new Review(rev.getUsernameDoctorCoach(),rev.getClientUsername(),rev.getScore(),rev.getComment(),reply.getReply()));
+			}
+		}
 	}
 }

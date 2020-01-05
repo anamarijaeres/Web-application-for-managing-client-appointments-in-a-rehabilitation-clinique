@@ -11,7 +11,7 @@ public class DoctorCoachRequests {
     private Long id;
 
     String usernameDoctorCoach;
-    @Column(unique = true, nullable = false)
+    @Column( nullable = false)
     @NotNull
     String clientUsername;
 

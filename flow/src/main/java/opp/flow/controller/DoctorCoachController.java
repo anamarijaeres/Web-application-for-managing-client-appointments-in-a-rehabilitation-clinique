@@ -30,6 +30,37 @@ public class DoctorCoachController {
 	public List<DocCoachPost> getAdminListForApproval(@PathVariable String username){
 		return doctorCoachService.getRequestList(username);
 	}
+
+	@GetMapping("/reviewList/{username}")
+	public List<ReviewPost> getReviewList(@PathVariable String username){
+		return doctorCoachService.getReviewList(username);
+	}
+	@PostMapping("/reply/{username}")
+	public ResponseMessage reviewDoctorCoach(@PathVariable("username") String usernameClient,@RequestBody ReplyAccept reply){
+		ResponseMessage response=new ResponseMessage();
+		doctorCoachService.postReply(usernameClient,reply);
+		response.setMessage("Reply successful!");
+
+		return response;
+	}
+
+	@PostMapping("/review/{username}")
+	public ResponseMessage reviewDoctorCoach(@PathVariable("username") String username,@RequestBody ReviewAccept review){
+		ResponseMessage response=new ResponseMessage();
+
+		response.setUsername(username);
+		response.setUserRole(clientService.getRoleOfClient());
+		Review rev=new Review();
+		rev.setClientUsername(review.getUsernameC());
+		rev.setUsernameDoctorCoach(username);
+		rev.setComment(review.getComment());
+		rev.setScore(review.getScore());
+
+		doctorCoachService.postReview(rev);
+		response.setMessage("Review posted!");
+
+		return response;
+	}
 	
 	@PostMapping("/registerDoctorCoach")
 	public ResponseMessage registerDoctorCoach(@RequestBody DoctorCoach registerDoctorCoach) {
@@ -108,6 +139,19 @@ public class DoctorCoachController {
 
 		return response;
 	}
+	@PostMapping("/breakCooperation/{username}")
+	public ResponseMessage breakCooperation(@PathVariable("username") String username,@RequestBody String usernameDocOrCoach) {
+		ResponseMessage response=new ResponseMessage();
+		usernameDocOrCoach=usernameDocOrCoach.substring(0,usernameDocOrCoach.length()-1);
+		response.setUsername(username);
+		response.setUserRole(clientService.getRoleOfClient());
+
+		doctorCoachService.breakCooperation(username,usernameDocOrCoach);
+		response.setMessage("You've broken cooperation!");
+
+		return response;
+	}
+
 
 
 
