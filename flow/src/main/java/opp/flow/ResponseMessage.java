@@ -5,6 +5,7 @@ public class ResponseMessage {
 	private String message;
 	private String username;
 	private UserRole userRole;
+	private String name; //npr product name
 	
 	public ResponseMessage(ErrorCode error_code, String message, String username, UserRole userRole) {
 		super();
@@ -14,9 +15,19 @@ public class ResponseMessage {
 		this.userRole=userRole;
 	}
 
+	public ResponseMessage(ErrorCode error_code, String message, String name) {
+		this.error_code = error_code;
+		this.message = message;
+		this.name = name;
+	}
+
 	public ResponseMessage() {
 		
 	}
+
+	public String getName() { return name; }
+
+	public void setName(String name) { this.name = name; }
 
 	public ErrorCode getError_code() {
 		return error_code;
