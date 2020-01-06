@@ -100,9 +100,7 @@ class DoctorCoachList extends Component{
                         </div>
                     </div>
                 </div>
-
                 )
-
 
         } else {
            return (

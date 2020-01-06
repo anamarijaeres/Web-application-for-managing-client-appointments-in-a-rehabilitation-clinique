@@ -10,6 +10,9 @@ import EditProfile from './components/EditProfile.js'
 import DoctorCoachProfile from "./components/DoctorCoachProfile";
 import Review from "./components/Review";
 import Reply from "./components/Reply";
+import AddProductCategory from './components/AddProductCategory.js'
+
+
 
 class App extends Component{
   //U LOCAL STORAGE SVI TIPOVI PODATAKA SE SPREMAJU KAO STRINGOVI
@@ -44,7 +47,7 @@ class App extends Component{
           <Route path={'/profile'+ '/:username' } component={(match)=><DoctorCoachProfile matchLink={match}/>}/>
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
-
+          <Route path='/addProductCategory' component={AddProductCategory}/>
           </Switch>
         </div>
     </BrowserRouter>
