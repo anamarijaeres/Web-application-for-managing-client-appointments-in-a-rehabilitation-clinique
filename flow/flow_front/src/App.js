@@ -11,6 +11,7 @@ import DoctorCoachProfile from "./components/DoctorCoachProfile";
 import Review from "./components/Review";
 import Reply from "./components/Reply";
 import AddProductCategory from './components/AddProductCategory.js'
+import AddProduct from './components/AddProduct.js'
 
 
 
@@ -39,6 +40,8 @@ class App extends Component{
         <div className="App">
           <Navbar/>
           <Switch>
+          <Route path='/addProduct' component={AddProduct}/>
+          <Route path='/addProductCategory' component={AddProductCategory}/>
           <Route path='/login' component={()=><Login handleLogin={this.handleLogin} />}/>
           <Route path='/signup' component={Signup}/>
           <Route exact path='/' component={Home}/>
@@ -47,7 +50,6 @@ class App extends Component{
           <Route path={'/profile'+ '/:username' } component={(match)=><DoctorCoachProfile matchLink={match}/>}/>
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
-          <Route path='/addProductCategory' component={AddProductCategory}/>
           </Switch>
         </div>
     </BrowserRouter>

@@ -180,6 +180,7 @@ class UserLogin extends Component{
                 })
 
                 return(
+
                     <div className="container">
                         <div className="row">
 
@@ -209,7 +210,6 @@ class UserLogin extends Component{
                                 <div className="card red lighten-1">
                                     <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
                                 </div>
-
 
                             </div>
 
