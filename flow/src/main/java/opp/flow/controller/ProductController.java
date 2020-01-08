@@ -6,10 +6,9 @@ import opp.flow.ResponseMessage;
 import opp.flow.model.Product;
 import opp.flow.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @CrossOrigin(origins = { "http://localhost:3000"})
@@ -20,17 +19,21 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/addProduct")
-    public ResponseMessage addProduct(@RequestBody Product product) {
+    public ResponseMessage addProduct( Product product) {
         ResponseMessage response=new ResponseMessage();
-        boolean save=productService.addProduct(product);
-        response.setName(product.getName());
-        if(save==true) {
+        int save=productService.addProduct(product);
+        if(save==0) {
             response.setError_code(ErrorCode.ERROR_CODE_0);
-            response.setMessage("You added a product successfully");
-        }else {
+            response.setMessage("You successfully added a new product!");
+        }else if(save == 1) {
             response.setError_code(ErrorCode.ERROR_CODE_9);
-            response.setMessage("Product name is taken");
+            response.setMessage("Product name is taken!");
+        }else{
+            response.setError_code(ErrorCode.ERROR_CODE_10);
+            response.setMessage("Product name must not be empty!");
         }
         return response;
     }
+
+
 }

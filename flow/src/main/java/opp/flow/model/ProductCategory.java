@@ -18,6 +18,9 @@ public class ProductCategory {
         this.name = name;
     }
 
+    public ProductCategory() {
+    }
+
     public Long getId() {
         return id;
     }

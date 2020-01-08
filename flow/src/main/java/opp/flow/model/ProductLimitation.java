@@ -23,6 +23,9 @@ public class ProductLimitation {
         this.productID = productID;
     }
 
+    public ProductLimitation() {
+    }
+
     public Long getId() {
         return id;
     }

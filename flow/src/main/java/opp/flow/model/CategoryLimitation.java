@@ -22,6 +22,9 @@ public class CategoryLimitation {
         this.categoryID = categoryID;
     }
 
+    public CategoryLimitation() {
+    }
+
     public Long getId() {
         return id;
     }

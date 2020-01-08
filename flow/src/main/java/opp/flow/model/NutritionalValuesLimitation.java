@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 
 @Entity
-public class NutritionalValues {
+public class NutritionalValuesLimitation {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class NutritionalValues {
     private double proteinLimit;
     private double saltLimit;
 
-    public NutritionalValues(@NotNull String username, double energyLimit, double fatLimit, double saturatedFattyAcidsLimit, double carbohydratesLimit, double sugarsLimit, double proteinLimit, double saltLimit) {
+    public NutritionalValuesLimitation(@NotNull String username, double energyLimit, double fatLimit, double saturatedFattyAcidsLimit, double carbohydratesLimit, double sugarsLimit, double proteinLimit, double saltLimit) {
         this.username = username;
         this.energyLimit = energyLimit;
         this.fatLimit = fatLimit;
@@ -32,6 +32,9 @@ public class NutritionalValues {
         this.sugarsLimit = sugarsLimit;
         this.proteinLimit = proteinLimit;
         this.saltLimit = saltLimit;
+    }
+
+    public NutritionalValuesLimitation() {
     }
 
     public Long getId() {

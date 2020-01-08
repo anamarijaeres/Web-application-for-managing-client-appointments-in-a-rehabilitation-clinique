@@ -1,10 +1,10 @@
 package opp.flow.repository;
 
-import opp.flow.model.Product;
+import opp.flow.model.Diet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findByname(String name);
+public interface DietRepository extends JpaRepository<Diet, Long> {
+
 }

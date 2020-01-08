@@ -21,6 +21,9 @@ public class Diet {
         this.username = username;
     }
 
+    public Diet() {
+    }
+
     public Long getId() {
         return id;
     }

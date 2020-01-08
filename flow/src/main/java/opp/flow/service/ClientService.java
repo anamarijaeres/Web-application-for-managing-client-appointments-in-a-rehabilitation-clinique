@@ -51,9 +51,7 @@ public class ClientService{
 		return user;
 	}
 	
-	public UserRole getRoleOfClient() {
-		return UserRole.Client;
-	}
+	public UserRole getRoleOfClient() { return UserRole.Client; }
 	
 	public AppUser getClient(String username) {
 		return clientRepository.findByusername(username);

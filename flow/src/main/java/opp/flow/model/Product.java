@@ -30,10 +30,10 @@ public class Product {
     private double protein;
     private double salt;
 
-    public Product(@NotNull String name, double mass, Byte[] image, String category, double energy, double fat, double saturatedFattyAcids, double carbohydrates, double sugars, double protein, double salt) {
+    public Product(@NotNull String name, double mass, String category, double energy, double fat, double saturatedFattyAcids, double carbohydrates, double sugars, double protein, double salt) {
         this.name = name;
         this.mass = mass;
-        this.image = image;
+       // this.image = image;
         this.category = category;
         this.energy = energy;
         this.fat = fat;
@@ -42,6 +42,9 @@ public class Product {
         this.sugars = sugars;
         this.protein = protein;
         this.salt = salt;
+    }
+
+    public Product() {
     }
 
     public double getEnergy() {
