@@ -21,7 +21,7 @@ public class ProductCategoryService {
     private CategoryLimitationRepository categoryLimitationRepository;
 
     public int addProductCategory(ProductCategory productCategory) {
-        if(productCategory.getName() == null) {
+        if(productCategory.getName().isBlank()) {
             return -1;
         }else {
             ProductCategory productCategory1 = productCategoryRepository.findByname(productCategory.getName());

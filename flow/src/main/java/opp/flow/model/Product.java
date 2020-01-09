@@ -1,12 +1,13 @@
-package opp.flow.model;
+package opp.flow. model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity
-public class Product {
+public class Product { //NA 100g 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -18,8 +19,10 @@ public class Product {
     private double mass;
     @Lob
     private Byte[] image;
-    //barkod
-    //alergeni
+    
+    private Byte[] barcode;
+    private String allergens; // string u kojemu se spremaju alergen1;alergen2;... (split(";"))
+    
     private String category;
 
     private double energy;
@@ -143,25 +146,32 @@ public class Product {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mass=" + mass +
-                ", image=" + Arrays.toString(image) +
-                ", category='" + category + '\'' +
-                ", energy=" + energy +
-                ", fat=" + fat +
-                ", saturatedFattyAcids=" + saturatedFattyAcids +
-                ", carbohydrates=" + carbohydrates +
-                ", sugars=" + sugars +
-                ", protein=" + protein +
-                ", salt=" + salt +
-                '}';
-    }
+    public Byte[] getBarcode() {
+		return barcode;
+	}
 
-    public void replaceAttributes(Product update) throws IllegalArgumentException, IllegalAccessException {
+	public void setBarcode(Byte[] barcode) {
+		this.barcode = barcode;
+	}
+
+	public String getAllergens() {
+		return allergens;
+	}
+
+	public void setAllergens(String allergens) {
+		this.allergens = allergens;
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", mass=" + mass + ", image=" + Arrays.toString(image)
+				+ ", barcode=" + Arrays.toString(barcode) + ", allergens=" + allergens + ", category=" + category
+				+ ", energy=" + energy + ", fat=" + fat + ", saturatedFattyAcids=" + saturatedFattyAcids
+				+ ", carbohydrates=" + carbohydrates + ", sugars=" + sugars + ", protein=" + protein + ", salt=" + salt
+				+ "]";
+	}
+
+	public void replaceAttributes(Product update) throws IllegalArgumentException, IllegalAccessException {
         Field[] fields = update.getClass().getDeclaredFields();
         for(Field f:fields) {
             if(f.get(update)!=null) {

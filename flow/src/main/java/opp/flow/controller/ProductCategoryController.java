@@ -20,7 +20,7 @@ public class ProductCategoryController {
     private ProductCategoryService productCategoryService;
 
     @PostMapping("/addProductCategory")
-    public ResponseMessage addProductCategory( ProductCategory productCategory) {
+    public ResponseMessage addProductCategory(@RequestBody ProductCategory productCategory) {
         ResponseMessage response=new ResponseMessage();
         int save=productCategoryService.addProductCategory(productCategory);
         if(save == 0) {

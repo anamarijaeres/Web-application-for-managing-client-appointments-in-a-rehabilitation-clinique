@@ -299,6 +299,7 @@ class UserLogin extends Component{
                 const cooperations=this.state.cooperationsList;
                 let coopList=null;
                 const requests = this.state.requestList;
+                let buttonList=null;
                 const requestsList = requests.map(request => {
                     return (
 
@@ -357,6 +358,16 @@ class UserLogin extends Component{
                         </div>
                     )
                 })
+                
+                buttonList=<div>
+                        <div className="card red lighten-1">
+                            <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
+                        </div>
+                        <div className="card red lighten-1">
+                            <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
+                        </div>
+                </div>
+               
             }else {
                  coopList = cooperations.map(cooperation => {
                     return (
@@ -377,6 +388,13 @@ class UserLogin extends Component{
                         </div>
                     )
                 })
+
+                buttonList=<div>
+                        <div className="card red lighten-1">
+                            <li className="center"><NavLink to="/addWorkout" className="card-title white-text">dodaj vježbu</NavLink></li>
+                        </div>
+                </div>
+                
             }
         return(
             <div className="container">
@@ -454,12 +472,7 @@ class UserLogin extends Component{
 
                         </div>
 
-                        <div className="card red lighten-1">
-                            <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
-                        </div>
-                        <div className="card red lighten-1">
-                            <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
-                        </div>
+                        {buttonList}
 
 
                     </div>

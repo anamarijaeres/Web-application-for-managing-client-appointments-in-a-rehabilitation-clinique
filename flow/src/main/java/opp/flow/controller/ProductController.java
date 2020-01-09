@@ -4,9 +4,11 @@ package opp.flow.controller;
 import opp.flow.ErrorCode;
 import opp.flow.ResponseMessage;
 import opp.flow.model.Product;
+import opp.flow.service.BarcodeService;
 import opp.flow.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,10 +19,15 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    
+    @Autowired
+    private BarcodeService barcodeService;
 
     @PostMapping("/addProduct")
-    public ResponseMessage addProduct( Product product) {
+    public ResponseMessage addProduct(@RequestBody Product product) {
         ResponseMessage response=new ResponseMessage();
+        System.out.println(product);
+        
         int save=productService.addProduct(product);
         if(save==0) {
             response.setError_code(ErrorCode.ERROR_CODE_0);
@@ -35,5 +42,35 @@ public class ProductController {
         return response;
     }
 
-
+    @PostMapping("/addAllergens/{name}")
+    public ResponseMessage addAllergensList(@PathVariable("name") String name, @RequestBody List<String> allergens) {
+    	ResponseMessage response=new ResponseMessage();
+    	String all="";
+    	for(String s:allergens) {
+    		if(s.isBlank()) continue;
+    		all+=s;
+    		all+=";";
+    	}
+    	productService.addAllergens(name, all);
+    	System.out.println(all);
+    	response.setError_code(ErrorCode.ERROR_CODE_0);
+    	return response;
+    }
+    
+    @PostMapping("/saveProductImage/{name}")
+    public ResponseMessage saveProductImage(@PathVariable("name") String name, @RequestParam("imageFile") MultipartFile image) {
+    	ResponseMessage response=new ResponseMessage();
+    	productService.saveProductImage(name, image);
+    	response.setError_code(ErrorCode.ERROR_CODE_0);
+    	return response;
+    }
+    
+    @PostMapping("/saveProductBarcodeImage/{name}")
+    public ResponseMessage saveBarcodeProductImage(@PathVariable("name") String name, @RequestParam("barcodeImageFile") MultipartFile image) {
+    	
+    	ResponseMessage response=new ResponseMessage();
+    	barcodeService.saveBarcodeProductImage(name, image);
+    	response.setError_code(ErrorCode.ERROR_CODE_0);
+    	return response;
+    }
 }
