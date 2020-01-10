@@ -28,6 +28,8 @@ class Signup extends Component {
                         <option value="Coach">Coach</option>
                     </select>
                 </div>
+
+
             </form>
             <div className="container">
                 <SignupForm role={this.state.role}/>

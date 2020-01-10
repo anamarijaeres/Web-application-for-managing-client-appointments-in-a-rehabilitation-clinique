@@ -1,12 +1,15 @@
 package opp.flow.service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.prefs.Preferences;
 
 import opp.flow.model.*;
 import opp.flow.repository.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +38,50 @@ public class DoctorCoachService {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
+
+	@Autowired
+	private ExerciseRepository exerciseRepository;
+
+	@Autowired
+	private TrainingRepository trainingRepository;
+
+	public boolean saveExercise(Exercise exercise){
+		Exercise ex = exerciseRepository.findByname(exercise.getName());
+		if (ex == null) {
+			exerciseRepository.save(exercise);
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean saveExerciseImage(String name, MultipartFile file ){
+		try {
+			Exercise exercise = exerciseRepository.findByname(name);
+			Byte[] byteObjects=new Byte[file.getBytes().length];
+
+			int i=-1;
+			for(byte b:file.getBytes()) {
+				i++;
+				byteObjects[i]=b;
+			}
+
+			exercise.setImage(byteObjects);
+			exerciseRepository.save(exercise);
+			return true;
+		}catch(IOException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public void addTraning(Training training){
+		trainingRepository.save(training);
+	}
+
+	public List<Training> loadTraining(String username, LocalDate date){
+		return trainingRepository.findByUsernameAndDate(username, date);
+	}
 
 	
 	public boolean registerDoctorCoach(DoctorCoach registerDoctorCoach) {
@@ -291,4 +338,14 @@ public class DoctorCoachService {
 			}
 		}
 	}
+
+	public List<Exercise> getExercises() {
+		return exerciseRepository.findAll();
+	}
+
+	public void saveWorkout(Training training) {
+		trainingRepository.save(training);
+	}
+
+
 }

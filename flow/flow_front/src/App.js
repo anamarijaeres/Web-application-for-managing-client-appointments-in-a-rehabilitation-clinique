@@ -12,6 +12,8 @@ import Review from "./components/Review";
 import Reply from "./components/Reply";
 import AddProductCategory from './components/AddProductCategory.js'
 import AddProduct from './components/AddProduct.js'
+import SetTask from './components/SetTask.js';
+import AddExercise from './components/AddExercise.js'
 
 
 
@@ -48,6 +50,8 @@ class App extends Component{
           <Route path='/review'  component={Review}/>
           <Route path={'/reply'+ '/:username' +'/:id'+'/:us'}  component={(match)=><Reply matchLink={match}/>}/>
           <Route path={'/profile'+ '/:username' } component={(match)=><DoctorCoachProfile matchLink={match}/>}/>
+          <Route path={'/:username'+'/setTask/'+':clientUsername'} component={(match)=><SetTask matchLink={match} />}/>
+          <Route path={'/:username'+'/addExercise'} component={AddExercise}/>
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
           </Switch>

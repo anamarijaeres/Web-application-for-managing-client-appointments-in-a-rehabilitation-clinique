@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import DoctorCoachList from "./DoctorCoachList";
-import {NavLink} from 'react-router-dom'
-import AddProductCategory from "./AddProductCategory"
+import {Link, NavLink} from 'react-router-dom'
+import AddProductCategory from './AddProductCategory'
+import AddExercise from './AddExercise'
+import SetTask from './SetTask'
 
 class UserLogin extends Component{
     //username ti je u this.props.matchLink.match.params.username;
@@ -15,6 +17,7 @@ class UserLogin extends Component{
         cooperationDoctor:'',
         cooperationCoach:'',
         reviewList: []
+
     }
 
     componentDidMount(){
@@ -210,6 +213,9 @@ class UserLogin extends Component{
                                 <div className="card red lighten-1">
                                     <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
                                 </div>
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">dodaj vjezbu</NavLink></li>
+                                </div>
 
                             </div>
 
@@ -338,7 +344,10 @@ class UserLogin extends Component{
                 )
             })
 
+
+
             if (role === 'Doctor') {
+
                 coopList = cooperations.map(cooperation => {
                     return (
 
@@ -358,16 +367,17 @@ class UserLogin extends Component{
                         </div>
                     )
                 })
-                
-                buttonList=<div>
-                        <div className="card red lighten-1">
+
+                 buttonList=<div>
+                       <div className="card red lighten-1">
                             <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
-                        </div>
+                       </div>
                         <div className="card red lighten-1">
-                            <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
+                             <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
                         </div>
-                </div>
-               
+
+                 </div>
+
             }else {
                  coopList = cooperations.map(cooperation => {
                     return (
@@ -381,19 +391,22 @@ class UserLogin extends Component{
                                         onClick={(e) => this.breakCooperation(cooperation.username, e, cooperation.id)}>
                                     End collaboration
                                 </button>
-                                <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}>
-                                    Set tasks
-                                </button>
+
+                                <div className="btn red lighten-1 z-depth-0" >
+                                       <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}>SET TASK</NavLink>
+                                 </div>
+
                             </div>
                         </div>
                     )
                 })
 
-                buttonList=<div>
-                        <div className="card red lighten-1">
-                            <li className="center"><NavLink to="/addWorkout" className="card-title white-text">dodaj vježbu</NavLink></li>
-                        </div>
-                </div>
+             buttonList=<div>
+
+                 <div className="card red lighten-1">
+                     <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">dodaj vjezbu</NavLink></li>
+                  </div>
+              </div>
                 
             }
         return(
@@ -458,7 +471,7 @@ class UserLogin extends Component{
                             </div>
 
                         </div>
-                        <div className="row">
+
                         <div className="col s12 m4">
                             <div className="card blue darken-2">
                                 <div className="card-content white-text">
@@ -467,15 +480,17 @@ class UserLogin extends Component{
                                         {revList}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
                         </div>
 
-                        {buttonList}
 
+<div>
 
-                    </div>
+                           {buttonList}
+</div>
+</div>
+</div>
+
                 )
         }
     }

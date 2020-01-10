@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class AddProductCategory extends Component {
 
@@ -55,8 +55,7 @@ class AddProductCategory extends Component {
             </div>
         )
 
-
-    }
+}
 }
 
 export default withRouter(AddProductCategory);

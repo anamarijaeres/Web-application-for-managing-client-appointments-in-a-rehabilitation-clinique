@@ -1,5 +1,6 @@
 package opp.flow.controller;
 
+import opp.flow.GetTrainingResponese;
 import opp.flow.model.*;
 import opp.flow.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import opp.flow.ErrorCode;
 import opp.flow.ResponseMessage;
 import opp.flow.service.DoctorCoachService;
 
+import javax.xml.transform.sax.SAXResult;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = { "http://localhost:3000"})
@@ -35,6 +39,48 @@ public class DoctorCoachController {
 	public List<ReviewPost> getReviewList(@PathVariable String username){
 		return doctorCoachService.getReviewList(username);
 	}
+
+	@GetMapping("/getExercises")
+	public List<String> getExercises(){
+		List<String> result = new ArrayList<>();
+		List<Exercise> list = doctorCoachService.getExercises();
+		for(Exercise l : list) {
+			result.add(l.getName());
+		}
+		return result;
+	}
+
+	@GetMapping("/getWorkouts/{username}")
+	public List<Training> getWorkouts(@PathVariable("username") String username){
+		return doctorCoachService.loadTraining(username, LocalDate.now());
+	}
+
+	@GetMapping("/setTask/{clientUsername}")
+	public GetTrainingResponese getTraining(@PathVariable("clientUsername") String clientUsername){
+
+		List<Training> list = doctorCoachService.loadTraining(clientUsername, LocalDate.now());
+		GetTrainingResponese responese = new GetTrainingResponese();
+		if(list.size() != 0) {
+			responese.setFlag(true);
+			responese.setTraining(list);
+
+		}
+		else{
+			responese.setFlag(false);
+		}
+		return responese;
+	}
+	@PostMapping("/addWorkout")
+	public ResponseMessage addWorkout(@RequestBody Training training){
+		training.setDate(LocalDate.now());
+		doctorCoachService.saveWorkout(training);
+
+		ResponseMessage responseMessage = new ResponseMessage();
+		responseMessage.setError_code(ErrorCode.ERROR_CODE_0);
+		return responseMessage;
+	}
+
+
 	@PostMapping("/reply/{username}")
 	public ResponseMessage reviewDoctorCoach(@PathVariable("username") String usernameClient,@RequestBody ReplyAccept reply){
 		ResponseMessage response=new ResponseMessage();
@@ -150,6 +196,36 @@ public class DoctorCoachController {
 		response.setMessage("You've broken cooperation!");
 
 		return response;
+	}
+	@PostMapping("/addExercise")
+	public ResponseMessage addNewExercise(@RequestBody Exercise exercise) {
+		ResponseMessage response=new ResponseMessage();
+		boolean save=doctorCoachService.saveExercise(exercise);
+
+		if(save==true) {
+			response.setError_code(ErrorCode.ERROR_CODE_0);
+			response.setMessage("Successful adding");
+		}else {
+			response.setError_code(ErrorCode.ERROR_CODE_6);
+			response.setMessage("Adding failed");
+		}
+		return response;
+
+	}
+	@PostMapping("/addExercise/saveImage/{name}")
+	public ResponseMessage saveExerciseImage (@PathVariable("name") String name, @RequestParam("imageFile") MultipartFile image) {
+		ResponseMessage response=new ResponseMessage();
+		boolean saveImage = doctorCoachService.saveExerciseImage(name, image);
+
+		if(saveImage==true) {
+			response.setError_code(ErrorCode.ERROR_CODE_0);
+			response.setMessage("Successful adding");
+		}else {
+			response.setError_code(ErrorCode.ERROR_CODE_6);
+			response.setMessage("Loading image failed");
+		}
+		return response;
+
 	}
 
 

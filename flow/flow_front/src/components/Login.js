@@ -47,7 +47,7 @@ class Login extends Component {
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
-                    <h5 className="grey-text text-darken-3">Sign In</h5>
+                    <h5 className="grey-text text-darken-3">Log In</h5>
                     <div className="input-field">
                         <label htmlFor="username">Username</label>
                         <input type="text" id="userName" onChange={this.handleUserNameChange} value={this.state.userName}/> {/*type je email da field ima ova bolja svojstva */}

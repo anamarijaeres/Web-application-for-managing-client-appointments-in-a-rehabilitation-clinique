@@ -6,7 +6,7 @@ const Home=()=>{
     return (
         <div className="home-container">
             <h4 className="center">Welcome page</h4>
-            <div className="container">
+            <div className="container" className="center">
             <img src={Woman} alt="Woman" className="responsive-img"/>
             </div>
         </div>

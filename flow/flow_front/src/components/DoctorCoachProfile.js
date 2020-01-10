@@ -5,7 +5,9 @@ import {NavLink, withRouter} from "react-router-dom";
 class DoctorCoachProfile extends Component{
     state={
        user:'',
-        reviewList:[]
+        reviewList:[],
+        exercises: []
+
     }
 
     componentDidMount(){
@@ -21,6 +23,13 @@ class DoctorCoachProfile extends Component{
                     reviewList:response.data
                 })
             })
+
+        axios.get('http://localhost:8080/getWorkouts/' + localStorage.getItem("userName"))
+        .then(response=>{
+            this.setState({
+                exercises: response.data
+             })
+        })
 
     }
     render(){
@@ -40,6 +49,20 @@ class DoctorCoachProfile extends Component{
 
             )
         })
+
+        const exercises = this.state.exercises;
+        const trainingList = exercises.map(exercise =>{
+            return(
+                <div className="post card" key={exercise.id}>
+                    <div className="card-content">
+                        <span className="card-title">{exercise.exerciseName}</span>
+                        <p> Intensity : {exercise.mode} </p>
+                        <p> Duration : {exercise.duration} min</p>
+                    </div>
+                </div>
+
+            )
+        });
         return(
         <div className="container">
             <div className="row">
@@ -95,6 +118,19 @@ class DoctorCoachProfile extends Component{
                     </div>
                 </div>
             </div>
+
+                 <div className="col s12 m4">
+                              <div className="card blue darken-2">
+                                  <div className="card-content white-text">
+                                      <span className="card-title">My Training: </span>
+                                      <div className="containter black-text">
+                                      {trainingList}
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
             </div>
          </div>
         )

@@ -13,5 +13,7 @@ public enum ErrorCode {
 	ERROR_CODE_9, //name of product or product category is taken
 	ERROR_CODE_10 //primary key is null
 
+
+
 }
  
