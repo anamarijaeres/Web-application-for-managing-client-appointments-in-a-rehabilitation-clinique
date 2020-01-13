@@ -14,7 +14,8 @@ import AddProductCategory from './components/AddProductCategory.js'
 import AddProduct from './components/AddProduct.js'
 import SetTask from './components/SetTask.js';
 import AddExercise from './components/AddExercise.js'
-
+import ConsumedProduct from "./components/ConsumedProduct";
+import Statistic from "./components/Statistic";
 
 
 class App extends Component{
@@ -42,6 +43,8 @@ class App extends Component{
         <div className="App">
           <Navbar/>
           <Switch>
+            <Route path={'/:username'+'/addProduct'}  component={(match)=><ConsumedProduct matchLink={match} />}/>
+            <Route path={'/:username'+'/statistic'}  component={(match)=><Statistic matchLink={match} />}/>
           <Route path='/addProduct' component={AddProduct}/>
           <Route path='/addProductCategory' component={AddProductCategory}/>
           <Route path='/login' component={()=><Login handleLogin={this.handleLogin} />}/>

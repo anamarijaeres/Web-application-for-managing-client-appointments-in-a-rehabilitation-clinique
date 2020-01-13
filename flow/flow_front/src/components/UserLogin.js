@@ -262,6 +262,21 @@ class UserLogin extends Component{
                                             </div>
                                     </div>
                                 </div>
+                                <div className="container" style={{padding: 5}}>
+                                    <div className="center card-action">
+                                      <div className="btn red lighten-1 z-depth-0" >
+                                         <NavLink to={"/"+localStorage.getItem('userName')+"/addProduct"} style={{color: 'white'}} >ADD PRODUCT</NavLink>
+                                       </div>
+                                    </div>
+                                </div>
+                                <div className="container" style={{padding: 5}}>
+                                    <div className="center card-action">
+                                         <div className="btn red lighten-1 z-depth-0" >
+                                            <NavLink to={"/"+localStorage.getItem('userName')+"/statistic"} style={{color: 'white'}} >STATISTIC</NavLink>
+                                        </div>
+                                     </div>
+                                </div>
+
                             </div>
 
                             <div className="col s12 m6">

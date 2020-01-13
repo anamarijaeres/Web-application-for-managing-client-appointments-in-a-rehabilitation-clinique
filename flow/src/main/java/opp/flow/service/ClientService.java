@@ -2,11 +2,9 @@ package opp.flow.service;
 
 import opp.flow.UserRole;
 import opp.flow.model.*;
-import opp.flow.repository.ClientCoachRepository;
-import opp.flow.repository.ClientDoctorRepository;
-import opp.flow.repository.ClientRepository;
-import opp.flow.repository.DoctorCoachRepository;
+import opp.flow.repository.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +28,12 @@ public class ClientService{
 
 	@Autowired
 	private DoctorCoachService doctorCoachService;
+
+	@Autowired
+	private ConsumedProductRepository consumedProductRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
 
     public boolean registerClient(Client registerClient) {
     	Client client=clientRepository.findByusername(registerClient.getUsername()); 
@@ -143,4 +147,18 @@ public class ClientService{
 		}
 		return post;
 	}
+
+    public List<StatisticProduct> getStatistic(String username) {
+    	List<StatisticProduct> statisticProducts=new ArrayList<>();
+    	List<ConsumedProduct> consumedProducts=consumedProductRepository.findByusername(username);
+		Product prod=null;
+    	for(ConsumedProduct con:consumedProducts){
+			System.out.println(con);
+    		prod=productRepository.findByname(con.getProductName());
+    		statisticProducts.add(new StatisticProduct(con.getId(),con,prod));
+
+    	}
+
+    	return statisticProducts;
+    }
 }

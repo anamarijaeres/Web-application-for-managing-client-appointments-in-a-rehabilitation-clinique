@@ -10,11 +10,11 @@ public class ProductLimitation {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column( nullable = false)
     @NotNull
     private String username;
 
-    @Column(unique = true, nullable = false)
+    @Column( nullable = false)
     @NotNull
     private Long productID;
 

@@ -38,6 +38,10 @@ public class ClientController {
     	}
     	return response;
     }
+	@GetMapping("/statistic/{username}")
+	public List<StatisticProduct> getStatistic(@PathVariable String username){
+		return clientService.getStatistic(username);
+	}
     
     @GetMapping("/adminList")
     public List<AdminPost> getAdminListForApproval(){
