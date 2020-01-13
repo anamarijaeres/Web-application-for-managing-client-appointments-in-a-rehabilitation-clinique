@@ -375,9 +375,16 @@ class UserLogin extends Component{
                                         onClick={(e) => this.breakCooperation(cooperation.username, e, cooperation.id)}>
                                     End collaboration
                                 </button>
-                                <button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}>
-                                    Prescribe diet
-                                </button>
+                                <div className="row">
+                                    <div className="col s10">
+                                        <div className="btn red lighten-1 z-depth-0" >
+                                            <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}> Prescribe diet</NavLink>
+                                        </div>
+                                        <div className="btn red lighten-1 z-depth-0" >
+                                            <NavLink to={"/"+cooperation.username+"/statistic"} style={{color: 'white'}} >STATISTIC</NavLink>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )
@@ -407,9 +414,9 @@ class UserLogin extends Component{
                                     End collaboration
                                 </button>
 
-                                <div className="btn red lighten-1 z-depth-0" >
-                                       <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}>SET TASK</NavLink>
-                                 </div>
+                                        <div className="btn red lighten-1 z-depth-0" >
+                                            <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}>SET TASK</NavLink>
+                                        </div>
 
                             </div>
                         </div>
@@ -481,9 +488,11 @@ class UserLogin extends Component{
                                         <div className="containter black-text">
                                             {coopList}
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
+
 
                         </div>
 
