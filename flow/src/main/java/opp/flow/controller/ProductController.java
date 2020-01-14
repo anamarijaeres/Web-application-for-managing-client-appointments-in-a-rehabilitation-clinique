@@ -37,6 +37,7 @@ public class ProductController {
         }
         return result;
     }
+    
     @PostMapping("/addConsumedProduct")
     public ResponseMessage addWorkout(@RequestBody ConsumedProduct consumedProduct){
         consumedProduct.setDate(LocalDate.now());
@@ -51,6 +52,7 @@ public class ProductController {
         }
         return responseMessage;
     }
+    
     @PostMapping("/addProduct")
     public ResponseMessage addProduct(@RequestBody Product product) {
         ResponseMessage response=new ResponseMessage();
@@ -99,6 +101,20 @@ public class ProductController {
     	ResponseMessage response=new ResponseMessage();
     	barcodeService.saveBarcodeProductImage(name, image);
     	response.setError_code(ErrorCode.ERROR_CODE_0);
+    	return response;
+    }
+    
+    @PostMapping("/findProductbyBarcode")
+    public ResponseMessage findProductByBarcode(@RequestParam("imageFile") MultipartFile image) {
+    	ResponseMessage response=new ResponseMessage();
+    	String productName=barcodeService.findProductName(image);
+    	if(productName!=null) {
+    		response.setError_code(ErrorCode.ERROR_CODE_0);
+    		response.setUsername(productName);
+    	}else {
+    		response.setError_code(ErrorCode.ERROR_CODE_11);
+    		response.setMessage("There is not product with uploaded barcode!");
+    	}
     	return response;
     }
 }

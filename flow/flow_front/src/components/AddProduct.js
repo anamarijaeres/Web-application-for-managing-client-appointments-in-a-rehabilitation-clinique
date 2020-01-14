@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 class AddProduct extends Component {
     state={
-        name:'',
+        name:'', 
         energy:'',
         fat:'',
         saturatedFattyAcids:'',
@@ -151,10 +151,6 @@ class AddProduct extends Component {
         this.setState({salt: e.target.value})
     }
 
-    handleMassChange=(e)=>{
-        this.setState({mass: e.target.value})
-    }
-
     handleChange=(e)=>{
         this.setState({
             value:e.target.value
@@ -163,7 +159,7 @@ class AddProduct extends Component {
 
     handleAllergenNameChange=idx=>(e)=>{
         const newAllergens=this.state.allergens.map((alrg, sidx)=>{
-            if(idx!=sidx){
+            if(idx!==sidx){
                 return alrg;
             }else{
                 return { ...alrg, name: e.target.value };
@@ -248,10 +244,6 @@ class AddProduct extends Component {
                         <div className="input-field">
                             <label htmlFor="salt">Sol</label>
                             <input type="number" step="0.01" id="salt" onChange={this.handleSaltChange} value={this.state.salt}/>
-                        </div>
-                        <div className="input-field">
-                            <label htmlFor="mass">Masa</label>
-                            <input type="number" step="0.01" id="mass" onChange={this.handleMassChange} value={this.state.mass}/>
                         </div>
                         <div className= "container">
                             <select className="browser-default" value={this.state.value} onChange={this.handleChange}>

@@ -19,11 +19,15 @@ public class Barcode {
 	
 	public Barcode(Long id, String productName, Byte[] image) {
 		super();
-		this.id = id;
+		this.id=id;
 		this.productname = productName;
 		this.image = image;
 	}
-
+	
+	public Barcode() {
+		
+	}
+	
 	public Long getId() {
 		return id;
 	}

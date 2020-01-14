@@ -7,7 +7,8 @@ class ConsumedProduct extends Component {
     state = {
         name:'',
         list: [],
-        mass: ''
+        mass: '',
+        barcode:null
     }
 
     componentDidMount() {
@@ -27,6 +28,10 @@ class ConsumedProduct extends Component {
         this.setState({mass: e.target.value})
     }
 
+    handleBarcodeChange=(e)=>{
+        this.setState({barcode:e.target.files[0]})
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         const data= {
@@ -34,7 +39,7 @@ class ConsumedProduct extends Component {
             productName: this.state.name,
             mass:this.state.mass
         };
-
+        if(this.state.barcode===null){
         return axios.post('http://localhost:8080/addConsumedProduct', data)
             .then(response=>{
                 if(response.data.error_code === 'ERROR_CODE_0') {
@@ -54,7 +59,46 @@ class ConsumedProduct extends Component {
                     })
                     this.props.history.push('/' + localStorage.getItem('userName'));
                 }
-            });
+            });}
+            else{
+                let form=new FormData();
+                form.append('imageFile', this.state.barcode);
+                return axios.post('http://localhost:8080/findProductbyBarcode', form)
+                    .then(response=>{
+                        if(response.data.error_code==='ERROR_CODE_0'){
+                            data.productName=response.data.username;
+                            alert(response.data.username);
+                            axios.post('http://localhost:8080/addConsumedProduct', data)
+                                .then(response=>{
+                                    if(response.data.error_code === 'ERROR_CODE_0') {
+                                        alert("Product fits in your diet!");
+                                        this.setState({
+                                            name: '',
+                                            list: [],
+                                            mass: ''
+                                        })
+                                        this.props.history.push('/' + localStorage.getItem('userName'));
+                                    }else{
+                                        alert("Product doesn't fit in your diet!");
+                                        this.setState({
+                                            name: '',
+                                            list: [],
+                                            mass: ''
+                                        })
+                                        this.props.history.push('/' + localStorage.getItem('userName'));
+                                    }
+                                });
+                        }else if(response.data.error_code==='ERROR_CODE_11'){
+                            alert(response.data.message);
+                            this.setState({
+                                name: '',
+                                list: [],
+                                mass: ''
+                            })
+                        }
+                        
+                    })
+            }
 
     }
     render() {
@@ -73,13 +117,20 @@ class ConsumedProduct extends Component {
                             {productList}
                         </select>
                     </div>
+                    <label></label>
+                    <label>Or add product barcode</label>
+                    <div className="input-field"> 
+                        <label htmlFor="image">Barkod</label>
+                            <input type="file" onChange={this.handleBarcodeChange}/>
+                        </div>
                     <div className="input-field">
                         <label htmlFor="mass">Masa</label>
                         <input type="number" step="0.01" id="mass" onChange={this.handleMassChange} value={this.state.mass}/>
                     </div>
-                    <div className="input-field">
-                        <button className="btn red lighten-1 z-depth-0" >Submit</button>
+                        <div className="input-field">
+                        <button className="btn red lighten-1 z-depth-0">Submit</button>
                     </div>
+
                 </form>
             </div>
         )
