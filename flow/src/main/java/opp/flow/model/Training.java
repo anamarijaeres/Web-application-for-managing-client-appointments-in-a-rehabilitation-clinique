@@ -17,13 +17,15 @@ public class Training {
     private String exerciseName;
     private String mode;
     private int duration;
+    private boolean done;
 
-    public Training(String username, LocalDate date, String exerciseName, String mode, int duration) {
+    public Training(String username, LocalDate date, String exerciseName, String mode, int duration, boolean done) {
         this.username = username;
         this.date = date;
         this.exerciseName = exerciseName;
         this.mode = mode;
         this.duration = duration;
+        this.done = done;
     }
 
     public Training(){
@@ -73,4 +75,8 @@ public class Training {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    public boolean isDone() { return done; }
+
+    public void setDone(boolean done) { this.done = done; }
 }

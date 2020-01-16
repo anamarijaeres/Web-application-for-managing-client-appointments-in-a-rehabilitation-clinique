@@ -39,7 +39,8 @@ componentDidMount(){
     username: this.props.matchLink.match.params.clientUsername,
     exerciseName: this.state.name,
     mode: this.state.mode,
-    duration: this.state.duration };
+    duration: this.state.duration
+    };
 
     return axios.post('http://localhost:8080/addWorkout', data)
     .then(response=>{
@@ -48,11 +49,36 @@ componentDidMount(){
         name:'',
         mode:'',
         duration:''
-
     })
 
     });
+ }
 
+ handleDone = (e) => {
+      e.preventDefault();
+          const data= {
+          username: this.props.matchLink.match.params.clientUsername,
+          exerciseName: this.state.name,
+          mode: this.state.mode,
+          duration: this.state.duration
+          };
+
+          return axios.post('http://localhost:8080/addWorkout', data)
+          .then(response=>{
+          alert("Workout successfully added!");
+          this.setState({
+              name:'',
+              mode:'',
+              duration:''
+            })
+          });
+
+      window.location.reload();
+ }
+
+ handleBack = (e) => {
+
+    this.props.history.push('/'+localStorage.getItem('userName'))
  }
 
  handleNameChange=(e)=> {
@@ -74,8 +100,6 @@ componentDidMount(){
   }
 
 
-
-
 render(){
     if(this.state.flag === false){
     const workouts = this.state.list;
@@ -86,18 +110,17 @@ render(){
                         });
 
         return (
-            <div className="container">
-                        <form onSubmit={this.handleSubmit} className="white">
+            <div className="container" >
+
                             <div className="input-field col s12">
-                                <select className="browser-default" onChange={this.handleNameChange}>
+                                <select className="browser-default" onChange={this.handleNameChange} value= {this.state.name}>
                                 <option value="" disabled selected>Select exercise:</option>
                                   {exerciseList}
                                 </select>
                             </div>
 
-
                             <div className="input-field col s12">
-                                  <select className="browser-default" onChange={this.handleModeChange}>
+                                  <select className="browser-default" onChange={this.handleModeChange} value = {this.state.mode}>
                                   <option value="" disabled selected>Select intensity:</option>
                                     <option value="Easy">Easy</option>
                                     <option value="Normal">Normal</option>
@@ -110,18 +133,30 @@ render(){
                                    <input type="number" id="duration" onChange={this.handleDurationChange} value={this.state.duration}/>
                             </div>
 
-                            <div className="input-field">
-                                <button className="btn red lighten-1 z-depth-0" >Submit</button>
+                            <div className="row">
+                               <a class="btn-floating btn-large waves-effect waves-light red" onClick = {this.handleSubmit}><i class="material-icons">add</i></a>
+                               &nbsp;&nbsp;&nbsp;
+                                <a class="btn-floating btn-large waves-effect waves-light green"onClink = {this.handleDone}><i class="material-icons">check</i></a>
                             </div>
-                        </form>
+
             </div>
        )
             
     }else{
             return(
+            <div className="container">
+            <div className="center">
+               <div className="post card">
+               <div className="card-title">
+                <h3 className="center"> Successfully added. </h3>
+                </div>
 
-                <h3 className="center"> Already given. </h3>
-
+                <div className="card-content">
+                <a class="btn-floating btn-large waves-effect waves-light green" onClick={this.handleBack} ><i class="material-icons">check</i></a>
+                </div>
+                </div>
+             </div>
+             </div>
             )
      }
 

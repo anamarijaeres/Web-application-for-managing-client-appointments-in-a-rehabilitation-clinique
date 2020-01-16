@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +31,14 @@ public class ClientService{
 	private DoctorCoachService doctorCoachService;
 
 	@Autowired
+<<<<<<< Updated upstream
 	private ConsumedProductRepository consumedProductRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
+=======
+	private TrainingStatisticsRepository trainingStatisticsRepository;
+>>>>>>> Stashed changes
 
     public boolean registerClient(Client registerClient) {
     	Client client=clientRepository.findByusername(registerClient.getUsername()); 
@@ -45,6 +50,15 @@ public class ClientService{
     		return false;
     	}
     }
+
+    public List<LocalDate> loadTrainingDates (String username) {
+    	List<TrainingStatistics> trainingStatistics = trainingStatisticsRepository.findByUsername(username);
+    	List<LocalDate> dates = new ArrayList<>();
+    	for(TrainingStatistics ts : trainingStatistics){
+    		dates.add(ts.getDate());
+		}
+    	return dates;
+	}
 
 	public Client loadClient(String username, String password) {
 		Client user=clientRepository.findByusername(username);

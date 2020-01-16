@@ -1,6 +1,7 @@
 package opp.flow.model;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
 
 @Entity
 public class Exercise {
@@ -73,5 +74,14 @@ public class Exercise {
 
     public void setBurnedCaloriesHard(double burnedCaloriesHard) {
         this.burnedCaloriesHard = burnedCaloriesHard;
+    }
+
+    public void replaceAttributes(Exercise update) throws IllegalArgumentException, IllegalAccessException {
+        Field[] fields = update.getClass().getDeclaredFields();
+        for(Field f:fields) {
+            if(f.get(update)!=null) {
+                f.set(this, f.get(update));
+            }
+        }
     }
 }

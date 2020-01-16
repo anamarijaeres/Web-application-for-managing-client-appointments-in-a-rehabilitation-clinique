@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {NavLink, withRouter} from "react-router-dom";
 
-class DoctorCoachProfile extends Component{
+class CoachProfile extends Component{
     state={
        user:'',
         reviewList:[],
-        exercises: []
+        exercises: [],
 
     }
 
@@ -32,7 +32,17 @@ class DoctorCoachProfile extends Component{
         })
 
     }
+
+    handleDone = (e) => {
+    axios.post('http://localhost:8080/done/'+ localStorage.getItem("userName"))
+    .then(response => {
+            alert("Good job!");
+    })
+
+    }
     render(){
+
+        const flag = this.state.exercises.length > 0;
         localStorage.setItem("usernameDocCoach", this.state.user.username)
         const reviews = this.state.reviewList;
         const revList = reviews.map(review => {
@@ -76,27 +86,33 @@ class DoctorCoachProfile extends Component{
                         </div>
                         <div className="card-content">
                             <div className="container">
-                                <div className="container">
-                                    <h6 className="center">Username: {this.state.user.username}</h6>
+                                <div className="collapsible-header">
+                                     <i class="material-icons">person_pin</i>
+                                     <div>{this.state.user.username}</div>
                                 </div>
-                                <div className="container">
-                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Role: {this.state.user.role}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Email: {this.state.user.email}</h6>
-                                </div>
-                                <div className="container">
-                                    <h6 className="center">Max number of
-                                        clients: {this.state.user.maxNumClient}</h6>
-                                </div>
+
+                                <div className="collapsible-header">
+                                     <i class="material-icons">person</i>
+                                      <div >{this.state.user.firstname} {this.state.user.lastname}</div>
+                                 </div>
+
+                                 <div className="collapsible-header">
+                                     <i class="material-icons">work</i>
+                                     <div >{this.state.user.role}</div>
+                                  </div>
+
+                                  <div className="collapsible-header">
+                                     <i class="material-icons">email</i>
+                                    <div >{this.state.user.email}</div>
+                                   </div>
+
+                                   <div className="collapsible-header">
+                                      <i class="material-icons">people</i>
+                                      <div >{this.state.user.maxNumClient}</div>
+                                    </div>
                             </div>
                         </div>
+
                         <div className="center card-action">
                             <NavLink to={"/"+ localStorage.getItem("userName")}>Back</NavLink>
                         </div>
@@ -126,16 +142,20 @@ class DoctorCoachProfile extends Component{
                                       <div className="containter black-text">
                                       {trainingList}
                                       </div>
+                                      <div className="center" >
+                                     { flag === false ? "" : <button className="btn green lighten-1 z-depth-0" onClick = {this.handleDone} disabled ={!flag}>Done</button>}
+                                      </div>
+                                       <div className="center card-action">
+                                             <NavLink to={"/"+ localStorage.getItem("userName") +"/trainings"}>Show statistics</NavLink>
+                                       </div>
                                   </div>
                               </div>
                           </div>
-
-
-            </div>
-         </div>
+                    </div>
+             </div>
         )
     }
 
 }
 
-export default withRouter(DoctorCoachProfile);
+export default withRouter(CoachProfile);

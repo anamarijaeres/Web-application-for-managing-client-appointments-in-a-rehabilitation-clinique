@@ -188,7 +188,7 @@ class SignupForm extends Component{
         }else if(this.props.role===''){
             return(
                 <div className="container">
-                    <p className="ceneter"></p>
+                    <p className="center"></p>
                 </div>
             )
         }else{

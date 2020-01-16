@@ -3,6 +3,7 @@ package opp.flow.controller;
 import opp.flow.GetTrainingResponese;
 import opp.flow.model.*;
 import opp.flow.service.ClientService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +14,7 @@ import opp.flow.service.DoctorCoachService;
 
 import javax.xml.transform.sax.SAXResult;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,22 @@ public class DoctorCoachController {
 
 	@GetMapping("/getWorkouts/{username}")
 	public List<Training> getWorkouts(@PathVariable("username") String username){
-		return doctorCoachService.loadTraining(username, LocalDate.now());
+		return doctorCoachService.loadTraining(username, LocalDate.now(), false);
+	}
+
+	@GetMapping("/loadExercisesFromStatistics/{id}")
+	public List<Training> loadTrainingsFromStatistics(@PathVariable Long id) {
+		return doctorCoachService.loadTrainingsFromStatistics(id);
+	}
+
+	@GetMapping("/getDoneWorkouts/{username}")
+	public List<Training> getDoneWorkouts(@PathVariable("username") String username){
+		return doctorCoachService.loadTraining(username, true);
+	}
+
+	@GetMapping("/getTrainingStatistics/{username}")
+	public List<TrainingStatistics> getTrainingStatistics(@PathVariable("username") String username){
+		return doctorCoachService.loadStatistics(username);
 	}
 
 	@GetMapping("/setTask/{clientUsername}")
@@ -63,16 +80,22 @@ public class DoctorCoachController {
 		if(list.size() != 0) {
 			responese.setFlag(true);
 			responese.setTraining(list);
-
+			responese.setTraining(list);
 		}
 		else{
 			responese.setFlag(false);
 		}
 		return responese;
 	}
+
+	@GetMapping("/getWorkout/{name}")
+	public Exercise getWorkout (@PathVariable("name")String name) {
+		return doctorCoachService.loadExercise(name);
+	}
 	@PostMapping("/addWorkout")
 	public ResponseMessage addWorkout(@RequestBody Training training){
 		training.setDate(LocalDate.now());
+		training.setDone(false);
 		doctorCoachService.saveWorkout(training);
 
 		ResponseMessage responseMessage = new ResponseMessage();
@@ -105,6 +128,15 @@ public class DoctorCoachController {
 		doctorCoachService.postReview(rev);
 		response.setMessage("Review posted!");
 
+		return response;
+	}
+
+	@PostMapping("/editExercise")
+	public ResponseMessage updateExercise(@RequestBody Exercise update) {
+		ResponseMessage response=new ResponseMessage();
+		doctorCoachService.updateWorkout(update);
+		response.setError_code(ErrorCode.ERROR_CODE_0);
+		response.setMessage("Update successful");
 		return response;
 	}
 	

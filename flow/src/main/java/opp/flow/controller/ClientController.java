@@ -6,6 +6,7 @@ import opp.flow.model.Client;
 import opp.flow.service.ClientService;
 import opp.flow.service.DoctorCoachService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class ClientController {
     
     @Autowired
     private DoctorCoachService doctorCoachService;
+
     
     @PostMapping("/registerClient")
     public ResponseMessage registerClient(@RequestBody Client clientRegister) {
@@ -38,9 +40,17 @@ public class ClientController {
     	}
     	return response;
     }
+<<<<<<< Updated upstream
 	@GetMapping("/statistic/{username}")
 	public List<StatisticProduct> getStatistic(@PathVariable String username){
 		return clientService.getStatistic(username);
+=======
+
+    @GetMapping("/{username}/getDates")
+	public List<LocalDate> getDates(@PathVariable("username") String username) {
+
+    	return clientService.loadTrainingDates(username);
+>>>>>>> Stashed changes
 	}
     
     @GetMapping("/adminList")
@@ -112,4 +122,21 @@ public class ClientController {
     	doctorCoachService.deleteDoctorCoach(doctorCoach);
     	return response;
     }
+
+    @PostMapping("/done/{username}")
+	public ResponseMessage addTrainingInStatistics(@PathVariable("username") String username){
+    	List<Training> trainings = doctorCoachService.loadTraining(username, LocalDate.now(),false);
+
+    	for(Training t : trainings) {
+    		t.setDone(true);
+    		doctorCoachService.saveWorkout(t);
+
+		}
+    	doctorCoachService.saveTrainingStatistics(trainings);
+		ResponseMessage response=new ResponseMessage();
+		response.setError_code(ErrorCode.ERROR_CODE_0);
+    	return response;
+	}
+
+
 }

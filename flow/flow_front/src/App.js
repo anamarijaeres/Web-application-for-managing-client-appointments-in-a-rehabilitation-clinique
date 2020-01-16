@@ -7,15 +7,24 @@ import Signup from './components/Signup.js';
 import UserLogin from './components/UserLogin.js';
 import DoctorCoachList from "./components/DoctorCoachList";
 import EditProfile from './components/EditProfile.js'
-import DoctorCoachProfile from "./components/DoctorCoachProfile";
+import DoctorProfile from "./components/DoctorProfile";
 import Review from "./components/Review";
 import Reply from "./components/Reply";
 import AddProductCategory from './components/AddProductCategory.js'
 import AddProduct from './components/AddProduct.js'
 import SetTask from './components/SetTask.js';
 import AddExercise from './components/AddExercise.js'
+<<<<<<< Updated upstream
 import ConsumedProduct from "./components/ConsumedProduct";
 import Statistic from "./components/Statistic";
+=======
+import CoachProfile from './components/CoachProfile.js';
+import TrainingStatistics from './components/TrainingStatistics.js';
+import LoadExercises from './components/LoadExercises.js'
+import EditExercise from './components/EditExercise.js'
+import EditExerciseForm from './components/EditExerciseForm.js'
+
+>>>>>>> Stashed changes
 
 
 class App extends Component{
@@ -51,11 +60,16 @@ class App extends Component{
           <Route path='/signup' component={Signup}/>
           <Route exact path='/' component={Home}/>
           <Route path='/review'  component={Review}/>
+          <Route path='/editExercise' component={EditExercise}/>
+          <Route path={'/editExerciseForm' + '/:name'} component={(match)=><EditExerciseForm matchLink={match}/>}/>
+          <Route path={'/loadExercises' + '/:id'}  component={(match)=><LoadExercises matchLink={match}/>}/>
           <Route path={'/reply'+ '/:username' +'/:id'+'/:us'}  component={(match)=><Reply matchLink={match}/>}/>
-          <Route path={'/profile'+ '/:username' } component={(match)=><DoctorCoachProfile matchLink={match}/>}/>
+          <Route path={'/profile'+ '/:username' } component={(match)=><DoctorProfile matchLink={match}/>}/>
+          <Route path={'/coach'+ '/:username' } component={(match)=><CoachProfile matchLink={match}/>}/>
           <Route path={'/:username'+'/setTask/'+':clientUsername'} component={(match)=><SetTask matchLink={match} />}/>
           <Route path={'/:username'+'/addExercise'} component={AddExercise}/>
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
+          <Route path= {'/:username' + '/trainings'} component = {(match)=><TrainingStatistics matchLink={match}/>}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
           </Switch>
         </div>

@@ -208,14 +208,18 @@ class UserLogin extends Component{
                                     </div>
                                 </div>
                                 <div className="card red lighten-1">
-                                    <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
+                                    <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">add category</NavLink></li>
                                 </div>
                                 <div className="card red lighten-1">
-                                    <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
+                                    <li className="center"><NavLink to="/addProduct" className="card-title white-text">add product</NavLink></li>
                                 </div>
                                 <div className="card red lighten-1">
-                                    <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">dodaj vjezbu</NavLink></li>
+                                    <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">add exercise</NavLink></li>
                                 </div>
+
+                               <div className="card red lighten-1">
+                                    <li className="center"><NavLink to= {"/editExercise"} className="card-title white-text">edit exercise</NavLink></li>
+                               </div>
 
                             </div>
 
@@ -303,7 +307,7 @@ class UserLogin extends Component{
                                             End collaboration
                                         </button>
                                         <div className="center card-action">
-                                            <NavLink to={"/profile/"+this.state.cooperationCoach.username}>Profile</NavLink>
+                                            <NavLink to={"/coach/"+this.state.cooperationCoach.username}>Profile</NavLink>
                                         </div>
                                     </div>
                                 </div>
@@ -392,10 +396,10 @@ class UserLogin extends Component{
 
                  buttonList=<div>
                        <div className="card red lighten-1">
-                            <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">dodaj kategoriju</NavLink></li>
+                            <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">add category</NavLink></li>
                        </div>
                         <div className="card red lighten-1">
-                             <li className="center"><NavLink to="/addProduct" className="card-title white-text">dodaj proizvod</NavLink></li>
+                             <li className="center"><NavLink to="/addProduct" className="card-title white-text">add product</NavLink></li>
                         </div>
 
                  </div>
@@ -426,7 +430,7 @@ class UserLogin extends Component{
              buttonList=<div>
 
                  <div className="card red lighten-1">
-                     <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">dodaj vjezbu</NavLink></li>
+                     <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">add exercise</NavLink></li>
                   </div>
               </div>
                 
@@ -508,12 +512,12 @@ class UserLogin extends Component{
                         </div>
 
 
-<div>
+                         <div>
 
                            {buttonList}
-</div>
-</div>
-</div>
+                         </div>
+            </div>
+       </div>
 
                 )
         }

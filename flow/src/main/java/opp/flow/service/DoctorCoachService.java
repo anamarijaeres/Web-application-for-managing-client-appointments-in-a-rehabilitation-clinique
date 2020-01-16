@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.prefs.Preferences;
 
 import opp.flow.model.*;
@@ -45,6 +46,9 @@ public class DoctorCoachService {
 	@Autowired
 	private TrainingRepository trainingRepository;
 
+	@Autowired
+	private TrainingStatisticsRepository trainingStatisticsRepository;
+
 	public boolean saveExercise(Exercise exercise){
 		Exercise ex = exerciseRepository.findByname(exercise.getName());
 		if (ex == null) {
@@ -79,9 +83,19 @@ public class DoctorCoachService {
 		trainingRepository.save(training);
 	}
 
+	public List<Training> loadTraining(String username, LocalDate date, boolean done){
+		return trainingRepository.findByUsernameAndDateAndDone(username, date, done);
+	}
+
+	public List<Training> loadTraining(String username, boolean done){
+		return trainingRepository.findByUsernameAndDone(username, done);
+	}
+
 	public List<Training> loadTraining(String username, LocalDate date){
 		return trainingRepository.findByUsernameAndDate(username, date);
 	}
+
+
 
 	
 	public boolean registerDoctorCoach(DoctorCoach registerDoctorCoach) {
@@ -270,6 +284,16 @@ public class DoctorCoachService {
 		doctorCoachRepository.save(doctorCoach);
 	}
 
+	public void updateWorkout(Exercise exercise) {
+		Exercise workout = exerciseRepository.findByname(exercise.getName());
+		try {
+			workout.replaceAttributes(exercise);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		exerciseRepository.save(workout);
+	}
+
 
 	public List<DocCoachPost> getCooperations(String username) {
 		List<DocCoachPost> list=new ArrayList<>();
@@ -347,5 +371,58 @@ public class DoctorCoachService {
 		trainingRepository.save(training);
 	}
 
+	public void saveTrainingStatistics(List<Training> trainings) {
+		TrainingStatistics statistics = new TrainingStatistics();
+		statistics.setUsername(trainings.get(0).getUsername());
+		statistics.setDate(trainings.get(0).getDate());
+		double burnedCalories = 0;
+		for(Training t : trainings) {
+			burnedCalories += calculateCalories(t);
+		}
 
+		statistics.setBurnedCalories(burnedCalories);
+		trainingStatisticsRepository.save(statistics);
+
+	}
+
+	private double calculateCalories(Training training) {
+		Exercise exercise = exerciseRepository.findByname(training.getExerciseName());
+
+
+
+		if(training.getMode().equals("Easy")){
+			return exercise.getBurnedCaloriesEasy() * training.getDuration() / 60;
+
+		} else if(training.getMode().equals("Normal")){
+			return exercise.getBurnedCaloriesNormal() * training.getDuration() / 60;
+
+		}else{
+			return exercise.getBurnedCaloriesHard() * training.getDuration() / 60;
+		}
+
+	}
+
+
+	public List<TrainingStatistics> loadStatistics(String username) {
+		return trainingStatisticsRepository.findByUsername(username);
+	}
+
+	public List<Training> loadTrainingsFromStatistics(Long id) {
+		Optional<TrainingStatistics> statisticsOpt = trainingStatisticsRepository.findById(id);
+		if (statisticsOpt.isEmpty()) return null;
+		else{
+			TrainingStatistics statistics = statisticsOpt.get();
+			String user = statistics.getUsername();
+			LocalDate date = statistics.getDate();
+
+			return trainingRepository.findByUsernameAndDateAndDone(user, date, true);
+
+		}
+
+
+	}
+
+	public Exercise loadExercise(String name) {
+		return exerciseRepository.findByname(name);
+	}
 }

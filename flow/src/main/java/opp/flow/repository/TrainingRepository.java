@@ -11,5 +11,9 @@ import java.util.List;
 
 @Repository
 public interface TrainingRepository extends JpaRepository<Training, Long> {
-    List<Training> findByUsernameAndDate (String username, LocalDate date);
+    List<Training> findByUsernameAndDateAndDone (String username, LocalDate date, boolean done);
+
+    List<Training> findByUsernameAndDone(String username, boolean done);
+
+    List<Training> findByUsernameAndDate(String username, LocalDate date);
 }
