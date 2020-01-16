@@ -16,11 +16,11 @@ public class ProductLimitation {
 
     @Column( nullable = false)
     @NotNull
-    private Long productID;
+    private String productName;
 
-    public ProductLimitation(@NotNull String username, @NotNull Long productID) {
+    public ProductLimitation(@NotNull String username, @NotNull String productName) {
         this.username = username;
-        this.productID = productID;
+        this.productName = productName;
     }
 
     public ProductLimitation() {
@@ -42,22 +42,15 @@ public class ProductLimitation {
         this.username = username;
     }
 
-    public Long getProductID() {
-        return productID;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProductID(Long productID) {
-        this.productID = productID;
+    public void setProductName(Long productID) {
+        this.productName = productName;
     }
 
-    @Override
-    public String toString() {
-        return "ProductLimitation{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", productID=" + productID +
-                '}';
-    }
+
 
 
 }

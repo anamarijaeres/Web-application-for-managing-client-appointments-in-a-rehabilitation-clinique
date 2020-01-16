@@ -5,6 +5,7 @@ import {Link, NavLink} from 'react-router-dom'
 import AddProductCategory from './AddProductCategory'
 import AddExercise from './AddExercise'
 import SetTask from './SetTask'
+import PrescribeDiet from "./PrescribeDiet";
 
 class UserLogin extends Component{
     //username ti je u this.props.matchLink.match.params.username;
@@ -218,7 +219,18 @@ class UserLogin extends Component{
                                 <div className="card red lighten-1">
                                     <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">add exercise</NavLink></li>
                                 </div>
-
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to="/editProduct" className="card-title white-text">edit product</NavLink></li>
+                                </div>
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to="/editProductCategory" className="card-title white-text">edit category</NavLink></li>
+                                </div>
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to="/deleteCategory" className="card-title white-text">delete category</NavLink></li>
+                                </div>
+                                <div className="card red lighten-1">
+                                    <li className="center"><NavLink to="/deleteProduct" className="card-title white-text">delete product</NavLink></li>
+                                </div>
                                <div className="card red lighten-1">
                                     <li className="center"><NavLink to= {"/editExercise"} className="card-title white-text">edit exercise</NavLink></li>
                                </div>
@@ -249,38 +261,38 @@ class UserLogin extends Component{
                                 <div className="card">
 
                                     <div className="card-content">
-                                            <span className="card-title blue darken-2 white-text center">Profile Info</span>
-                                            <div className="container">
-                                               <div className="collapsible-header">
-                                                    <i class="material-icons">person_pin</i>
-                                                    <div>{this.state.user.username}</div>
-                                               </div>
-
-                                               <div className="collapsible-header ">
-                                                    <i class="material-icons">person</i>
-                                                     <div >{this.state.user.firstname} {this.state.user.lastname}</div>
-                                                </div>
-
-                                                <div className="collapsible-header ">
-                                                    <i class="material-icons">work</i>
-                                                    <div>Client</div>
-                                                 </div>
+                                        <span className="card-title blue darken-2 white-text center">Profile Info</span>
+                                        <div className="container">
+                                            <div className="collapsible-header">
+                                                <i class="material-icons">person_pin</i>
+                                                <div>{this.state.user.username}</div>
                                             </div>
+
+                                            <div className="collapsible-header ">
+                                                <i class="material-icons">person</i>
+                                                <div >{this.state.user.firstname} {this.state.user.lastname}</div>
+                                            </div>
+
+                                            <div className="collapsible-header ">
+                                                <i class="material-icons">work</i>
+                                                <div>Client</div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="container" style={{padding: 5}}>
                                     <div className="center card-action">
-                                      <div className="btn red lighten-1 z-depth-0" >
-                                         <NavLink to={"/"+localStorage.getItem('userName')+"/addProduct"} style={{color: 'white'}} >ADD PRODUCT</NavLink>
-                                       </div>
+                                        <div className="btn red lighten-1 z-depth-0" >
+                                            <NavLink to={"/"+localStorage.getItem('userName')+"/addProduct"} style={{color: 'white'}} >ADD PRODUCT</NavLink>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="container" style={{padding: 5}}>
                                     <div className="center card-action">
-                                         <div className="btn red lighten-1 z-depth-0" >
+                                        <div className="btn red lighten-1 z-depth-0" >
                                             <NavLink to={"/"+localStorage.getItem('userName')+"/statistic"} style={{color: 'white'}} >STATISTIC</NavLink>
                                         </div>
-                                     </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -292,7 +304,7 @@ class UserLogin extends Component{
                                         <p>{this.state.cooperationDoctor.body}</p>
                                         <button className="btn red lighten-1 z-depth-0"
                                                 onClick={(e) => this.breakCooperationDoctor(this.state.cooperationDoctor.username, e, this.state.cooperationDoctor.id)}>
-                                        End collaboration
+                                            End collaboration
                                         </button>
                                         <div className="center card-action">
                                             <NavLink to={"/profile/"+ this.state.cooperationDoctor.username}>Profile</NavLink>
@@ -367,6 +379,7 @@ class UserLogin extends Component{
 
 
 
+
             if (role === 'Doctor') {
 
                 coopList = cooperations.map(cooperation => {
@@ -384,13 +397,17 @@ class UserLogin extends Component{
                                 <div className="row">
                                     <div className="col s10">
                                         <div className="btn red lighten-1 z-depth-0" >
-                                            <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}> Prescribe diet</NavLink>
-                                        </div>
-                                        <div className="btn red lighten-1 z-depth-0" >
                                             <NavLink to={"/"+cooperation.username+"/statistic"} style={{color: 'white'}} >STATISTIC</NavLink>
                                         </div>
                                     </div>
                                 </div>
+                               <div className="btn red lighten-1 z-depth-0" >
+                                    <NavLink to={"/"+localStorage.getItem('userName')+"/PrescribeDiet/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}>Prescribe Diet</NavLink>
+                                </div>
+                                {/*<button className="btn red lighten-1 z-depth-0" onClick={(e) => console.log("okej")}>
+                                    Prescribe diet
+                                </button>*/}
+
                             </div>
                         </div>
                     )
@@ -404,10 +421,11 @@ class UserLogin extends Component{
                              <li className="center"><NavLink to="/addProduct" className="card-title white-text">add product</NavLink></li>
                         </div>
 
+
                  </div>
 
             }else {
-                 coopList = cooperations.map(cooperation => {
+                coopList = cooperations.map(cooperation => {
                     return (
 
                         <div className="post card" key={cooperation.id}>
@@ -420,22 +438,21 @@ class UserLogin extends Component{
                                     End collaboration
                                 </button>
 
-                                        <div className="btn red lighten-1 z-depth-0" >
-                                            <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}>SET TASK</NavLink>
-                                        </div>
+                                <div className="btn red lighten-1 z-depth-0" >
+                                    <NavLink to={"/"+localStorage.getItem('userName')+"/setTask/"+cooperation.username} style={{color: 'white'}} name= {cooperation.username}>SET TASK</NavLink>
+                                </div>
 
                             </div>
                         </div>
                     )
                 })
 
-             buttonList=<div>
+                buttonList=<div>
 
-                 <div className="card red lighten-1">
-                     <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">add exercise</NavLink></li>
-                  </div>
-              </div>
-                
+                    <div className="card red lighten-1">
+                        <li className="center"><NavLink to= {"/"+this.state.user.username+"/addExercise"} className="card-title white-text">add exercise</NavLink></li>
+                    </div>
+                </div>
             }
         return(
             <div className="container">
@@ -524,6 +541,7 @@ class UserLogin extends Component{
                 )
         }
     }
+
 }
 
 export default UserLogin;

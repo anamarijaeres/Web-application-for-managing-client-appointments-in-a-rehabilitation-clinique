@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 class AddProductCategory extends Component {
 
     state={
-        categoryName:''    
+        categoryName:'',
     }
 
     handleCategoryChange=(e)=>{

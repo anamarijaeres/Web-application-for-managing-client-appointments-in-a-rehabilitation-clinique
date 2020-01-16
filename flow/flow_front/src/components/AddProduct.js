@@ -120,7 +120,8 @@ class AddProduct extends Component {
 
 
     handleNameChange=(e)=>{
-        this.setState({name: e.target.value})
+        this.setState({
+            name: e.target.value})
     }
 
     handleEnergyChange=(e)=>{

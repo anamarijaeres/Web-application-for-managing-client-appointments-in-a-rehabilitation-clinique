@@ -1,7 +1,12 @@
 package opp.flow.service;
 
 import opp.flow.model.*;
+//ovo je javilo
 import opp.flow.repository.*;
+//do tu
+import opp.flow.repository.ProductLimitationRepository;
+import opp.flow.repository.ProductRepository;
+//i ovo do kraja
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,22 +77,21 @@ public class ProductService {
 		}
 	}
 
-
 	public boolean saveConsumedProduct(ConsumedProduct consumedProduct) {
-    	boolean okay=true;
-    	double mass=(Double.parseDouble(consumedProduct.getMass()))/100;
-    	System.out.println(mass);
-    	Product product=productRepository.findByname(consumedProduct.getProductName());
-		double energy=product.getEnergy()*mass;
-		double fat=product.getFat()*mass;
-		double saturatedFattyAcids=product.getSaturatedFattyAcids()*mass;
-		double carbohydrates=product.getCarbohydrates()*mass;
-		double sugars=product.getSugars()*mass;
-		double protein=product.getProtein()*mass;
-		double salt=product.getSalt()*mass;
+		boolean okay = true;
+		double mass = (Double.parseDouble(consumedProduct.getMass())) / 100;
+		System.out.println(mass);
+		Product product = productRepository.findByname(consumedProduct.getProductName());
+		double energy = product.getEnergy() * mass;
+		double fat = product.getFat() * mass;
+		double saturatedFattyAcids = product.getSaturatedFattyAcids() * mass;
+		double carbohydrates = product.getCarbohydrates() * mass;
+		double sugars = product.getSugars() * mass;
+		double protein = product.getProtein() * mass;
+		double salt = product.getSalt() * mass;
 
-		List<ConsumedProduct> consumedProducts=consumedProductRepository.findByusername(consumedProduct.getUsername());
-		if(consumedProducts!=null) {
+		List<ConsumedProduct> consumedProducts = consumedProductRepository.findByusername(consumedProduct.getUsername());
+		if (consumedProducts != null) {
 			for (ConsumedProduct con : consumedProducts) {
 
 				if (con.getDate().isEqual(consumedProduct.getDate())) {
@@ -102,30 +106,30 @@ public class ProductService {
 				}
 			}
 		}
-		NutritionalValuesLimitation nutritionalValuesLimitation=nutritionalValuesLimitationRepository.findByusername(consumedProduct.getUsername());
+		NutritionalValuesLimitation nutritionalValuesLimitation = nutritionalValuesLimitationRepository.findByusername(consumedProduct.getUsername());
 
-		List<CategoryLimitation> categoryLimitation=categoryLimitationRepository.findByusername(consumedProduct.getUsername());
-		String productName=consumedProduct.getProductName();
-		Product prod=productRepository.findByname(productName);
-		if(categoryLimitation!=null ) {
+		List<CategoryLimitation> categoryLimitation = categoryLimitationRepository.findByusername(consumedProduct.getUsername());
+		String productName = consumedProduct.getProductName();
+		Product prod = productRepository.findByname(productName);
+		if (categoryLimitation != null) {
 
-			String cat=prod.getCategory();
-			if(cat.length()!=0) {
+			String cat = prod.getCategory();
+			if (cat.length() != 0) {
 				ProductCategory category = productCategoryRepository.findByname(cat);
 				for (CategoryLimitation catLim : categoryLimitation) {
-					if (catLim.getCategoryID().equals(category.getId()))
+					if (catLim.getCategoryName().equals(category.getName()))
 						okay = false;
 				}
 			}
 		}
-		List<ProductLimitation> productLimitations=productLimitationRepository.findByusername(consumedProduct.getUsername());
-		if(productLimitations!=null) {
+		List<ProductLimitation> productLimitations = productLimitationRepository.findByusername(consumedProduct.getUsername());
+		if (productLimitations != null) {
 			for (ProductLimitation pl : productLimitations) {
-				if (prod.getId().equals(pl.getProductID()))
+				if (prod.getName().equals(pl.getProductName()))
 					okay = false;
 			}
 		}
-		if(nutritionalValuesLimitation!=null) {
+		if (nutritionalValuesLimitation != null) {
 			System.out.println(energy);
 			if (nutritionalValuesLimitation.getEnergyLimit() < energy)
 				okay = false;
@@ -142,11 +146,43 @@ public class ProductService {
 			if (nutritionalValuesLimitation.getSaltLimit() < salt)
 				okay = false;
 		}
-		if(okay){
+		if (okay) {
 			consumedProduct.setDate(LocalDate.now().plusDays(1));
 			consumedProductRepository.save(consumedProduct);
 		}
-	return okay;
+		return okay;
+
+	}
+
+	public void updateProduct(Product updateProduct, String name) {
+		Product product=productRepository.findByname(name);
+		try {
+			product.replaceAttributes(updateProduct);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		productRepository.save(product);
+	}
+	public void deleteProduct(Product product) {
+		Product pc=productRepository.findByname(product.getName());
+		product.setId(pc.getId());
+    	productRepository.deleteById(pc.getId());
+	}
+
+	public List<ProductPost> getProductList() {
+		List<Product> productList=productRepository.findAll();
+		List<ProductPost> productPostList = new ArrayList<>();
+		for(Product p: productList){
+			ProductPost post = new ProductPost(p.getName());
+			productPostList.add(post);
+		}
+		return productPostList;
+	}
+
+	public List<Product> getFullProductList(){
+    	List<Product> productList = productRepository.findAll();
+    	return productList;
+
 	}
 }
 

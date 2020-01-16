@@ -6,6 +6,7 @@ import opp.flow.service.DietService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Locale;
 
 @CrossOrigin(origins = { "http://localhost:3000"})
@@ -16,9 +17,9 @@ public class DietController {
     private DietService dietService;
 
     @PostMapping("/{username}/addDiet")
-    public ResponseMessage addDiet(@PathVariable String username,  String description) {
+    public ResponseMessage addDiet(@RequestBody Diet diet) {
         ResponseMessage response=new ResponseMessage();
-        int save=dietService.addDiet(description, username);
+        int save=dietService.addDiet(diet);
         if(save == 0) {
             response.setError_code(ErrorCode.ERROR_CODE_0);
             response.setMessage("You successfully added a new diet!");
@@ -33,46 +34,46 @@ public class DietController {
     }
 
     @PostMapping("/{username}/addProductLimitation")
-    public ResponseMessage addDiet(@PathVariable String username, Product product) {
+    public ResponseMessage addProductLimitation(@PathVariable("username") String username, @RequestBody String productName) {
         ResponseMessage response=new ResponseMessage();
-        dietService.addProductLimitation(username, product.getId());
-        response.setError_code(ErrorCode.ERROR_CODE_0);
-        response.setMessage("You successfully added a product limitation!");
+        String pName = productName.replaceAll("=","");
+        boolean save = dietService.addProductLimitation(username, pName);
+        if(save){
+            response.setError_code(ErrorCode.ERROR_CODE_0);
+            response.setMessage("You successfully added a product limitation!");
+        }
+        else{
+            response.setError_code(ErrorCode.ERROR_CODE_9);
+            response.setMessage("You already added that product limitation!");
+        }
         return response;
     }
+
 
     @PostMapping("/{username}/addCategoryLimitation")
-    public ResponseMessage addCategoryLimitation(@PathVariable String username, ProductCategory productCategory) {
-        ResponseMessage response = new ResponseMessage();
-        dietService.addCategoryLimitation(username, productCategory.getId());
-        response.setError_code(ErrorCode.ERROR_CODE_0);
-        response.setMessage("You successfully added a category limitation!");
+    public ResponseMessage addCategoryLimitation(@PathVariable("username") String username, @RequestBody String categoryName) {
+        ResponseMessage response=new ResponseMessage();
+        String cName = categoryName.replaceAll("=","");
+        boolean save = dietService.addCategoryLimitation(username, cName);
+        if(save){
+            response.setError_code(ErrorCode.ERROR_CODE_0);
+            response.setMessage("You successfully added a category limitation!");
+        }
+        else{
+            response.setError_code(ErrorCode.ERROR_CODE_9);
+            response.setMessage("You already added that category limitation!");
+        }
         return response;
     }
 
-    //jedna od stvari koja se upisuje je i username tako da se može uzet model NutritionalValuesLimitation
-    /*@PostMapping("/addNutritionalValuesLimitation/{username}")
+    @PostMapping("/addNutritionalValuesLimitation/{username}")
     public ResponseMessage addNutritionalValuesLimitation(@RequestBody NutritionalValuesLimitation nutritionalValuesLimitation) {
         ResponseMessage response = new ResponseMessage();
         dietService.addNutritionalValuesLimitation(nutritionalValuesLimitation);
         response.setError_code(ErrorCode.ERROR_CODE_0);
-        response.setMessage("You added nutritional value limitation successfully");
+        response.setMessage("You added nutritional value limitation successfully!");
         return response;
-    }*/
-
-    //ili ovako
-/*    @PostMapping("/addNutritionalValuesLimitation/{username}")
-    public ResponseMessage addNutritionalValuesLimitation(@RequestParam("energy") double energy, @RequestParam("fat") double fat,
-                                                          @RequestParam("saturatedFattyAcids") double saturatedFattyAcids, @RequestParam("carbohydrates") double carbohydrates,
-                                                          @RequestParam("sugars") double sugars,  @RequestParam("protein") double protein, @RequestParam("salt") double salt,
-                                                          @PathVariable("username") String username) {
-        ResponseMessage response = new ResponseMessage();
-        NutritionalValuesLimitation nutritionalValuesLimitation = new NutritionalValuesLimitation(username, energy, fat, saturatedFattyAcids, carbohydrates, sugars, protein, salt);
-        dietService.addNutritionalValuesLimitation(nutritionalValuesLimitation);
-        response.setError_code(ErrorCode.ERROR_CODE_0);
-        response.setMessage("You added nutritional value limitation successfully");
-        return response;
-    }*/
+    }
 
 
 }

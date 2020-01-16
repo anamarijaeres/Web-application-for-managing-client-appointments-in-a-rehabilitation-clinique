@@ -23,6 +23,11 @@ import EditExercise from './components/EditExercise.js'
 import EditExerciseForm from './components/EditExerciseForm.js'
 
 
+import PrescribeDiet from './components/PrescribeDiet.js';
+import EditProduct from './components/EditProduct.js';
+import EditProductCategory from './components/EditProductCategory.js';
+import DeleteCategory from './components/DeleteCategory.js';
+import DeleteProduct from "./components/DeleteProduct.js";
 
 
 class App extends Component{
@@ -52,6 +57,11 @@ class App extends Component{
           <Switch>
             <Route path={'/:username'+'/addProduct'}  component={(match)=><ConsumedProduct matchLink={match} />}/>
             <Route path={'/:username'+'/statistic'}  component={(match)=><Statistic matchLink={match} />}/>
+            <Route path={'/:username'+'/PrescribeDiet/'+':clientUsername'} component={(match)=><PrescribeDiet matchLink={match} />}/>
+            <Route path={'/deleteProduct'} component={DeleteProduct}/>
+            <Route path={'/deleteCategory'} component={DeleteCategory}/>
+            <Route path={'/editProductCategory'} component={EditProductCategory}/>
+          <Route path={'/editProduct'} component={EditProduct}/>
           <Route path='/addProduct' component={AddProduct}/>
           <Route path='/addProductCategory' component={AddProductCategory}/>
           <Route path='/login' component={()=><Login handleLogin={this.handleLogin} />}/>
@@ -69,6 +79,8 @@ class App extends Component{
           <Route path={'/:username'+'/editProfile'} component={EditProfile}/>
           <Route path= {'/:username' + '/trainings'} component = {(match)=><TrainingStatistics matchLink={match}/>}/>
           <Route path='/:username' component={(match)=><UserLogin matchLink={match} />}/>
+
+
           </Switch>
         </div>
     </BrowserRouter>

@@ -6,15 +6,24 @@ import opp.flow.ResponseMessage;
 import opp.flow.model.ConsumedProduct;
 import opp.flow.model.Exercise;
 import opp.flow.model.Product;
+//<<<<<<< Updated upstream
 import opp.flow.model.Training;
+//=======
+import opp.flow.model.ProductCategory;
+import opp.flow.model.ProductPost;
+//>>>>>>> Stashed changes
 import opp.flow.service.BarcodeService;
 import opp.flow.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+//<<<<<<< Updated upstream
 import java.time.LocalDate;
 import java.util.ArrayList;
+//=======
+
+//>>>>>>> Stashed changes
 import java.util.List;
 
 
@@ -103,18 +112,50 @@ public class ProductController {
     	response.setError_code(ErrorCode.ERROR_CODE_0);
     	return response;
     }
+//<<<<<<< Updated upstream
     
     @PostMapping("/findProductbyBarcode")
     public ResponseMessage findProductByBarcode(@RequestParam("imageFile") MultipartFile image) {
-    	ResponseMessage response=new ResponseMessage();
-    	String productName=barcodeService.findProductName(image);
-    	if(productName!=null) {
-    		response.setError_code(ErrorCode.ERROR_CODE_0);
-    		response.setUsername(productName);
-    	}else {
-    		response.setError_code(ErrorCode.ERROR_CODE_11);
-    		response.setMessage("There is not product with uploaded barcode!");
-    	}
-    	return response;
+        ResponseMessage response = new ResponseMessage();
+        String productName = barcodeService.findProductName(image);
+        if (productName != null) {
+            response.setError_code(ErrorCode.ERROR_CODE_0);
+            response.setUsername(productName);
+        } else {
+            response.setError_code(ErrorCode.ERROR_CODE_11);
+            response.setMessage("There is not product with uploaded barcode!");
+        }
+        return response;
+    }
+//=======
+
+    @PutMapping("/editProduct/{name}")
+    public ResponseMessage updateProduct(@RequestBody Product updateProduct, @PathVariable("name") String name) {
+        ResponseMessage response=new ResponseMessage();
+        productService.updateProduct(updateProduct, name);
+        response.setError_code(ErrorCode.ERROR_CODE_0);
+        response.setMessage("Update successful");
+        return response;
+    }
+
+    @PostMapping("/deleteProduct")
+    public ResponseMessage deleteProduct(@RequestBody Product product) {
+        ResponseMessage response=new ResponseMessage();
+        productService.deleteProduct(product);
+        response.setError_code(ErrorCode.ERROR_CODE_0);
+        response.setMessage("Delete successful");
+        return response;
+    }
+
+    @GetMapping("/productList")
+    public List<ProductPost> getProductList() {
+
+        return productService.getProductList();
+    }
+
+    @GetMapping("/fullProductList")
+    public List<Product> getFullProductList(){
+        return productService.getFullProductList();
+
     }
 }

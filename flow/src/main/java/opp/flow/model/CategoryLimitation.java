@@ -15,11 +15,11 @@ public class CategoryLimitation {
 
     @Column(nullable = false)
     @NotNull
-    private Long categoryID;
+    private String categoryName;
 
-    public CategoryLimitation(@NotNull String username, @NotNull Long categoryID) {
+    public CategoryLimitation(@NotNull String username, @NotNull String categoryName) {
         this.username = username;
-        this.categoryID = categoryID;
+        this.categoryName = categoryName;
     }
 
     public CategoryLimitation() {
@@ -41,22 +41,14 @@ public class CategoryLimitation {
         this.username = username;
     }
 
-    public Long getCategoryID() {
-        return categoryID;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    @Override
-    public String toString() {
-        return "CategoryLimitation{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", categoryID=" + categoryID +
-                '}';
-    }
 
 
 }

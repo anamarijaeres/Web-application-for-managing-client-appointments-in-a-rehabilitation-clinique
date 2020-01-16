@@ -38,4 +38,21 @@ public class ProductCategoryService {
         List<ProductCategory>productCategoriesList=productCategoryRepository.findAll();
         return productCategoriesList;
     }
+
+    //uredivanje kategorija proizvoda
+    public void updateProductCategory(ProductCategory updateProductCategory, String name) {
+        ProductCategory productCategory=productCategoryRepository.findByname(name);
+        try {
+            productCategory.replaceAttributes(updateProductCategory);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        productCategoryRepository.save(productCategory);
+    }
+
+    public void deleteProductCategory(ProductCategory productCategory) {
+        ProductCategory pc=productCategoryRepository.findByname(productCategory.getName());
+        productCategory.setId(pc.getId());
+        productCategoryRepository.delete(productCategory);
+    }
 }
