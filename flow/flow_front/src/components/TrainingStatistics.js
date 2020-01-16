@@ -31,7 +31,7 @@ import { NavLink, withRouter } from 'react-router-dom';
                             <div className="card-content">
                                 <span className="card-title">{s.date}</span>
                                 <p> Burned calories : {s.burnedCalories} kcal</p>
-                                <NavLink to={"/editProfile" + s.id}>Show workouts </NavLink>
+                                <NavLink to={"/loadExercises/" + s.id}>Show workouts </NavLink>
                             </div>
                         </div>
 
