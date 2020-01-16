@@ -52,6 +52,12 @@ public class DoctorCoachController {
 		return result;
 	}
 
+	@DeleteMapping("/{name}")
+	public ResponseMessage removeExercise (@PathVariable("name") String name){
+		doctorCoachService.deleteExercise(name);
+		return new ResponseMessage();
+	}
+
 	@GetMapping("/getWorkouts/{username}")
 	public List<Training> getWorkouts(@PathVariable("username") String username){
 		return doctorCoachService.loadTraining(username, LocalDate.now(), false);

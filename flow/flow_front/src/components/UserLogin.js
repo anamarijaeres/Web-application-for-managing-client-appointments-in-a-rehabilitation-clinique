@@ -226,14 +226,17 @@ class UserLogin extends Component{
                                     <li className="center"><NavLink to="/editProductCategory" className="card-title white-text">edit category</NavLink></li>
                                 </div>
                                 <div className="card red lighten-1">
-                                    <li className="center"><NavLink to="/deleteCategory" className="card-title white-text">delete category</NavLink></li>
+                                    <li className="center"><NavLink to="/deleteCategory" className="card-title white-text">remove category</NavLink></li>
                                 </div>
                                 <div className="card red lighten-1">
-                                    <li className="center"><NavLink to="/deleteProduct" className="card-title white-text">delete product</NavLink></li>
+                                    <li className="center"><NavLink to="/deleteProduct" className="card-title white-text">remove product</NavLink></li>
                                 </div>
                                <div className="card red lighten-1">
                                     <li className="center"><NavLink to= {"/editExercise"} className="card-title white-text">edit exercise</NavLink></li>
                                </div>
+                               <div className="card red lighten-1">
+                                   <li className="center"><NavLink to= {"/removeExercise"} className="card-title white-text">remove exercise</NavLink></li>
+                              </div>
 
                             </div>
 

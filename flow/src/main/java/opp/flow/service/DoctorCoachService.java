@@ -425,4 +425,8 @@ public class DoctorCoachService {
 	public Exercise loadExercise(String name) {
 		return exerciseRepository.findByname(name);
 	}
+
+    public void deleteExercise(String name) {
+		exerciseRepository.deleteById(name);
+    }
 }

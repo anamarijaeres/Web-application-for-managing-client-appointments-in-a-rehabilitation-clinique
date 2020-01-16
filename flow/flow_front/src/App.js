@@ -21,8 +21,7 @@ import TrainingStatistics from './components/TrainingStatistics.js';
 import LoadExercises from './components/LoadExercises.js'
 import EditExercise from './components/EditExercise.js'
 import EditExerciseForm from './components/EditExerciseForm.js'
-
-
+import DeleteExercise from './components/DeleteExercise.js'
 import PrescribeDiet from './components/PrescribeDiet.js';
 import EditProduct from './components/EditProduct.js';
 import EditProductCategory from './components/EditProductCategory.js';
@@ -69,6 +68,7 @@ class App extends Component{
           <Route exact path='/' component={Home}/>
           <Route path='/review'  component={Review}/>
           <Route path='/editExercise' component={EditExercise}/>
+           <Route path='/removeExercise' component={DeleteExercise}/>
           <Route path={'/editExerciseForm' + '/:name'} component={(match)=><EditExerciseForm matchLink={match}/>}/>
           <Route path={'/loadExercises' + '/:id'}  component={(match)=><LoadExercises matchLink={match}/>}/>
           <Route path={'/reply'+ '/:username' +'/:id'+'/:us'}  component={(match)=><Reply matchLink={match}/>}/>

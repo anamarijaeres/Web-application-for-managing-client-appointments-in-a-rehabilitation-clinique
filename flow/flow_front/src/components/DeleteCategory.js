@@ -44,22 +44,20 @@ class DeleteCategory extends Component {
             )
         })
         return (
-            <div className="container">
-                <div className="row">
+            <div className="container center">
+
                     <form onSubmit={this.handleCategorySubmit}>
-                        <div className="col s6 offset-s3">
-                            <div></div>
-                            <div className="container">
+                        <div className="input-field col s12">
+
                                 <select className="browser-default" value={this.state.value}
                                         onChange={this.handleChange}>
                                     <option value="" disabled selected>Please choose category of product:</option>
                                     {categories}
                                 </select>
                             </div>
-                            <button className="btn red lighten-1 z-depth-0">Izbrisi kategoriju</button>
-                        </div>
+                            <button className="btn red lighten-1 z-depth-0">Delete</button>
+
                     </form>
-                </div>
             </div>
 
 
