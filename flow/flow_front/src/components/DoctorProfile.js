@@ -61,6 +61,7 @@ class DoctorProfile extends Component{
                                  src={"http://localhost:8080/img/" + this.state.username}
                                  alt=""/>
                             <span className="card-title blue darken-2">Profile Info</span>
+                            <span className="card-title blue darken-2">Profile Info</span>
                         </div>
                         <div className="card-content">
                                 <div className="container">

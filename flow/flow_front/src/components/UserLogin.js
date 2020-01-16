@@ -183,30 +183,32 @@ class UserLogin extends Component{
                 })
 
                 return(
-
                     <div className="container">
                         <div className="row">
-
                             <div className="col s12 m6">
-                                <div className="card blue darken-2">
-                                    <div className="card-content white-text">
-                                        <span className="card-title center">Profile Info</span>
+                                <div className="card">
+
+                                    <div className="card-content">
+                                    <span className="card-title blue darken-2 white-text center">Profile Info</span>
                                             <div className="container">
-                                                <div className="container">
-                                                    <h6 className="center">Username: {this.state.user.username}</h6>
+                                               <div className="collapsible-header">
+                                                    <i class="material-icons">person_pin</i>
+                                                    <div>{this.state.user.username}</div>
+                                               </div>
+
+                                               <div className="collapsible-header ">
+                                                    <i class="material-icons">person</i>
+                                                     <div >{this.state.user.firstname} {this.state.user.lastname}</div>
                                                 </div>
-                                                <div className="container">
-                                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                                                </div>
-                                                <div className="container">
-                                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                                                </div>
-                                                <div className="container">
-                                                    <h6 className="center">Role: Admin</h6>
-                                                </div>
+
+                                                <div className="collapsible-header ">
+                                                    <i class="material-icons">work</i>
+                                                    <div>Admin</div>
+                                                 </div>
                                             </div>
-                                    </div>
+                                          </div>
                                 </div>
+
                                 <div className="card red lighten-1">
                                     <li className="center"><NavLink to="/addProductCategory" className="card-title white-text">add category</NavLink></li>
                                 </div>
@@ -236,6 +238,7 @@ class UserLogin extends Component{
 
                         </div>
                     </div>
+
                 )
             } else {
 
@@ -243,26 +246,25 @@ class UserLogin extends Component{
                     <div className="container">
                         <div className="row">
                             <div className="col s12 m6">
-                                <div className="card blue darken-2">
-                                    <div className="card-content white-text">
-                                        <span className="center card-title">Profile Info</span>
+                                <div className="card">
+
+                                    <div className="card-content">
+                                            <span className="card-title blue darken-2 white-text center">Profile Info</span>
                                             <div className="container">
-                                                <div className="container">
-                                                    <h6 className="center">Username: {this.state.user.username}</h6>
-                                                </div>
-                                                <div className="container">
-                                                    <h6 className="center">Firstname: {this.state.user.firstname}</h6>
-                                                </div>
-                                                <div className="container">
-                                                    <h6 className="center">Lastname: {this.state.user.lastname}</h6>
-                                                </div>
-                                                <div className="container">
-                                                    <h6 className="center">Role: {role}</h6>
-                                                </div>
-                                                <div className="center card-action">
-                                                    <NavLink to={"/"+this.state.user.username+"/editProfile"}>Edit Profile</NavLink>
+                                               <div className="collapsible-header">
+                                                    <i class="material-icons">person_pin</i>
+                                                    <div>{this.state.user.username}</div>
+                                               </div>
+
+                                               <div className="collapsible-header ">
+                                                    <i class="material-icons">person</i>
+                                                     <div >{this.state.user.firstname} {this.state.user.lastname}</div>
                                                 </div>
 
+                                                <div className="collapsible-header ">
+                                                    <i class="material-icons">work</i>
+                                                    <div>Client</div>
+                                                 </div>
                                             </div>
                                     </div>
                                 </div>
