@@ -14,17 +14,15 @@ import AddProductCategory from './components/AddProductCategory.js'
 import AddProduct from './components/AddProduct.js'
 import SetTask from './components/SetTask.js';
 import AddExercise from './components/AddExercise.js'
-<<<<<<< Updated upstream
 import ConsumedProduct from "./components/ConsumedProduct";
 import Statistic from "./components/Statistic";
-=======
 import CoachProfile from './components/CoachProfile.js';
 import TrainingStatistics from './components/TrainingStatistics.js';
 import LoadExercises from './components/LoadExercises.js'
 import EditExercise from './components/EditExercise.js'
 import EditExerciseForm from './components/EditExerciseForm.js'
 
->>>>>>> Stashed changes
+
 
 
 class App extends Component{

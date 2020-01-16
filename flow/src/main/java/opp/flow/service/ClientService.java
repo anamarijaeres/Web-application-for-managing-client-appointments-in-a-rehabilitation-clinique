@@ -31,14 +31,14 @@ public class ClientService{
 	private DoctorCoachService doctorCoachService;
 
 	@Autowired
-<<<<<<< Updated upstream
+
 	private ConsumedProductRepository consumedProductRepository;
 
 	@Autowired
 	private ProductRepository productRepository;
-=======
+
 	private TrainingStatisticsRepository trainingStatisticsRepository;
->>>>>>> Stashed changes
+
 
     public boolean registerClient(Client registerClient) {
     	Client client=clientRepository.findByusername(registerClient.getUsername()); 

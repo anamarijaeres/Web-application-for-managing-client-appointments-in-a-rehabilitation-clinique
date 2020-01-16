@@ -40,17 +40,16 @@ public class ClientController {
     	}
     	return response;
     }
-<<<<<<< Updated upstream
-	@GetMapping("/statistic/{username}")
-	public List<StatisticProduct> getStatistic(@PathVariable String username){
-		return clientService.getStatistic(username);
-=======
 
+	@GetMapping("/statistic/{username}")
+	public List<StatisticProduct> getStatistic(@PathVariable String username) {
+		return clientService.getStatistic(username);
+	}
     @GetMapping("/{username}/getDates")
 	public List<LocalDate> getDates(@PathVariable("username") String username) {
 
     	return clientService.loadTrainingDates(username);
->>>>>>> Stashed changes
+
 	}
     
     @GetMapping("/adminList")

@@ -120,7 +120,7 @@ class ConsumedProduct extends Component {
                     <label></label>
                     <label>Or add product barcode</label>
                     <div className="input-field"> 
-                        <label htmlFor="image">Barkod</label>
+
                             <input type="file" onChange={this.handleBarcodeChange}/>
                         </div>
                     <div className="input-field">

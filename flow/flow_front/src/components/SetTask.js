@@ -54,7 +54,7 @@ componentDidMount(){
     });
  }
 
- handleDone = (e) => {
+ handleDone= (e) => {
       e.preventDefault();
           const data= {
           username: this.props.matchLink.match.params.clientUsername,
@@ -71,9 +71,8 @@ componentDidMount(){
               mode:'',
               duration:''
             })
+             this.props.history.push('/'+localStorage.getItem('userName'));
           });
-
-      window.location.reload();
  }
 
  handleBack = (e) => {
@@ -134,9 +133,13 @@ render(){
                             </div>
 
                             <div className="row">
+
                                <a class="btn-floating btn-large waves-effect waves-light red" onClick = {this.handleSubmit}><i class="material-icons">add</i></a>
+
                                &nbsp;&nbsp;&nbsp;
-                                <a class="btn-floating btn-large waves-effect waves-light green"onClink = {this.handleDone}><i class="material-icons">check</i></a>
+
+                                <a class="btn-floating btn-large waves-effect waves-light green" onClick = {this.handleDone}><i class="material-icons">check</i></a>
+
                             </div>
 
             </div>
