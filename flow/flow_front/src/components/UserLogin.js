@@ -187,7 +187,7 @@ class UserLogin extends Component{
                     <div className="container">
                         <div className="row">
                             <div className="col s12 m6">
-                                <div className="card">
+                                <div className="card center">
 
                                     <div className="card-content">
                                     <span className="card-title blue darken-2 white-text center">Profile Info</span>
@@ -208,6 +208,7 @@ class UserLogin extends Component{
                                                  </div>
                                             </div>
                                           </div>
+                                          <NavLink to={localStorage.getItem('userName')+"/editProfile"}>Edit Profile</NavLink>
                                 </div>
 
                                 <div className="card red lighten-1">
@@ -261,7 +262,7 @@ class UserLogin extends Component{
                     <div className="container">
                         <div className="row">
                             <div className="col s12 m6">
-                                <div className="card">
+                                <div className="card center">
 
                                     <div className="card-content">
                                         <span className="card-title blue darken-2 white-text center">Profile Info</span>
@@ -281,6 +282,7 @@ class UserLogin extends Component{
                                                 <div>Client</div>
                                             </div>
                                         </div>
+                                        <NavLink to={localStorage.getItem('userName')+"/editProfile"}>Edit Profile</NavLink>
                                     </div>
                                 </div>
                                 <div className="container" style={{padding: 5}}>
