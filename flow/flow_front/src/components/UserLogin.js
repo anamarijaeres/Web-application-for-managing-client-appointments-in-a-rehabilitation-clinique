@@ -208,7 +208,7 @@ class UserLogin extends Component{
                                                  </div>
                                             </div>
                                           </div>
-                                          <NavLink to={localStorage.getItem('userName')+"/editProfile"}>Edit Profile</NavLink>
+                                          <NavLink to={"/"+localStorage.getItem('userName')+"/editProfile"}>Edit Profile</NavLink>
                                 </div>
 
                                 <div className="card red lighten-1">
@@ -282,7 +282,7 @@ class UserLogin extends Component{
                                                 <div>Client</div>
                                             </div>
                                         </div>
-                                        <NavLink to={localStorage.getItem('userName')+"/editProfile"}>Edit Profile</NavLink>
+                                        <NavLink to={"/"+localStorage.getItem('userName')+"/editProfile"}>Edit Profile</NavLink>
                                     </div>
                                 </div>
                                 <div className="container" style={{padding: 5}}>
