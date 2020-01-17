@@ -482,33 +482,63 @@
 			\end{figure}
 			\eject
 			
-			\textbf{\textit{dio 2. revizije}}\\			
 			
-			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}
+			\begin{figure}[H]
+			\includegraphics[scale=0.65]{dijagrami/Model}
+			\centering
+			\caption{Dijagram razreda - dio Model}
+			\label{fig:promjene}
+			\end{figure}
+			\begin{figure}[H]
+			\includegraphics[scale=0.65]{dijagrami/Controller}
+			\centering
+			\caption{Dijagram razreda - dio Controlleri}
+			\label{fig:promjene}
+			\end{figure}
 			
 			
 			
 			\eject
 		
 		\section{Dijagram stanja}
-			
-			
-			\textbf{\textit{dio 2. revizije}}\\
-			
-			\textit{Potrebno je priložiti dijagram stanja i opisati ga. Dovoljan je jedan dijagram stanja koji prikazuje \textbf{značajan dio funkcionalnosti} sustava. Na primjer, stanja korisničkog sučelja i tijek korištenja neke ključne funkcionalnosti jesu značajan dio sustava, a registracija i prijava nisu. }
-			
-			
-			\eject 
+		
+		
+		
+		Dijagram stanja prikazuje stanja objekta te prijelaze iz jednog stanja u drugo temeljene na dogadajima. Prikazan je dijagram stanja za registriranog
+			doktora. Nakon prijave, doktoru se prikazuje početna stranica. Na toj stanici dokor može prihvatiti ili odbiti zahtjev za suradnju koju mu je poslao klijent, također ima mogućnost prekida suradnje s klijentima koje je prihvatio prije toga. Svojim klijentima doktor ima mogućnost pripisivanja dijete, nakon klika na pripadajući gumb pojavljuje se mogućnost unosa opisa dijete te ograničenja na proizvode,kategorije i nutritivne vrijednosti. Doktor ima mogućnost dodavanja novih proizvoda i kategorija proizvoda u bazu podataka. Kliko na gumb "Edit Profile" doktor može uređivati vlastiti profil i pohraniti svoje promjene, a klikom na gumb "Reply" može odgoviriti na recenziju koju mu je dao njegov klijent. 
+		
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.8]{dijagrami/DijagramStanjaDobar.PNG}
+			\caption{Dijagram stanja}
+		\end{figure}
+		\eject 
+		
+		
+		
+		
+		
 		
 		\section{Dijagram aktivnosti}
-			
-			\textbf{\textit{dio 2. revizije}}\\
-			
-			 \textit{Potrebno je priložiti dijagram aktivnosti s pripadajućim opisom. Dijagram aktivnosti treba prikazivati značajan dio sustava.}
-			
-			\eject
+		
+		
+		Dijagram aktivnosti primjenjuje se za opis modela toka upravljanja ili toka podataka. Na dijagramu aktivnosti prikazan je proces pripisivanja dijete klijentu. Doktor se prijavi u sustav i odabire kojem klijentu želi dodijeliti dijetu. Zatim mu se pikazuje stranica u kojoj ima mogućnost unost unosa opisa dijete i to može učiniti samo jednom. Ispod toga se nalazi padajući izbornik s kategorijama koje doktor može odabrati kao ograničenje u dijeti. Ekvivalentno tome ispod se nalazi mogučnost stavljanja kategorija na proizvode. Može se dodati više ograničenja na proizvode i kategorije te se svaki put prikaže poruka o uspješnosti dodavanja, nije dopušteno dva puta dodati isti proizvod/kategoriju. Naposlijetku ima mogućnost stavljanja ograničenja na nutritivne vrijednosti ručnim upisivanjem i potvrdom s gumbom nakon čega se i to sprema u bazu.  
+		
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.8]{dijagrami/Dijagram_Aktivnosti}
+			\caption{Dijagram aktivnosti}
+		\end{figure}
+		
+		\eject
+		\newpage
 		\section{Dijagram komponenti}
 		
-			\textbf{\textit{dio 2. revizije}}\\
+		Na slici je predstavljen okvirni komponentni dijagram sustava. U dijagramu uzimamo da su poslužiteljsko i klijentsko računalo generička te da za njih ne postoje nikakvi posebni zahtjevi. U našem primjeru, klijentsko računalo preko web preglednika komunicira sa poslužiteljskom računalom. U web pregledniku klijentskog računala pokreće se klijentska aplikacija koja je temeljena na razvojnom okružju za javaScript zvanom React pripadajućim knjižnicama, a vrti se pomoću svog izvornog koda App.js. Klijentska aplikacija nudi korisničko sučelje poslužiteljskoj aplikaciji. Na poslužiteljskom računalu s druge strane, pokreće se poslužiteljska aplikacija koja za svoje pokretanje koristi datoteku Flow.jar, koja koristi skupinu knjižnica iz razvojnog okružja Spring Boot. Poslužiteljska aplikacija komunicira sa bazom podataka te preko poslužiteljskog računala šalje podatke na klijentsko računalo.
 		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+		
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.3]{dijagrami/dijagramKomponenti.jpg}
+			\caption{Dijagram komponenti}
+		\end{figure}
